@@ -1850,7 +1850,7 @@ const companies = [
     salary: "$116,000",
     description: "Deloitte is a multinational professional services network headquartered in London, England, and the largest of the Big Four accounting firms.",
     type: "Professional Services",
-    logo: "https://logo.clearbit.com/deloitte.com",
+    logo: "/companies/deloitte.jpg",
     location: "London, England, UK",
     foundingDate: "1845",
     employeeSize: "460,000 (2024)",
