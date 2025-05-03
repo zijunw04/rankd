@@ -1300,7 +1300,7 @@ const companies = [
   },
   {
     name: "Brex",
-    salary: "$285,597",
+    salary: "$245,597",
     description: "Brex Inc. is an American financial service and technology company that offers business credit cards and cash management accounts to technology companies.",
     type: "Private",
     logo: "https://logo.clearbit.com/brex.com",
