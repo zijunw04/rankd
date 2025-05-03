@@ -2312,7 +2312,7 @@ const companies = [
 
   // Toast
   {
-    name: "Toast, Inc.",
+    name: "Toast",
     salary: "€124,000",
     description: "Toast, Inc. is an American cloud-based restaurant management software company based in Boston, Massachusetts, offering a point of sale system for restaurants and bars.",
     type: "Public",
