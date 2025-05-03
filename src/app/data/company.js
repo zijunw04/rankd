@@ -1740,8 +1740,8 @@ const companies = [
     revenue: "$750M (estimated)",
   },
   {
-    name: "Bloomberg L.P.",
-    salary: "$260,348",
+    name: "Bloomberg",
+    salary: "$211,348",
     description:
       "Bloomberg L.P. provides financial information, analytics, and news services globally.",
     type: "Private Partnership",
