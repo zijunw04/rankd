@@ -677,7 +677,7 @@ const companies = [
     salary: "$104K",                                     // Software Engineer median total comp :contentReference[oaicite:24]{index=24}  
     description: "Walmart is the world’s largest retailer operating discount stores and supermarkets.",  // Macrotrends :contentReference[oaicite:25]{index=25}  
     type: "Public",
-    logo: "https://logo.clearbit.com/walmart.com",
+    logo: "/companies/walmart.png",
     location: "Bentonville, AR, USA",
     foundingDate: "1962",
     employeeSize: "2.3M+",
