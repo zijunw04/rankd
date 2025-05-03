@@ -148,12 +148,13 @@ export default function HomePage() {
       <RankdHeader />
       <main className="flex-1 flex flex-col items-center px-2">
       <div
-        className="
-          relative flex flex-col md:flex-row w-full px-[10%]
-          pt-2 md:pt-4 gap-y-6 md:gap-y-0 md:gap-x-8
-        "
-        ref={confettiRef}
-      >
+  ref={confettiRef}
+  className="
+    relative flex flex-col md:flex-row w-full px-[10%]
+    pt-2 md:pt-4 gap-y-6 md:gap-y-0 md:gap-x-8
+    min-h-[400px]
+  "
+>
           {/* Vertical divider for desktop */}
           <div className="hidden md:block absolute left-1/2 top-0 -translate-x-1/2 h-full w-0.5 bg-slate-200 z-30" />
   
