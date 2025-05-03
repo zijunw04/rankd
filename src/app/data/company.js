@@ -2272,7 +2272,7 @@ const companies = [
   },
 
   {
-    name: "McDonald's",
+    name: "McDonald",
     salary: "$109,000",
     description:
       "McDonald’s Corporation is an American fast food restaurant corporation.",
