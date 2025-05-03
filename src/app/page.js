@@ -173,14 +173,23 @@ try {
   return (
     <div className="fixed inset-0 flex flex-col items-center justify-center w-screen h-screen bg-white overflow-x-hidden">
       <RankdHeader />
-      <div className="relative flex flex-col md:flex-row w-full h-full flex-1 overflow-hidden"  ref={confettiRef}>
+      <div
+        className="
+          relative flex flex-col md:flex-row w-full h-full flex-1 overflow-hidden
+          px-2 sm:px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48
+          py-4 md:py-8
+          max-w-full
+        "
+        ref={confettiRef}
+      >
         {/* Vertical divider for desktop */}
         <div className="hidden md:block absolute left-1/2 top-0 -translate-x-1/2 h-full w-0.5 bg-slate-200 z-30" />
+  
         {/* Confetti for left */}
         {showConfetti && (picked === "left" || picked === "equal") && (
           <div className="absolute left-0 top-0 z-50 pointer-events-none w-full md:w-1/2 h-full">
             <Confetti
-              width={confettiWidth / (picked === "equal" ? 2 : 2)}
+              width={confettiWidth / 2}
               height={confettiHeight}
               numberOfPieces={200}
               recycle={false}
@@ -196,7 +205,7 @@ try {
         {showConfetti && (picked === "right" || picked === "equal") && (
           <div className="absolute right-0 top-0 z-50 pointer-events-none w-full md:w-1/2 h-full">
             <Confetti
-              width={confettiWidth / (picked === "equal" ? 2 : 2)}
+              width={confettiWidth / 2}
               height={confettiHeight}
               numberOfPieces={200}
               recycle={false}
@@ -208,7 +217,7 @@ try {
             />
           </div>
         )}
-
+  
         <CompanyPanel
           company={{ ...left, elo: leftElo, eloChange: leftEloChange }}
           onClick={() => handleChoice("left")}
@@ -216,8 +225,8 @@ try {
           disabled={voted}
           revealed={voted}
         />
-
-        {/* Center Circle Button */}
+  
+        {/* Center Circle Button for desktop */}
         <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-40">
           {!voted ? (
             <button
@@ -239,6 +248,7 @@ try {
             </button>
           )}
         </div>
+  
         <CompanyPanel
           company={{ ...right, elo: rightElo, eloChange: rightEloChange }}
           onClick={() => handleChoice("right")}
@@ -246,7 +256,7 @@ try {
           disabled={voted}
           revealed={voted}
         />
-
+  
         {/* For mobile, show Next Pair button below when voted */}
         <div className="flex md:hidden absolute bottom-8 left-1/2 -translate-x-1/2 z-50">
           {voted && (
@@ -261,4 +271,5 @@ try {
       </div>
     </div>
   );
+  
 }
