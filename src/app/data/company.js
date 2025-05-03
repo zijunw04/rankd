@@ -2178,7 +2178,7 @@ const companies = [
     tags: ["Fintech", "POS", "Payments"],
     linkedin: "https://www.linkedin.com/company/joinblock/",
     website: "https://block.xyz/",
-    revenue: "N/A (reported under Block, Inc.)",
+    revenue: "$5.77B",
   }
 ,  
   {
