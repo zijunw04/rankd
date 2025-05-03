@@ -221,8 +221,8 @@ const companies = [
   },
   {
     name: "Figma",
-    salary: "$221,000", // Glassdoor entry-level SWE :contentReference[oaicite:13]{index=13}
-    description: "Figma is a browser-based design tool for UI/UX collaboration and prototyping.", // from About page :contentReference[oaicite:14]{index=14}
+    salary: "$221,000",
+    description: "Figma is a browser-based design tool for UI/UX collaboration and prototyping.",
     type: "Unicorn",
     logo: "https://logo.clearbit.com/figma.com", // Clearbit :contentReference[oaicite:15]{index=15}
     location: "San Francisco, CA, USA", // HQ :contentReference[oaicite:16]{index=16}
@@ -629,18 +629,18 @@ const companies = [
       employeeSize: "2,300 (2024)", // :contentReference[oaicite:26]{index=26}
       tags: ["Financial services", "Electronic trading", "Fintech"],
       linkedin: "https://www.linkedin.com/company/robinhood/", // :contentReference[oaicite:27]{index=27}
-      website: "https://robinhood.com", // :contentReference[oaicite:28]{index=28}
-      revenue: "US$2.95 billion (2024)" // :contentReference[oaicite:29]{index=29}
+      website: "https://robinhood.com",
+      revenue: "US$2.95 billion (2024)" 
     },
     {
       name: "Adobe",
-      salary: "$174,000", // entry-level Software Engineer (P10) compensation :contentReference[oaicite:30]{index=30}
-      description: "Adobe Inc. is an American computer software company based in San Jose, California, known for products like Photoshop, Acrobat, Illustrator, and Creative Cloud.", // :contentReference[oaicite:31]{index=31}
+      salary: "$174,000",
+      description: "Adobe Inc. is an American computer software company based in San Jose, California, known for products like Photoshop, Acrobat, Illustrator, and Creative Cloud.",
       type: "Enterprise",
       logo: "https://logo.clearbit.com/adobe.com",
-      location: "San Jose, California, U.S.", // :contentReference[oaicite:32]{index=32}
-      foundingDate: "December 1982", // :contentReference[oaicite:33]{index=33}
-      employeeSize: "30,709 (2024)", // :contentReference[oaicite:34]{index=34}
+      location: "San Jose, California, U.S.",
+      foundingDate: "December 1982",
+      employeeSize: "30,709 (2024)",
       tags: ["Creative software", "Digital media", "SaaS"],
       linkedin: "https://www.linkedin.com/company/adobe/", 
       website: "https://www.adobe.com", 
@@ -684,35 +684,35 @@ const companies = [
         foundingDate: "2002",
         employeeSize: "800+",
         tags: ["Algorithmic Trading", "Quantitative Research", "Technology"],
-        linkedin: "https://www.linkedin.com/company/hudson-river-trading/", // :contentReference[oaicite:10]{index=10}
+        linkedin: "https://www.linkedin.com/company/hudson-river-trading/",
         website: "https://hudsonrivertrading.com/",
         revenue: "$8B"
       },
       {
         name: "IMC Trading",
-        salary: "$303,570",                          // Median total comp at IMC :contentReference[oaicite:11]{index=11}
-        description: "IMC Trading is a proprietary trading and market-making firm founded in 1989 that leverages technology and quantitative research to provide liquidity worldwide.", // Wikipedia :contentReference[oaicite:12]{index=12}
+        salary: "$303,570",
+        description: "IMC Trading is a proprietary trading and market-making firm founded in 1989 that leverages technology and quantitative research to provide liquidity worldwide.",
         type: "Quant Firm",
         logo: "https://logo.clearbit.com/imc.com",
-        location: "Amsterdam, Netherlands",           // :contentReference[oaicite:13]{index=13}
-        foundingDate: "1989",                        // :contentReference[oaicite:14]{index=14}
-        employeeSize: "1,300+",                      // :contentReference[oaicite:15]{index=15}
+        location: "Amsterdam, Netherlands",
+        foundingDate: "1989",
+        employeeSize: "1,300+",
         tags: ["Proprietary Trading", "Market Making", "Quantitative Research"],
-        linkedin: "https://www.linkedin.com/company/imc-trading/", // :contentReference[oaicite:16]{index=16}
+        linkedin: "https://www.linkedin.com/company/imc-trading/",
         website: "https://www.imc.com/",
         revenue: "2.2B"
       },
       {
         name: "Optiver",
-        salary: "$202,000",                          // Median total comp at Optiver :contentReference[oaicite:17]{index=17}
-        description: "Optiver is a proprietary trading and market-making firm founded in 1986 that trades derivatives, equities, ETFs, bonds, and FX across global exchanges.", // Wikipedia :contentReference[oaicite:18]{index=18}
+        salary: "$202,000",
+        description: "Optiver is a proprietary trading and market-making firm founded in 1986 that trades derivatives, equities, ETFs, bonds, and FX across global exchanges.",
         type: "Quant Firm",
         logo: "https://logo.clearbit.com/optiver.com",
-        location: "Amsterdam, Netherlands",           // :contentReference[oaicite:19]{index=19}
-        foundingDate: "1986",                        // :contentReference[oaicite:20]{index=20}
-        employeeSize: "1,709 (2022)",                // :contentReference[oaicite:21]{index=21}
+        location: "Amsterdam, Netherlands",
+        foundingDate: "1986",   
+        employeeSize: "1,709 (2022)",  
         tags: ["Market Making", "Proprietary Trading", "Financial Services"],
-        linkedin: "https://www.linkedin.com/company/optiver/", // :contentReference[oaicite:22]{index=22}
+        linkedin: "https://www.linkedin.com/company/optiver/", 
         website: "https://optiver.com/",
         revenue: "$2.8B"
       },
