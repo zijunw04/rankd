@@ -185,38 +185,37 @@ try {
         {/* Vertical divider for desktop */}
         <div className="hidden md:block absolute left-1/2 top-0 -translate-x-1/2 h-full w-0.5 bg-slate-200 z-30" />
   
-        {/* Confetti for left */}
         {showConfetti && (picked === "left" || picked === "equal") && (
-          <div className="absolute left-0 top-0 z-50 pointer-events-none w-full md:w-1/2 h-full">
-            <Confetti
-              width={confettiWidth / 2}
-              height={confettiHeight}
-              numberOfPieces={200}
-              recycle={false}
-              run={showConfetti}
-              gravity={1.5}
-              initialVelocityY={25}
-              y={confettiY}
-              style={{ left: 0 }}
-            />
-          </div>
-        )}
-        {/* Confetti for right */}
-        {showConfetti && (picked === "right" || picked === "equal") && (
-          <div className="absolute right-0 top-0 z-50 pointer-events-none w-full md:w-1/2 h-full">
-            <Confetti
-              width={confettiWidth / 2}
-              height={confettiHeight}
-              numberOfPieces={200}
-              recycle={false}
-              run={showConfetti}
-              gravity={1.5}
-              initialVelocityY={25}
-              y={confettiY}
-              style={{ right: 0 }}
-            />
-          </div>
-        )}
+  <div className="fixed inset-0 z-50 pointer-events-none overflow-hidden">
+    <Confetti
+      width={window.innerWidth / 2}
+      height={window.innerHeight}
+      numberOfPieces={200}
+      recycle={false}
+      run={showConfetti}
+      gravity={1.5}
+      initialVelocityY={25}
+      y={window.innerHeight * 0.25}
+      style={{ left: 0 }}
+    />
+  </div>
+)}
+{showConfetti && (picked === "right" || picked === "equal") && (
+  <div className="fixed inset-0 z-50 pointer-events-none overflow-hidden">
+    <Confetti
+      width={window.innerWidth / 2}
+      height={window.innerHeight}
+      numberOfPieces={200}
+      recycle={false}
+      run={showConfetti}
+      gravity={1.5}
+      initialVelocityY={25}
+      y={window.innerHeight * 0.25}
+      style={{ right: 0, left: "auto" }}
+    />
+  </div>
+)}
+
   
         <CompanyPanel
           company={{ ...left, elo: leftElo, eloChange: leftEloChange }}

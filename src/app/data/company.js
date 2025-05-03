@@ -130,7 +130,7 @@ const companies = [
     salary: "$175,000",
     description: "Multinational technology corporation with expertise in cloud, AI, and consulting.",
     type: "Enterprise",
-    logo: "https://logo.clearbit.com/www.ibm.com/",
+    logo: "/companies/ibm.png",
     location: "Armonk, NY, USA",
     foundingDate: "1911",
     employeeSize: "303,100",
@@ -138,7 +138,21 @@ const companies = [
     linkedin: "https://www.linkedin.com/company/ibm/",
     website: "https://www.ibm.com/",
     revenue: "$60.5B (2023)"
-  }
+  },
+  {
+    name: "Discord",
+    salary: "$154,000",
+    description: "Leading communication platform offering voice, video, and text chat for communities, gamers, and businesses worldwide.",
+    type: "Private",
+    logo: "https://logo.clearbit.com/www.discord.com/",
+    location: "San Francisco, CA, USA",
+    foundingDate: "2015",
+    employeeSize: "600",
+    tags: ["Communication", "Software", "Social", "VoIP", "Community"],
+    linkedin: "https://www.linkedin.com/company/discord/",
+    website: "https://discord.com/",
+    revenue: "$575M (2023)"
+    }
 ];
 
 export default companies;
