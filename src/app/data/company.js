@@ -207,15 +207,15 @@ const companies = [
   },
   {
     name: "Five Rings",
-    salary: "$381,000", // average entry-level quant SWE :contentReference[oaicite:7]{index=7}
-    description: "Five Rings is a quantitative trading firm specializing in systematic strategies and technology.", // from firm overview :contentReference[oaicite:8]{index=8}
+    salary: "$381,000",
+    description: "Five Rings is a quantitative trading firm specializing in systematic strategies and technology.", 
     type: "Quant Firm",
-    logo: "https://logo.clearbit.com/fiverings.com", // Clearbit :contentReference[oaicite:9]{index=9}
-    location: "New York, NY, USA", // headquarters :contentReference[oaicite:10]{index=10}
-    foundingDate: "2017", // company history :contentReference[oaicite:11]{index=11}
-    employeeSize: "100–200", // LinkedIn :contentReference[oaicite:12]{index=12}
+    logo: "https://logo.clearbit.com/fiverings.com", 
+    location: "New York, NY, USA", 
+    foundingDate: "2017", 
+    employeeSize: "100–200", 
     tags: ["Trading", "Quantitative", "Technology"],
-    linkedin: "https://www.linkedin.com/company/five-rings-capital/", // official
+    linkedin: "https://www.linkedin.com/company/five-rings-capital/", 
     website: "https://fiveringscap.com/",
     revenue: "$1B"
   },
@@ -224,38 +224,38 @@ const companies = [
     salary: "$221,000",
     description: "Figma is a browser-based design tool for UI/UX collaboration and prototyping.",
     type: "Unicorn",
-    logo: "https://logo.clearbit.com/figma.com", // Clearbit :contentReference[oaicite:15]{index=15}
-    location: "San Francisco, CA, USA", // HQ :contentReference[oaicite:16]{index=16}
-    foundingDate: "2012", // company history :contentReference[oaicite:17]{index=17}
-    employeeSize: "1,000–5,000", // LinkedIn :contentReference[oaicite:18]{index=18}
+    logo: "https://logo.clearbit.com/figma.com", 
+    location: "San Francisco, CA, USA", 
+    foundingDate: "2012", 
+    employeeSize: "1,000–5,000",
     tags: ["Design", "Collaboration", "UI/UX"],
     linkedin: "https://www.linkedin.com/company/figma/",
     website: "https://figma.com/",
-    revenue: "$400M (2023)", // public estimate :contentReference[oaicite:19]{index=19}
+    revenue: "$400M (2023)", 
   },
   {
     name: "Airbnb",
-    salary: "$182,000", // Levels.fyi L3 SWE :contentReference[oaicite:20]{index=20}
-    description: "Airbnb operates an online marketplace for lodging, tourism experiences, and residential rentals.", // corporate site :contentReference[oaicite:21]{index=21}
+    salary: "$182,000", 
+    description: "Airbnb operates an online marketplace for lodging, tourism experiences, and residential rentals.",
     type: "Unicorn",
-    logo: "https://logo.clearbit.com/airbnb.com", // Clearbit :contentReference[oaicite:22]{index=22}
-    location: "San Francisco, CA, USA", // HQ :contentReference[oaicite:23]{index=23}
-    foundingDate: "2008", // about page :contentReference[oaicite:24]{index=24}
-    employeeSize: "6,000–10,000", // LinkedIn :contentReference[oaicite:25]{index=25}
+    logo: "https://logo.clearbit.com/airbnb.com", 
+    location: "San Francisco, CA, USA", 
+    foundingDate: "2008", 
+    employeeSize: "6,000–10,000",
     tags: ["Marketplace", "Travel", "Hospitality"],
     linkedin: "https://www.linkedin.com/company/airbnb/",
     website: "https://airbnb.com/",
-    revenue: "$8.4B (2023)", // latest filing :contentReference[oaicite:26]{index=26}
+    revenue: "$8.4B (2023)", 
   },
   {
     name: "Jane Street",
-    salary: "$391,000", // entry-level quant SWE :contentReference[oaicite:34]{index=34}
-    description: "Jane Street is a global trading firm and liquidity provider operating in financial markets.", // firm overview :contentReference[oaicite:35]{index=35}
+    salary: "$391,000",
+    description: "Jane Street is a global trading firm and liquidity provider operating in financial markets.", 
     type: "Quant Firm",
-    logo: "https://logo.clearbit.com/janestreet.com", // Clearbit :contentReference[oaicite:36]{index=36}
-    location: "New York, NY, USA", // HQ :contentReference[oaicite:37]{index=37}
-    foundingDate: "2000", // history :contentReference[oaicite:38]{index=38}
-    employeeSize: "1,000–5,000", // LinkedIn :contentReference[oaicite:39]{index=39}
+    logo: "https://logo.clearbit.com/janestreet.com", 
+    location: "New York, NY, USA", 
+    foundingDate: "2000", 
+    employeeSize: "1,000–5,000",
     tags: ["Trading", "Quantitative", "Finance"],
     linkedin: "https://www.linkedin.com/company/jane-street-capital/",
     website: "https://janestreet.com/",
@@ -263,123 +263,119 @@ const companies = [
   },
   {
     name: "Scale AI",
-    salary: "$140,000", // Glassdoor entry-level SWE :contentReference[oaicite:40]{index=40}
+    salary: "$140,000", 
     description:
-      "Scale AI builds data labeling and management tools for AI development.", // company site :contentReference[oaicite:41]{index=41}
+      "Scale AI builds data labeling and management tools for AI development.",
     type: "AI Startup",
-    logo: "https://logo.clearbit.com/scale.com", // Clearbit :contentReference[oaicite:42]{index=42}
-    location: "San Francisco, CA, USA", // HQ :contentReference[oaicite:43]{index=43}
-    foundingDate: "2016", // about page :contentReference[oaicite:44]{index=44}
-    employeeSize: "1,000–2,000", // LinkedIn :contentReference[oaicite:45]{index=45}
+    logo: "https://logo.clearbit.com/scale.com",
+    location: "San Francisco, CA, USA",
+    foundingDate: "2016", 
+    employeeSize: "1,000–2,000",
     tags: ["Data Labeling", "AI", "Automation"],
     linkedin: "https://www.linkedin.com/company/scale-ai/",
     website: "https://scale.com/",
-    revenue: "$300M (2023)", // estimate :contentReference[oaicite:46]{index=46}
+    revenue: "$300M (2023)",
   },
   {
     name: "Stripe",
-    salary: "$193,000", // Levels.fyi L3 SWE :contentReference[oaicite:47]{index=47}
-    description: "Stripe provides payment processing infrastructure and financial tools for businesses.", // Stripe site :contentReference[oaicite:48]{index=48}
+    salary: "$193,000", 
+    description: "Stripe provides payment processing infrastructure and financial tools for businesses.",
     type: "Unicorn",
-    logo: "https://logo.clearbit.com/stripe.com", // Clearbit :contentReference[oaicite:49]{index=49}
-    location: "San Francisco, CA, USA", // HQ :contentReference[oaicite:50]{index=50}
-    foundingDate: "2010", // about :contentReference[oaicite:51]{index=51}
-    employeeSize: "4,000–8,000", // LinkedIn :contentReference[oaicite:52]{index=52}
+    logo: "https://logo.clearbit.com/stripe.com", 
+    location: "San Francisco, CA, USA", 
+    foundingDate: "2010", 
+    employeeSize: "4,000–8,000", 
     tags: ["Payments", "Fintech", "API"],
     linkedin: "https://www.linkedin.com/company/stripe/",
     website: "https://stripe.com/",
-    revenue: "$25B (2023)", // public estimate :contentReference[oaicite:53]{index=53}
+    revenue: "$25B (2023)", 
   },
   {
     name: "Notion",
-    salary: "$248,000", // Glassdoor entry-level SWE :contentReference[oaicite:54]{index=54}
-    description: "Notion is an all-in-one workspace for note-taking, project management, and collaboration.", // from site :contentReference[oaicite:55]{index=55}
+    salary: "$248,000", 
+    description: "Notion is an all-in-one workspace for note-taking, project management, and collaboration.", 
     type: "Unicorn",
-    logo: "https://logo.clearbit.com/notion.so", // Clearbit :contentReference[oaicite:56]{index=56}
-    location: "San Francisco, CA, USA", // HQ :contentReference[oaicite:57]{index=57}
-    foundingDate: "2013", // history :contentReference[oaicite:58]{index=58}
-    employeeSize: "500–1,000", // LinkedIn :contentReference[oaicite:59]{index=59}
+    logo: "https://logo.clearbit.com/notion.so",
+    location: "San Francisco, CA, USA", 
+    foundingDate: "2013",
+    employeeSize: "500–1,000", 
     tags: ["Productivity", "Collaboration", "Workspace"],
     linkedin: "https://www.linkedin.com/company/notionhq/",
     website: "https://notion.so/",
-    revenue: "$80M (2023)", // estimate :contentReference[oaicite:60]{index=60}
+    revenue: "$80M (2023)",
   },
 
   {
-    name: "Slac,000",
-    salary: "$176,000", // Associate Software Engineer entry-level compensation :contentReference[oaicite:0]{index=0}
-    description:
-      "Slack is a cloud-based team communication platform developed by Slack Technologies, which has been owned by Salesforce since 2020.", // :contentReference[oaicite:1]{index=1}
-    type: "Enterprise",
-    logo: "https://logo.clearbit.com/slack.com",
-    location: "Salesforce Tower, San Francisco, California, U.S.", // :contentReference[oaicite:2]{index=2}
-    foundingDate: "2009", // :contentReference[oaicite:3]{index=3}
-    employeeSize: "2,545 (January 2021)", // :contentReference[oaicite:4]{index=4}
-    tags: ["Collaboration", "Messaging", "Productivity"],
-    linkedin: "https://www.linkedin.com/company/slack/",
-    website: "https://slack.com", // :contentReference[oaicite:5]{index=5}
-    revenue: "US$903 million (2020)", // :contentReference[oaicite:6]{index=6}
+    "name": "Slack",
+    "salary": "$176,000",
+    "description": "Slack is a cloud-based team communication platform developed by Slack Technologies, which has been owned by Salesforce since 2020.",
+    "type": "Enterprise",
+    "logo": "https://logo.clearbit.com/slack.com",
+    "location": "Salesforce Tower, San Francisco, California, U.S.",
+    "foundingDate": "2009",
+    "employeeSize": "2,545 (January 2021)",
+    "tags": ["Collaboration", "Messaging", "Productivity"],
+    "linkedin": "https://www.linkedin.com/company/slack/",
+    "website": "https://slack.com",
+    "revenue": "US$903 million (2020)"
   },
   {
-    name: "Dropbox",
-    salary: "$177,000", // IC1 entry-level Software Engineer compensation :contentReference[oaicite:7]{index=7}
-    description:
-      "Dropbox is a file hosting service offering cloud storage, file synchronization, personal cloud, and client software.", // :contentReference[oaicite:8]{index=8}
-    type: "Enterprise",
-    logo: "https://logo.clearbit.com/dropbox.com",
-    location: "San Francisco, California, U.S.", // :contentReference[oaicite:9]{index=9}
-    foundingDate: "May 2007", // :contentReference[oaicite:10]{index=10}
-    employeeSize: "2,204 (2024)", // :contentReference[oaicite:11]{index=11}
-    tags: ["Cloud storage", "File hosting", "Client software"],
-    linkedin: "https://www.linkedin.com/company/dropbox/",
-    website: "https://www.dropbox.com", // :contentReference[oaicite:12]{index=12}
-    revenue: "US$2.55 billion (2024)", // :contentReference[oaicite:13]{index=13}
+    "name": "Dropbox",
+    "salary": "$177,000",
+    "description": "Dropbox is a file hosting service offering cloud storage, file synchronization, personal cloud, and client software.",
+    "type": "Enterprise",
+    "logo": "https://logo.clearbit.com/dropbox.com",
+    "location": "San Francisco, California, U.S.",
+    "foundingDate": "May 2007",
+    "employeeSize": "2,204 (2024)",
+    "tags": ["Cloud storage", "File hosting", "Client software"],
+    "linkedin": "https://www.linkedin.com/company/dropbox/",
+    "website": "https://www.dropbox.com",
+    "revenue": "US$2.55 billion (2024)"
   },
   {
-    name: "Palantir Technologies",
-    salary: "$145,000", // entry-level Software Engineer compensation (minimum) :contentReference[oaicite:14]{index=14}
-    description:
-      "Palantir Technologies Inc. is an American publicly-traded company specializing in software platforms for big data analytics.", // :contentReference[oaicite:15]{index=15}
-    type: "Enterprise",
-    logo: "https://logo.clearbit.com/palantir.com",
-    location: "Denver, Colorado, U.S.", // :contentReference[oaicite:16]{index=16}
-    foundingDate: "2003", // :contentReference[oaicite:17]{index=17}
-    employeeSize: "3,936 (2024)", // :contentReference[oaicite:18]{index=18}
-    tags: ["Big Data", "Analytics", "Software"],
-    linkedin: "https://www.linkedin.com/company/palantir-technologies/", // :contentReference[oaicite:19]{index=19}
-    website: "https://www.palantir.com", // :contentReference[oaicite:20]{index=20}
-    revenue: "US$2.87 billion (2024)", // :contentReference[oaicite:21]{index=21}
+    "name": "Palantir Technologies",
+    "salary": "$145,000",
+    "description": "Palantir Technologies Inc. is an American publicly-traded company specializing in software platforms for big data analytics.",
+    "type": "Enterprise",
+    "logo": "https://logo.clearbit.com/palantir.com",
+    "location": "Denver, Colorado, U.S.",
+    "foundingDate": "2003",
+    "employeeSize": "3,936 (2024)",
+    "tags": ["Big Data", "Analytics", "Software"],
+    "linkedin": "https://www.linkedin.com/company/palantir-technologies/",
+    "website": "https://www.palantir.com",
+    "revenue": "US$2.87 billion (2024)"
   },
   {
-    name: "Robinhood",
-    salary: "$427,438", // Software Engineer median total compensation :contentReference[oaicite:22]{index=22}
-    description:
-      "Robinhood Markets, Inc. is an American financial services company based in Menlo Park, California, providing an electronic trading platform for stocks, ETFs, options, futures, and cryptocurrency.", // :contentReference[oaicite:23]{index=23}
-    type: "Enterprise",
-    logo: "https://logo.clearbit.com/robinhood.com",
-    location: "Menlo Park, California, U.S.", // :contentReference[oaicite:24]{index=24}
-    foundingDate: "April 18, 2013", // :contentReference[oaicite:25]{index=25}
-    employeeSize: "2,300 (2024)", // :contentReference[oaicite:26]{index=26}
-    tags: ["Financial services", "Electronic trading", "Fintech"],
-    linkedin: "https://www.linkedin.com/company/robinhood/", // :contentReference[oaicite:27]{index=27}
-    website: "https://robinhood.com", // :contentReference[oaicite:28]{index=28}
-    revenue: "US$2.95 billion (2024)", // :contentReference[oaicite:29]{index=29}
+    "name": "Robinhood",
+    "salary": "$427,438",
+    "description": "Robinhood Markets, Inc. is an American financial services company based in Menlo Park, California, providing an electronic trading platform for stocks, ETFs, options, futures, and cryptocurrency.",
+    "type": "Enterprise",
+    "logo": "https://logo.clearbit.com/robinhood.com",
+    "location": "Menlo Park, California, U.S.",
+    "foundingDate": "April 18, 2013",
+    "employeeSize": "2,300 (2024)",
+    "tags": ["Financial services", "Electronic trading", "Fintech"],
+    "linkedin": "https://www.linkedin.com/company/robinhood/",
+    "website": "https://robinhood.com",
+    "revenue": "US$2.95 billion (2024)"
   },
   {
-    name: "Adobe",
-    salary: "$174,000", // entry-level Software Engineer (P10) compensation :contentReference[oaicite:30]{index=30}
-    description:
-      "Adobe Inc. is an American computer software company based in San Jose, California, known for products like Photoshop, Acrobat, Illustrator, and Creative Cloud.", // :contentReference[oaicite:31]{index=31}
-    type: "Enterprise",
-    logo: "https://logo.clearbit.com/adobe.com",
-    location: "San Jose, California, U.S.", // :contentReference[oaicite:32]{index=32}
-    foundingDate: "December 1982", // :contentReference[oaicite:33]{index=33}
-    employeeSize: "30,709 (2024)", // :contentReference[oaicite:34]{index=34}
-    tags: ["Creative software", "Digital media", "SaaS"],
-    linkedin: "https://www.linkedin.com/company/adobe/", // :contentReference[oaicite:35]{index=35}
-    website: "https://www.adobe.com", // :contentReference[oaicite:36]{index=36}
-    revenue: "US$21.51 billion (2024)", // :contentReference[oaicite:37]{index=37}
+    "name": "Adobe",
+    "salary": "$174,000",
+    "description": "Adobe Inc. is an American computer software company based in San Jose, California, known for products like Photoshop, Acrobat, Illustrator, and Creative Cloud.",
+    "type": "Enterprise",
+    "logo": "https://logo.clearbit.com/adobe.com",
+    "location": "San Jose, California, U.S.",
+    "foundingDate": "December 1982",
+    "employeeSize": "30,709 (2024)",
+    "tags": ["Creative software", "Digital media", "SaaS"],
+    "linkedin": "https://www.linkedin.com/company/adobe/",
+    "website": "https://www.adobe.com",
+    "revenue": "US$21.51 billion (2024)"
   },
+  
   {
     name: "Discord",
     salary: "$154,000",
