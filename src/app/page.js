@@ -175,7 +175,7 @@ try {
       <RankdHeader />
       <div
         className="
-          relative flex flex-col md:flex-row w-full h-full flex-1 overflow-hidden
+          relative flex flex-col md:flex-row w-full h-full flex-1 overflow-x-hidden
           px-2 sm:px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48
           py-4 md:py-8
           max-w-full
