@@ -130,7 +130,7 @@ const companies = [
     salary: "$115,000",
     description: "Multinational technology corporation with expertise in cloud, AI, and consulting.",
     type: "Enterprise",
-    logo: "https://logo.clearbit.com/www.ibm.com/",
+    logo: "/companies/ibm.png",
     location: "Armonk, NY, USA",
     foundingDate: "1911",
     employeeSize: "303,100",
@@ -363,7 +363,330 @@ const companies = [
       linkedin: "https://www.linkedin.com/company/adobe/", // :contentReference[oaicite:35]{index=35}
       website: "https://www.adobe.com", // :contentReference[oaicite:36]{index=36}
       revenue: "US$21.51 billion (2024)" // :contentReference[oaicite:37]{index=37}
-    }
+    },
+    {
+      name: "Discord",
+      salary: "$154,000",
+      description: "Leading communication platform offering voice, video, and text chat for communities, gamers, and businesses worldwide.",
+      type: "Private",
+      logo: "https://logo.clearbit.com/www.discord.com/",
+      location: "San Francisco, CA, USA",
+      foundingDate: "2015",
+      employeeSize: "600",
+      tags: ["Communication", "Software", "Social", "VoIP", "Community"],
+      linkedin: "https://www.linkedin.com/company/discord/",
+      website: "https://discord.com/",
+      revenue: "$575M (2023)"
+      },
+      {
+        name: "Citadel",
+        salary: "$355,840",                          // L1 total comp at Citadel :contentReference[oaicite:0]{index=0}
+        description: "Citadel LLC is a global hedge fund and financial services firm founded in 1990 by Kenneth Griffin, managing over $65 billion in assets.", // Wikipedia :contentReference[oaicite:1]{index=1}
+        type: "Quant Firm",
+        logo: "https://logo.clearbit.com/citadel.com",
+        location: "Miami, FL, USA",                  // HQ moved 2022 :contentReference[oaicite:2]{index=2}
+        foundingDate: "1990",                        // :contentReference[oaicite:3]{index=3}
+        employeeSize: "2,932 (2023)",                // :contentReference[oaicite:4]{index=4}
+        tags: ["Asset Management", "Market Making", "Finance", "Technology"],
+        linkedin: "https://www.linkedin.com/company/citadelllc/",
+        website: "https://www.citadel.com/",
+        revenue: "$9.1B"
+      },
+      {
+        name: "Hudson River Trading",
+        salary: "$420,153",                          // L1 total comp at HRT :contentReference[oaicite:5]{index=5}
+        description: "Hudson River Trading (HRT) is a quantitative trading firm founded in 2002 that builds automated algorithms and advanced computing environments for global markets.", // Wikipedia :contentReference[oaicite:6]{index=6}
+        type: "Quant Firm",
+        logo: "https://logo.clearbit.com/hudsonrivertrading.com",
+        location: "New York, NY, USA",               // :contentReference[oaicite:7]{index=7}
+        foundingDate: "2002",                        // :contentReference[oaicite:8]{index=8}
+        employeeSize: "800+",                        // :contentReference[oaicite:9]{index=9}
+        tags: ["Algorithmic Trading", "Quantitative Research", "Technology"],
+        linkedin: "https://www.linkedin.com/company/hudson-river-trading/", // :contentReference[oaicite:10]{index=10}
+        website: "https://hudsonrivertrading.com/",
+        revenue: "$8B"
+      },
+      {
+        name: "IMC Trading",
+        salary: "$324,570",                          // Median total comp at IMC :contentReference[oaicite:11]{index=11}
+        description: "IMC Trading is a proprietary trading and market-making firm founded in 1989 that leverages technology and quantitative research to provide liquidity worldwide.", // Wikipedia :contentReference[oaicite:12]{index=12}
+        type: "Quant Firm",
+        logo: "https://logo.clearbit.com/imc.com",
+        location: "Amsterdam, Netherlands",           // :contentReference[oaicite:13]{index=13}
+        foundingDate: "1989",                        // :contentReference[oaicite:14]{index=14}
+        employeeSize: "1,300+",                      // :contentReference[oaicite:15]{index=15}
+        tags: ["Proprietary Trading", "Market Making", "Quantitative Research"],
+        linkedin: "https://www.linkedin.com/company/imc-trading/", // :contentReference[oaicite:16]{index=16}
+        website: "https://www.imc.com/",
+        revenue: "2.2B"
+      },
+      {
+        name: "Optiver",
+        salary: "$191,000",                          // Median total comp at Optiver :contentReference[oaicite:17]{index=17}
+        description: "Optiver is a proprietary trading and market-making firm founded in 1986 that trades derivatives, equities, ETFs, bonds, and FX across global exchanges.", // Wikipedia :contentReference[oaicite:18]{index=18}
+        type: "Quant Firm",
+        logo: "https://logo.clearbit.com/optiver.com",
+        location: "Amsterdam, Netherlands",           // :contentReference[oaicite:19]{index=19}
+        foundingDate: "1986",                        // :contentReference[oaicite:20]{index=20}
+        employeeSize: "1,709 (2022)",                // :contentReference[oaicite:21]{index=21}
+        tags: ["Market Making", "Proprietary Trading", "Financial Services"],
+        linkedin: "https://www.linkedin.com/company/optiver/", // :contentReference[oaicite:22]{index=22}
+        website: "https://optiver.com/",
+        revenue: "$2.8B"
+      },
+      {
+        name: "Perplexity AI",
+        salary: "$450,000",
+        description: "Perplexity AI, or simply Perplexity, is an American web search engine that uses a large language model to process queries and synthesize responses based on web search results.",
+        type: "Private",
+        logo: "https://logo.clearbit.com/perplexity.ai",
+        location: "San Francisco, California, USA",
+        foundingDate: "2022",
+        employeeSize: "100",
+        tags: ["AI", "Search", "LLM"],
+        linkedin: "https://www.linkedin.com/company/perplexity-ai/",
+        website: "https://perplexity.ai",
+        revenue: "$1M–$10M (estimated)"
+      },
+      {
+        name: "MongoDB",
+        salary: "$151,000",
+        description: "MongoDB is a source-available, cross-platform, document-oriented database program, classified as a NoSQL database product that uses JSON-like documents with optional schemas.",
+        type: "Enterprise",
+        logo: "https://logo.clearbit.com/mongodb.com",
+        location: "New York, NY, USA",
+        foundingDate: "2007",
+        employeeSize: "5,558 (2025)",
+        tags: ["Database", "NoSQL", "Cloud"],
+        linkedin: "https://www.linkedin.com/company/mongodbinc/",
+        website: "https://www.mongodb.com/",
+        revenue: "$1.284B (2023)"
+      },
+      {
+        name: "Anduril Industries",
+        salary: "$240,000",
+        description: "Anduril Industries, Inc. is an American defense technology company that specializes in autonomous systems.",
+        type: "Private",
+        logo: "https://logo.clearbit.com/anduril.com",
+        location: "Costa Mesa, California, USA",
+        foundingDate: "2017",
+        employeeSize: "3,500 (2024)",
+        tags: ["Defense", "Autonomous Systems", "AI"],
+        linkedin: "https://www.linkedin.com/company/andurilindustries/",
+        website: "https://www.anduril.com/",
+        revenue: "$1B (2024)"
+      },
+      {
+        name: "Oracle",
+        salary: "$138,000",
+        description: "Oracle Corporation is an American multinational computer technology corporation that sells database software and technology, cloud engineered systems, and enterprise software products-particularly its own brands of database management systems.",
+        type: "Enterprise",
+        logo: "https://logo.clearbit.com/oracle.com",
+        location: "Austin, Texas, USA",
+        foundingDate: "June 16, 1977",
+        employeeSize: "159,000 (2024)",
+        tags: ["Database", "Cloud", "Enterprise Software"],
+        linkedin: "https://www.linkedin.com/company/oracle/",
+        website: "https://www.oracle.com/",
+        revenue: "$52.96B (2024)"
+      },
+      {
+        name: "Datadog",
+        salary: "$324,623",
+        description: "Datadog, Inc. is an American company that provides an observability service for cloud-scale applications, offering monitoring of servers, databases, tools, and services through a SaaS-based data analytics platform.",
+        type: "Enterprise",
+        logo: "https://logo.clearbit.com/datadoghq.com",
+        location: "New York City, NY, USA",
+        foundingDate: "2010",
+        employeeSize: "6,500 (2024)",
+        tags: ["Observability", "SaaS", "Monitoring"],
+        linkedin: "https://www.linkedin.com/company/datadog/",
+        website: "https://www.datadoghq.com/",
+        revenue: "$2.68B (2024)"
+      },
+      {
+        name: "Databricks",
+        salary: "$232,225",
+        description: "Databricks, Inc. is an American software company that provides a cloud-based unified data analytics platform, founded by the original creators of Apache Spark.",
+        type: "Private",
+        logo: "https://logo.clearbit.com/databricks.com",
+        location: "San Francisco, California, USA",
+        foundingDate: "2013",
+        employeeSize: "8,000 (2025)",
+        tags: ["Data Analytics", "AI", "Cloud"],
+        linkedin: "https://mx.linkedin.com/company/databricks",
+        website: "https://databricks.com/",
+        revenue: "$1.6B (2023)"
+      },
+      {
+        name: "Snowflake",
+        salary: "$217,488",
+        description: "Snowflake Inc. is an American cloud-based data-warehousing company that operates a platform for data analysis and simultaneous access of data sets with minimal latency.",
+        type: "Public",
+        logo: "https://logo.clearbit.com/snowflake.com",
+        location: "Bozeman, Montana, USA",
+        foundingDate: "July 23, 2012",
+        employeeSize: "7,834 (2025)",
+        tags: ["Cloud", "Data Warehouse", "Analytics"],
+        linkedin: "https://www.linkedin.com/company/snowflakeinc/",
+        website: "https://www.snowflake.com/",
+        revenue: "$3.63B (2025)"
+      },
+      {
+        name: "DoorDash",
+        salary: "$184K",
+        description: "DoorDash, Inc. is an American on-demand prepared food delivery service.",
+        type: "Public",
+        logo: "https://logo.clearbit.com/doordash.com",
+        location: "San Francisco, California, USA",
+        foundingDate: "2012",
+        employeeSize: "23,700 (2024)",
+        tags: ["Food Delivery", "Logistics", "E-commerce"],
+        linkedin: "https://www.linkedin.com/company/doordash/",
+        website: "https://doordash.com",
+        revenue: "$10.72B (2024)"
+      },
+  {
+    name: "GitHub",
+    salary: "$136K",                                     // E1 median total comp at GitHub :contentReference[oaicite:0]{index=0}  
+    description: "GitHub is a web-based platform for version control and collaboration, built on Git.",  // Wikipedia :contentReference[oaicite:1]{index=1}  
+    type: "Private Subsidiary of Microsoft",
+    logo: "https://logo.clearbit.com/github.com",
+    location: "San Francisco, CA, USA",
+    foundingDate: "2008",
+    employeeSize: "2,500+",
+    tags: ["DevOps", "Version Control", "Collaboration"],
+    linkedin: "https://www.linkedin.com/company/github/",
+    website: "https://github.com",
+    revenue: "$2B run rate",                             // Annual run rate :contentReference[oaicite:2]{index=2}  
+  },
+  {
+    name: "Cloudflare",
+    salary: "$145K",                                     // L1 total comp at Cloudflare :contentReference[oaicite:3]{index=3}  
+    description: "Cloudflare provides a global network for performance, security, and reliability of applications.",  // Company Press Release :contentReference[oaicite:4]{index=4}  
+    type: "Public",
+    logo: "https://logo.clearbit.com/cloudflare.com",
+    location: "San Francisco, CA, USA",
+    foundingDate: "2009",
+    employeeSize: "3,200+",
+    tags: ["CDN", "Security", "Edge Computing"],
+    linkedin: "https://www.linkedin.com/company/cloudflare/",
+    website: "https://cloudflare.com",
+    revenue: "$1.297B (FY 2023)",                        // FY 2023 financial results :contentReference[oaicite:5]{index=5}  
+  },
+  {
+    name: "Ramp",
+    salary: "$240K",                                     // Ramp Software Engineer median total comp :contentReference[oaicite:6]{index=6}  
+    description: "Ramp is a fintech startup offering corporate cards and expense automation for businesses.",  // TechCrunch :contentReference[oaicite:7]{index=7}  
+    type: "Private",
+    logo: "https://logo.clearbit.com/ramp.com",
+    location: "New York, NY, USA",
+    foundingDate: "2019",
+    employeeSize: "500+",
+    tags: ["Fintech", "Expense Management", "Corporate Cards"],
+    linkedin: "https://www.linkedin.com/company/ramp/",
+    website: "https://ramp.com",
+    revenue: "$700M annualized",                         // Annualized revenue quoted :contentReference[oaicite:8]{index=8}  
+  },
+  {
+    name: "Snapchat",
+    salary: "$197K",                                     // Software Engineer median total comp :contentReference[oaicite:9]{index=9}  
+    description: "Snap Inc. develops the Snapchat app and camera hardware for social communication.",  // Investor Relations :contentReference[oaicite:10]{index=10}  
+    type: "Public",
+    logo: "https://logo.clearbit.com/snapchat.com",
+    location: "Santa Monica, CA, USA",
+    foundingDate: "2011",
+    employeeSize: "5,500+",
+    tags: ["Social Media", "Messaging", "AR"],
+    linkedin: "https://www.linkedin.com/company/snap-inc-/",
+    website: "https://snap.com",
+    revenue: "$4.606B (2023)",                           // Full year 2023 revenue :contentReference[oaicite:11]{index=11}  
+  },
+  {
+    name: "Chime",
+    salary: "$200K",                                     // Software Engineer high-end comp :contentReference[oaicite:12]{index=12}  
+    description: "Chime is a neobank offering fee-free mobile banking services in the U.S.",  // Priori Data :contentReference[oaicite:13]{index=13}  
+    type: "Private",
+    logo: "https://logo.clearbit.com/chime.com",
+    location: "San Francisco, CA, USA",
+    foundingDate: "2013",
+    employeeSize: "1,500+",
+    tags: ["Fintech", "Mobile Banking", "Neobank"],
+    linkedin: "https://www.linkedin.com/company/chimebank/",
+    website: "https://chime.com",
+    revenue: "$1.3B (2023)",                             // 2023 revenue :contentReference[oaicite:14]{index=14}  
+  },
+  {
+    name: "Plaid",
+    salary: "$223K",                                     // E3 entry-level SWE comp :contentReference[oaicite:15]{index=15}  
+    description: "Plaid provides APIs that enable apps to connect with users’ bank accounts.",  // Sacra :contentReference[oaicite:16]{index=16}  
+    type: "Private",
+    logo: "https://logo.clearbit.com/plaid.com",
+    location: "San Francisco, CA, USA",
+    foundingDate: "2013",
+    employeeSize: "800+",
+    tags: ["Fintech", "APIs", "Open Banking"],
+    linkedin: "https://www.linkedin.com/company/plaid-inc/",
+    website: "https://plaid.com",
+    revenue: "N/A (private)",  
+  },
+  {
+    name: "Susquehanna International Group",
+    salary: "$179K",                                     // Software Engineer median total comp :contentReference[oaicite:17]{index=17}  
+    description: "SIG is a quantitative trading firm focused on research and technology.",  // SIG Press Release :contentReference[oaicite:18]{index=18}  
+    type: "Private",
+    logo: "https://logo.clearbit.com/sig.com",
+    location: "Philadelphia, PA, USA",
+    foundingDate: "1987",
+    employeeSize: "2,000+",
+    tags: ["Quantitative Trading", "Market Making", "Technology"],
+    linkedin: "https://www.linkedin.com/company/susquehanna-international-group/",
+    website: "https://sig.com",
+    revenue: "N/A (private)",  
+  },
+  {
+    name: "Two Sigma",
+    salary: "$364K",                                     // Software Engineer median total comp :contentReference[oaicite:19]{index=19}  
+    description: "Two Sigma applies data science and technology to financial markets.",  // Wikipedia :contentReference[oaicite:20]{index=20}  
+    type: "Private",
+    logo: "https://logo.clearbit.com/twosigma.com",
+    location: "New York, NY, USA",
+    foundingDate: "2001",
+    employeeSize: "1,500+",
+    tags: ["Quantitative Research", "Asset Management", "Technology"],
+    linkedin: "https://www.linkedin.com/company/two-sigma/",
+    website: "https://twosigma.com",
+    revenue: "N/A (private)",  
+  },
+  {
+    name: "Capital One",
+    salary: "$133K",                                     // Associate Software Eng comp :contentReference[oaicite:21]{index=21}  
+    description: "Capital One is a diversified bank offering credit cards, banking, and loans.",  // Investor Release :contentReference[oaicite:22]{index=22}  
+    type: "Public",
+    logo: "https://logo.clearbit.com/capitalone.com",
+    location: "McLean, VA, USA",
+    foundingDate: "1988",
+    employeeSize: "50,000+",
+    tags: ["Banking", "Credit Cards", "Fintech"],
+    linkedin: "https://www.linkedin.com/company/capital-one/",
+    website: "https://capitalone.com",
+    revenue: "$39.1B (TTM 2024)",                        // TTM revenue :contentReference[oaicite:23]{index=23}  
+  },
+  {
+    name: "Walmart",
+    salary: "$104K",                                     // Software Engineer median total comp :contentReference[oaicite:24]{index=24}  
+    description: "Walmart is the world’s largest retailer operating discount stores and supermarkets.",  // Macrotrends :contentReference[oaicite:25]{index=25}  
+    type: "Public",
+    logo: "https://logo.clearbit.com/walmart.com",
+    location: "Bentonville, AR, USA",
+    foundingDate: "1962",
+    employeeSize: "2.3M+",
+    tags: ["Retail", "E-commerce", "Logistics"],
+    linkedin: "https://www.linkedin.com/company/walmart/",
+    website: "https://walmart.com",
+    revenue: "$680.99B (FY 2025)",                       // FY 2025 revenue :contentReference[oaicite:26]{index=26}  
+  }
 ];
 
 export default companies;
+
