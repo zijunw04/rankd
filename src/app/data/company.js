@@ -1458,7 +1458,7 @@ const companies = [
   },
   {
     name: "ServiceNow",
-    salary: "₹2.15M",
+    salary: "$151,000",
     description:
       "ServiceNow, Inc. supplies a cloud computing platform to create and manage automated business workflows.",
     type: "Public",
