@@ -2337,7 +2337,7 @@ const companies = [
 
   {
     name: "PepsiCo",
-    salary: "$199,314",
+    salary: "$104,314",
     description:
       "PepsiCo, Inc. is an American multinational food, snack, and beverage corporation headquartered in Harrison, New York.",
     type: "Public",
