@@ -361,7 +361,7 @@ const companies = [
   },
   {
     name: "Robinhood",
-    salary: "$427,438",
+    salary: "$201,438",
     description:
       "Robinhood Markets, Inc. is an American financial services company based in Menlo Park, California, providing an electronic trading platform for stocks, ETFs, options, futures, and cryptocurrency.",
     type: "Enterprise",
