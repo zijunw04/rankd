@@ -1,13 +1,23 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function RankdHeader() {
   return (
     <header className="w-full bg-white border-b border-slate-200 shadow-sm z-20">
-      <div className="w-full flex items-center justify-between px-[10%] py-4">
+      <div className="w-full flex items-center justify-between px-[10%] py-3">
         {/* Brand and Section */}
-        <div className="flex items-center gap-2">
-          <Link href="/" className="text-2xl text-black tracking-tight select-none hover:underline">
-            Rankd
+        <div className="flex items-center ">
+          <Link href="/" className="flex items-center gap-2">
+            <Image
+              src="/logo.png"
+              width={40}
+              height={40}
+              alt="Rankd logo"
+              priority
+            />
+            <span className="text-2xl text-black tracking-tight select-none hover:underline">
+              Rankd
+            </span>
           </Link>
           {/* Vertical divider */}
           <span className="h-8 w-px bg-black mx-2" />
