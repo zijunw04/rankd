@@ -300,7 +300,7 @@ const companies = [
   },
   {
     name: "Notion",
-    salary: "$248,000",
+    salary: "$160,000",
     description:
       "Notion is an all-in-one workspace for note-taking, project management, and collaboration.",
     type: "Unicorn",
