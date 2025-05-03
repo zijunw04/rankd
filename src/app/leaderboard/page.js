@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { useEffect, useState } from "react";
 import { db } from "../firebase";
 import { ref, onValue } from "firebase/database";
@@ -13,9 +13,10 @@ export default function Leaderboard() {
   const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
-    const normalize = name => (typeof name === "string" ? name.trim().toLowerCase() : "");
+    const normalize = (name) =>
+      typeof name === "string" ? name.trim().toLowerCase() : "";
     const staticCompanyMap = Object.fromEntries(
-      companiesData.map(c => [normalize(c.name), c])
+      companiesData.map((c) => [normalize(c.name), c])
     );
 
     const companiesRef = ref(db, "companies");
@@ -31,7 +32,9 @@ export default function Leaderboard() {
             id,
           };
         });
-        setCompanies(firebaseCompanies.slice().sort((a, b) => (b.elo ?? 0) - (a.elo ?? 0)));
+        setCompanies(
+          firebaseCompanies.slice().sort((a, b) => (b.elo ?? 0) - (a.elo ?? 0))
+        );
       } else {
         setCompanies([]);
       }
@@ -45,14 +48,21 @@ export default function Leaderboard() {
     rankMap.set(company.id || company.name, idx + 1);
   });
 
-  // Filter companies by search
-  const filteredCompanies = companies.filter(company =>
+  // Enhanced search: if user types #number, show that rank
+  let filteredCompanies = companies.filter((company) =>
     company.name.toLowerCase().includes(searchValue.trim().toLowerCase())
   );
 
+  const rankMatch = searchValue.trim().match(/^#(\d+)$/);
+  if (rankMatch) {
+    const rank = parseInt(rankMatch[1], 10);
+    const companyAtRank = companies[rank - 1];
+    filteredCompanies = companyAtRank ? [companyAtRank] : [];
+  }
+
   return (
     <div>
-      <RankdHeader/>
+      <RankdHeader />
       <div className="min-h-screen mb-10 bg-white flex flex-col items-center py-10 px-2">
         <div className="w-full max-w-3xl mx-auto">
           <div className="flex items-center justify-between mb-8">
@@ -61,23 +71,25 @@ export default function Leaderboard() {
             </h1>
           </div>
           {/* Search input */}
-<div className="mb-6 flex justify-center">
-  <input
-    type="text"
-    value={searchValue}
-    onChange={e => setSearchValue(e.target.value)}
-    placeholder="Search companies by name..."
-    className="w-full max-w-md px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 text-black text-lg"
-  />
-</div>
-{/* Only showing top 100 companies */}
-<div className="mb-4 text-start text-gray-500 text-sm font-medium">
-  Showing top 100 companies
-</div>
+          <div className="mb-6 flex justify-center">
+            <input
+              type="text"
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+              placeholder="Search companies by name/rank(#)..."
+              className="w-full max-w-md px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 text-black text-lg"
+            />
+          </div>
+          {/* Only showing top 100 companies */}
+          <div className="mb-4 text-start text-gray-500 text-sm font-medium">
+            Showing top 100/{companies.length} companies
+          </div>
 
           <div className="space-y-4">
             {filteredCompanies.length === 0 ? (
-              <div className="text-center text-gray-400 py-12">No companies found.</div>
+              <div className="text-center text-gray-400 py-12">
+                No companies found.
+              </div>
             ) : (
               filteredCompanies.slice(0, 100).map((company) => (
                 <div
@@ -98,28 +110,39 @@ export default function Leaderboard() {
                       />
                     )}
                     <div>
-                      <div className="font-bold text-lg text-gray-900">{company.name}</div>
+                      <div className="font-bold text-lg text-gray-900">
+                        {company.name}
+                      </div>
                       {company.location && (
-                        <div className="text-gray-500 text-sm">{company.location}</div>
+                        <div className="text-gray-500 text-sm">
+                          {company.location}
+                        </div>
                       )}
                     </div>
                   </div>
                   <div className="flex flex-col items-end">
-                    <span className="font-bold text-2xl text-gray-900">{company.elo ?? 1000}</span>
-                    <span className="text-xs text-gray-400 tracking-wide font-bold">ELO</span>
+                    <span className="font-bold text-2xl text-gray-900">
+                      {company.elo ?? 1000}
+                    </span>
+                    <span className="text-xs text-gray-400 tracking-wide font-bold">
+                      ELO
+                    </span>
                   </div>
                 </div>
               ))
             )}
           </div>
           <div className="md:hidden mt-8 flex justify-center">
-            <Link href="/" className="px-4 py-2 rounded-lg border border-gray-300 font-semibold text-gray-700 hover:bg-gray-100 transition">
+            <Link
+              href="/"
+              className="px-4 py-2 rounded-lg border border-gray-300 font-semibold text-gray-700 hover:bg-gray-100 transition"
+            >
               Back to Vote
             </Link>
           </div>
         </div>
       </div>
-      <SimpleFooter/>
+      <SimpleFooter />
     </div>
   );
 }
