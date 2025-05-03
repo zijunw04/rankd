@@ -12,7 +12,7 @@ function EloRating(Ra, Rb, K, scoreA) {
   const Ea = 1 / (1 + Math.pow(10, (Rb - Ra) / 400));
   const Eb = 1 / (1 + Math.pow(10, (Ra - Rb) / 400));
   const newRa = Math.round(Ra + K * (scoreA - Ea));
-  const newRb = Math.round(Rb + K * ((1 - scoreA) - Eb));
+  const newRb = Math.round(Rb + K * (1 - scoreA - Eb));
   return [newRa, newRb];
 }
 
@@ -45,14 +45,20 @@ export default function HomePage() {
   // Set body overflow safely
   useEffect(() => {
     document.body.style.overflowX = "hidden";
-    return () => { document.body.style.overflowX = ""; };
+    return () => {
+      document.body.style.overflowX = "";
+    };
   }, []);
 
   // Handle confetti size
   useEffect(() => {
     const handleResize = () => {
-      setConfettiWidth(confettiRef.current ? confettiRef.current.offsetWidth : 0);
-      setConfettiHeight(confettiRef.current ? confettiRef.current.offsetHeight : 0);
+      setConfettiWidth(
+        confettiRef.current ? confettiRef.current.offsetWidth : 0
+      );
+      setConfettiHeight(
+        confettiRef.current ? confettiRef.current.offsetHeight : 0
+      );
     };
     handleResize();
     window.addEventListener("resize", handleResize);
@@ -89,6 +95,10 @@ export default function HomePage() {
 
   async function handleChoice(side) {
     if (voted) return;
+    if (confettiRef.current) {
+      setConfettiWidth(confettiRef.current.offsetWidth);
+      setConfettiHeight(confettiRef.current.offsetHeight);
+    }
     setPicked(side);
     setShowConfetti(true);
     setVoted(true);
@@ -101,7 +111,12 @@ export default function HomePage() {
     const rightEloBefore = rightSnap.exists() ? rightSnap.val() : 1000;
 
     let outcomeLeft = side === "left" ? 1 : side === "right" ? 0 : 0.5;
-    const [newLeftElo, newRightElo] = EloRating(leftEloBefore, rightEloBefore, K, outcomeLeft);
+    const [newLeftElo, newRightElo] = EloRating(
+      leftEloBefore,
+      rightEloBefore,
+      K,
+      outcomeLeft
+    );
 
     const updates = {
       [`companies/${leftId}/elo`]: newLeftElo,
@@ -121,12 +136,42 @@ export default function HomePage() {
     }
   }
 
-  function handleEqual() {
+  async function handleEqual() {
     if (voted) return;
+    if (confettiRef.current) {
+      setConfettiWidth(confettiRef.current.offsetWidth);
+      setConfettiHeight(confettiRef.current.offsetHeight);
+    }
     setPicked("equal");
     setShowConfetti(true);
     setVoted(true);
+  
+    const leftId = left.id || left.name.replace(/\s+/g, "_").toLowerCase();
+    const rightId = right.id || right.name.replace(/\s+/g, "_").toLowerCase();
+    const leftSnap = await get(ref(db, `companies/${leftId}/elo`));
+    const rightSnap = await get(ref(db, `companies/${rightId}/elo`));
+    const leftEloBefore = leftSnap.exists() ? leftSnap.val() : 1000;
+    const rightEloBefore = rightSnap.exists() ? rightSnap.val() : 1000;
+    const [newLeftElo, newRightElo] = EloRating(leftEloBefore, rightEloBefore, K, 0.5);
+  
+    const updates = {
+      [`companies/${leftId}/elo`]: newLeftElo,
+      [`companies/${leftId}/name`]: left.name,
+      [`companies/${rightId}/elo`]: newRightElo,
+      [`companies/${rightId}/name`]: right.name,
+    };
+  
+    try {
+      await update(ref(db), updates);
+      setLeftElo(newLeftElo);
+      setRightElo(newRightElo);
+      setLeftEloChange(newLeftElo - leftEloBefore);
+      setRightEloChange(newRightElo - rightEloBefore);
+    } catch (e) {
+      console.error("Firebase update failed:", e);
+    }
   }
+  
 
   function handleNextPair() {
     const [l, r] = getTwoRandomCompanies(companies);
@@ -147,50 +192,55 @@ export default function HomePage() {
     <div className="min-h-screen bg-white flex flex-col">
       <RankdHeader />
       <main className="flex-1 flex flex-col items-center px-2">
-      <div
-  ref={confettiRef}
-  className="
+        <div
+          ref={confettiRef}
+          className="
     relative flex flex-col md:flex-row w-full px-[10%]
     pt-2 md:pt-4 gap-y-6 md:gap-y-0 md:gap-x-8
     min-h-[400px]
   "
->
+        >
           {/* Vertical divider for desktop */}
           <div className="hidden md:block absolute left-1/2 top-0 -translate-x-1/2 h-full w-0.5 bg-slate-200 z-30" />
-  
+
           {/* Confetti for left */}
-          {showConfetti && (picked === "left" || picked === "equal") && confettiWidth > 0 && confettiHeight > 0 && (
-  <div className="absolute left-0 top-0 z-50 pointer-events-none w-full md:w-1/2 h-full">
-    <Confetti
-      width={confettiWidth / 2}
-      height={confettiHeight}
-      numberOfPieces={200}
-      recycle={false}
-      run={showConfetti}
-      gravity={1.5}
-      initialVelocityY={25}
-      style={{ left: 0 }}
-    />
-  </div>
-)}
+          {showConfetti &&
+            (picked === "left" || picked === "equal") &&
+            confettiWidth > 0 &&
+            confettiHeight > 0 && (
+              <div className="absolute left-0 top-0 z-50 pointer-events-none w-full md:w-1/2 h-full">
+                <Confetti
+                  width={confettiWidth / 2}
+                  height={confettiHeight}
+                  numberOfPieces={200}
+                  recycle={false}
+                  run={showConfetti}
+                  gravity={1.5}
+                  initialVelocityY={25}
+                  style={{ left: 0 }}
+                />
+              </div>
+            )}
 
           {/* Confetti for right */}
-          {showConfetti && (picked === "right" || picked === "equal") && confettiWidth > 0 && confettiHeight > 0 &&(
-            <div className="absolute right-0 top-0 z-50 pointer-events-none w-full md:w-1/2 h-full">
-              <Confetti
-  width={confettiWidth / 2}
-  height={confettiHeight}
-  numberOfPieces={200}
-  recycle={false}
-  run={showConfetti}
-  gravity={1.5}
-  initialVelocityY={25}
-  style={{ right: 0 }}
-/>
+          {showConfetti &&
+            (picked === "right" || picked === "equal") &&
+            confettiWidth > 0 &&
+            confettiHeight > 0 && (
+              <div className="absolute right-0 top-0 z-50 pointer-events-none w-full md:w-1/2 h-full">
+                <Confetti
+                  width={confettiWidth / 2}
+                  height={confettiHeight}
+                  numberOfPieces={200}
+                  recycle={false}
+                  run={showConfetti}
+                  gravity={1.5}
+                  initialVelocityY={25}
+                  style={{ right: 0 }}
+                />
+              </div>
+            )}
 
-            </div>
-          )}
-  
           <CompanyPanel
             company={{ ...left, elo: leftElo, eloChange: leftEloChange }}
             onClick={() => handleChoice("left")}
@@ -198,7 +248,7 @@ export default function HomePage() {
             disabled={voted}
             revealed={voted}
           />
-  
+
           {/* Center Circle Button for desktop */}
           <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-40">
             {!voted ? (
@@ -221,7 +271,7 @@ export default function HomePage() {
               </button>
             )}
           </div>
-  
+
           <CompanyPanel
             company={{ ...right, elo: rightElo, eloChange: rightEloChange }}
             onClick={() => handleChoice("right")}
@@ -229,7 +279,7 @@ export default function HomePage() {
             disabled={voted}
             revealed={voted}
           />
-  
+
           {/* For mobile, show Next Pair button below when voted */}
           <div className="flex md:hidden absolute bottom-8 left-1/2 -translate-x-1/2 z-50">
             {voted && (
@@ -246,6 +296,4 @@ export default function HomePage() {
       {/* Place your footer here if needed */}
     </div>
   );
-  
-  
 }
