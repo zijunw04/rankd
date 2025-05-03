@@ -11,29 +11,31 @@ export default function Leaderboard() {
   const [companies, setCompanies] = useState([]);
 
   useEffect(() => {
-    // Listen for real-time updates from Firebase
+    // Normalize function
+    const normalize = name => (typeof name === "string" ? name.trim().toLowerCase() : "");
+    // Build a lookup map for static data
+    const staticCompanyMap = Object.fromEntries(
+      companiesData.map(c => [normalize(c.name), c])
+    );
+
     const companiesRef = ref(db, "companies");
     const unsubscribe = onValue(companiesRef, (snapshot) => {
       const data = snapshot.val();
       if (data) {
-        // Convert Firebase object to array and merge with local company info
         const firebaseCompanies = Object.entries(data).map(([id, company]) => {
-          // Find the static company info by name
-          const staticInfo = companiesData.find(c => c.name === company.name) || {};
+          const staticInfo = staticCompanyMap[normalize(company.name)] || {};
           return {
             ...staticInfo,
             name: company.name,
             elo: company.elo ?? 1000,
+            id,
           };
         });
-        // Sort by elo descending
-        firebaseCompanies.sort((a, b) => (b.elo ?? 0) - (a.elo ?? 0));
-        setCompanies(firebaseCompanies);
+        setCompanies(firebaseCompanies.slice().sort((a, b) => (b.elo ?? 0) - (a.elo ?? 0)));
       } else {
         setCompanies([]);
       }
     });
-    // Cleanup listener on unmount
     return () => unsubscribe();
   }, []);
 
@@ -53,7 +55,7 @@ export default function Leaderboard() {
             ) : (
               companies.map((company, idx) => (
                 <div
-                  key={company.name}
+                  key={company.id || company.name}
                   className="flex items-center justify-between bg-white rounded-2xl shadow border border-gray-100 px-6 py-4"
                 >
                   <div className="flex items-center gap-4">

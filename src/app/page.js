@@ -96,23 +96,27 @@ export default function HomePage() {
     )
   
     // Prepare the database updates
-    const updates = {
-      [`companies/${leftId}/elo`]: newLeftElo,
-      [`companies/${rightId}/elo`]: newRightElo
-    }
-  
-    try {
-      // Push to Firebase
-      await update(ref(db), updates)
-  
-      // Compute changes for display
-      setLeftElo(newLeftElo)
-      setRightElo(newRightElo)
-      setLeftEloChange(newLeftElo  - leftEloBefore)
-      setRightEloChange(newRightElo - rightEloBefore)
-    } catch (e) {
-      console.error("Firebase update failed:", e)
-    }
+    // Prepare the database updates
+const updates = {
+  [`companies/${leftId}/elo`]: newLeftElo,
+  [`companies/${leftId}/name`]: left.name,
+  [`companies/${rightId}/elo`]: newRightElo,
+  [`companies/${rightId}/name`]: right.name
+}
+
+try {
+  // Push to Firebase
+  await update(ref(db), updates);
+
+  // Compute changes for display
+  setLeftElo(newLeftElo);
+  setRightElo(newRightElo);
+  setLeftEloChange(newLeftElo - leftEloBefore);
+  setRightEloChange(newRightElo - rightEloBefore);
+} catch (e) {
+  console.error("Firebase update failed:", e);
+}
+
   }
 
   const left = companies[index % companies.length];
