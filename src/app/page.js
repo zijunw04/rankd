@@ -171,104 +171,107 @@ try {
   if (!left || !right) return null;
 
   return (
-    <div className="fixed inset-0 flex flex-col items-center justify-center w-screen h-screen bg-white overflow-x-hidden">
+    <div className="min-h-screen bg-white flex flex-col">
       <RankdHeader />
+      <main className="flex-1 flex flex-col items-center px-2">
       <div
         className="
-          relative flex flex-col md:flex-row w-full h-full flex-1 overflow-x-hidden
-          px-2 sm:px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48
-          py-4 md:py-8
-          max-w-full
+          relative flex flex-col md:flex-row w-full px-[10%]
+          pt-2 md:pt-4 gap-y-6 md:gap-y-0 md:gap-x-8
         "
         ref={confettiRef}
       >
-        {/* Vertical divider for desktop */}
-        <div className="hidden md:block absolute left-1/2 top-0 -translate-x-1/2 h-full w-0.5 bg-slate-200 z-30" />
+          {/* Vertical divider for desktop */}
+          <div className="hidden md:block absolute left-1/2 top-0 -translate-x-1/2 h-full w-0.5 bg-slate-200 z-30" />
   
-        {showConfetti && (picked === "left" || picked === "equal") && (
-  <div className="fixed inset-0 z-50 pointer-events-none overflow-hidden">
-    <Confetti
-      width={window.innerWidth / 2}
-      height={window.innerHeight}
-      numberOfPieces={200}
-      recycle={false}
-      run={showConfetti}
-      gravity={1.5}
-      initialVelocityY={25}
-      y={window.innerHeight * 0.25}
-      style={{ left: 0 }}
-    />
-  </div>
-)}
-{showConfetti && (picked === "right" || picked === "equal") && (
-  <div className="fixed inset-0 z-50 pointer-events-none overflow-hidden">
-    <Confetti
-      width={window.innerWidth / 2}
-      height={window.innerHeight}
-      numberOfPieces={200}
-      recycle={false}
-      run={showConfetti}
-      gravity={1.5}
-      initialVelocityY={25}
-      y={window.innerHeight * 0.25}
-      style={{ right: 0, left: "auto" }}
-    />
-  </div>
-)}
-
-  
-        <CompanyPanel
-          company={{ ...left, elo: leftElo, eloChange: leftEloChange }}
-          onClick={() => handleChoice("left")}
-          side="left"
-          disabled={voted}
-          revealed={voted}
-        />
-  
-        {/* Center Circle Button for desktop */}
-        <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-40">
-          {!voted ? (
-            <button
-              className="flex items-center justify-center rounded-full bg-white shadow-lg w-24 h-24 border border-blue-200 text-blue-700 font-semibold text-lg hover:bg-blue-50 hover:scale-105 transition"
-              onClick={handleEqual}
-              aria-label="Equal"
-              title="Equal"
-            >
-              Equal
-            </button>
-          ) : (
-            <button
-              className="flex items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-indigo-500 shadow-lg w-24 h-24 text-white font-semibold text-lg hover:from-blue-700 hover:to-indigo-600 hover:scale-105 transition"
-              onClick={handleNextPair}
-              aria-label="Next Pair"
-              title="Next Pair"
-            >
-              Next Pair
-            </button>
+          {/* Confetti for left */}
+          {showConfetti && (picked === "left" || picked === "equal") && (
+            <div className="absolute left-0 top-0 z-50 pointer-events-none w-full md:w-1/2 h-full">
+              <Confetti
+                width={confettiWidth / 2}
+                height={confettiHeight}
+                numberOfPieces={200}
+                recycle={false}
+                run={showConfetti}
+                gravity={1.5}
+                initialVelocityY={25}
+                y={confettiY}
+                style={{ left: 0 }}
+              />
+            </div>
           )}
-        </div>
-  
-        <CompanyPanel
-          company={{ ...right, elo: rightElo, eloChange: rightEloChange }}
-          onClick={() => handleChoice("right")}
-          side="right"
-          disabled={voted}
-          revealed={voted}
-        />
-  
-        {/* For mobile, show Next Pair button below when voted */}
-        <div className="flex md:hidden absolute bottom-8 left-1/2 -translate-x-1/2 z-50">
-          {voted && (
-            <button
-              className="flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-indigo-500 shadow-lg px-8 py-4 text-white font-semibold text-lg hover:from-blue-700 hover:to-indigo-600 hover:scale-105 transition"
-              onClick={handleNextPair}
-            >
-              Next Pair <FiArrowRight className="text-2xl" />
-            </button>
+          {/* Confetti for right */}
+          {showConfetti && (picked === "right" || picked === "equal") && (
+            <div className="absolute right-0 top-0 z-50 pointer-events-none w-full md:w-1/2 h-full">
+              <Confetti
+                width={confettiWidth / 2}
+                height={confettiHeight}
+                numberOfPieces={200}
+                recycle={false}
+                run={showConfetti}
+                gravity={1.5}
+                initialVelocityY={25}
+                y={confettiY}
+                style={{ right: 0 }}
+              />
+            </div>
           )}
+  
+          <CompanyPanel
+            company={{ ...left, elo: leftElo, eloChange: leftEloChange }}
+            onClick={() => handleChoice("left")}
+            side="left"
+            disabled={voted}
+            revealed={voted}
+          />
+  
+          {/* Center Circle Button for desktop */}
+          <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-40">
+            {!voted ? (
+              <button
+                className="flex items-center justify-center rounded-full bg-white shadow-lg w-24 h-24 border border-blue-200 text-blue-700 font-semibold text-lg hover:bg-blue-50 hover:scale-105 transition"
+                onClick={handleEqual}
+                aria-label="Equal"
+                title="Equal"
+              >
+                Equal
+              </button>
+            ) : (
+              <button
+                className="flex items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-indigo-500 shadow-lg w-24 h-24 text-white font-semibold text-lg hover:from-blue-700 hover:to-indigo-600 hover:scale-105 transition"
+                onClick={handleNextPair}
+                aria-label="Next Pair"
+                title="Next Pair"
+              >
+                Next Pair
+              </button>
+            )}
+          </div>
+  
+          <CompanyPanel
+            company={{ ...right, elo: rightElo, eloChange: rightEloChange }}
+            onClick={() => handleChoice("right")}
+            side="right"
+            disabled={voted}
+            revealed={voted}
+          />
+  
+          {/* For mobile, show Next Pair button below when voted */}
+          <div className="flex md:hidden absolute bottom-8 left-1/2 -translate-x-1/2 z-50">
+            {voted && (
+              <button
+                className="flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-indigo-500 shadow-lg px-8 py-4 text-white font-semibold text-lg hover:from-blue-700 hover:to-indigo-600 hover:scale-105 transition"
+                onClick={handleNextPair}
+              >
+                Next Pair <FiArrowRight className="text-2xl" />
+              </button>
+            )}
+          </div>
         </div>
-      </div>
+      </main>
+      {/* Place your footer here if needed */}
     </div>
   );
+  
   
 }

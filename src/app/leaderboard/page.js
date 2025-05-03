@@ -6,14 +6,14 @@ import companiesData from "../data/company";
 import Link from "next/link";
 import RankdHeader from "../components/header";
 import Image from "next/image";
+import SimpleFooter from "../components/footer";
 
 export default function Leaderboard() {
   const [companies, setCompanies] = useState([]);
+  const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
-    // Normalize function
     const normalize = name => (typeof name === "string" ? name.trim().toLowerCase() : "");
-    // Build a lookup map for static data
     const staticCompanyMap = Object.fromEntries(
       companiesData.map(c => [normalize(c.name), c])
     );
@@ -39,28 +39,54 @@ export default function Leaderboard() {
     return () => unsubscribe();
   }, []);
 
+  // Build a map from company id or name to its global rank
+  const rankMap = new Map();
+  companies.forEach((company, idx) => {
+    rankMap.set(company.id || company.name, idx + 1);
+  });
+
+  // Filter companies by search
+  const filteredCompanies = companies.filter(company =>
+    company.name.toLowerCase().includes(searchValue.trim().toLowerCase())
+  );
+
   return (
     <div>
       <RankdHeader/>
-      <div className="min-h-screen bg-white flex flex-col items-center py-10 px-2">
+      <div className="min-h-screen mb-10 bg-white flex flex-col items-center py-10 px-2">
         <div className="w-full max-w-3xl mx-auto">
           <div className="flex items-center justify-between mb-8">
             <h1 className="text-3xl md:text-4xl font-bold text-center mx-auto text-gray-900">
-              Company Leaderboard
+              Leaderboard
             </h1>
           </div>
+          {/* Search input */}
+<div className="mb-6 flex justify-center">
+  <input
+    type="text"
+    value={searchValue}
+    onChange={e => setSearchValue(e.target.value)}
+    placeholder="Search companies by name..."
+    className="w-full max-w-md px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 text-black text-lg"
+  />
+</div>
+{/* Only showing top 100 companies */}
+<div className="mb-4 text-start text-gray-500 text-sm font-medium">
+  Showing top 100 companies
+</div>
+
           <div className="space-y-4">
-            {companies.length === 0 ? (
+            {filteredCompanies.length === 0 ? (
               <div className="text-center text-gray-400 py-12">No companies found.</div>
             ) : (
-              companies.map((company, idx) => (
+              filteredCompanies.slice(0, 100).map((company) => (
                 <div
                   key={company.id || company.name}
                   className="flex items-center justify-between bg-white rounded-2xl shadow border border-gray-100 px-6 py-4"
                 >
                   <div className="flex items-center gap-4">
                     <div className="flex items-center justify-center w-14 h-14 font-bold text-2xl text-gray-700">
-                      #{idx + 1}
+                      #{rankMap.get(company.id || company.name)}
                     </div>
                     {company.logo && (
                       <Image
@@ -93,6 +119,7 @@ export default function Leaderboard() {
           </div>
         </div>
       </div>
+      <SimpleFooter/>
     </div>
   );
 }
