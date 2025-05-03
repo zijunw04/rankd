@@ -527,7 +527,7 @@ const companies = [
   },
   {
     name: "Datadog",
-    salary: "$324,623",
+    salary: "$182,623",
     description:
       "Datadog, Inc. is an American company that provides an observability service for cloud-scale applications, offering monitoring of servers, databases, tools, and services through a SaaS-based data analytics platform.",
     type: "Enterprise",
