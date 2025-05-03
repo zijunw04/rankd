@@ -102,14 +102,14 @@ export default function HomePage() {
     setPicked(side);
     setShowConfetti(true);
     setVoted(true);
-
+  
     const leftId = left.id || left.name.replace(/\s+/g, "_").toLowerCase();
     const rightId = right.id || right.name.replace(/\s+/g, "_").toLowerCase();
     const leftSnap = await get(ref(db, `companies/${leftId}/elo`));
     const rightSnap = await get(ref(db, `companies/${rightId}/elo`));
     const leftEloBefore = leftSnap.exists() ? leftSnap.val() : 1000;
     const rightEloBefore = rightSnap.exists() ? rightSnap.val() : 1000;
-
+  
     let outcomeLeft = side === "left" ? 1 : side === "right" ? 0 : 0.5;
     const [newLeftElo, newRightElo] = EloRating(
       leftEloBefore,
@@ -117,25 +117,29 @@ export default function HomePage() {
       K,
       outcomeLeft
     );
-
+  
+    // Optimistically update UI immediately
+    setLeftElo(newLeftElo);
+    setRightElo(newRightElo);
+    setLeftEloChange(newLeftElo - leftEloBefore);
+    setRightEloChange(newRightElo - rightEloBefore);
+  
     const updates = {
       [`companies/${leftId}/elo`]: newLeftElo,
       [`companies/${leftId}/name`]: left.name,
       [`companies/${rightId}/elo`]: newRightElo,
       [`companies/${rightId}/name`]: right.name,
     };
-
+  
     try {
       await update(ref(db), updates);
-      setLeftElo(newLeftElo);
-      setRightElo(newRightElo);
-      setLeftEloChange(newLeftElo - leftEloBefore);
-      setRightEloChange(newRightElo - rightEloBefore);
+      // No need to update state again, already done optimistically
     } catch (e) {
       console.error("Firebase update failed:", e);
+      // Optionally: revert state or show error
     }
   }
-
+  
   async function handleEqual() {
     if (voted) return;
     if (confettiRef.current) {
@@ -154,6 +158,12 @@ export default function HomePage() {
     const rightEloBefore = rightSnap.exists() ? rightSnap.val() : 1000;
     const [newLeftElo, newRightElo] = EloRating(leftEloBefore, rightEloBefore, K, 0.5);
   
+    // Optimistically update UI immediately
+    setLeftElo(newLeftElo);
+    setRightElo(newRightElo);
+    setLeftEloChange(newLeftElo - leftEloBefore);
+    setRightEloChange(newRightElo - rightEloBefore);
+  
     const updates = {
       [`companies/${leftId}/elo`]: newLeftElo,
       [`companies/${leftId}/name`]: left.name,
@@ -163,14 +173,13 @@ export default function HomePage() {
   
     try {
       await update(ref(db), updates);
-      setLeftElo(newLeftElo);
-      setRightElo(newRightElo);
-      setLeftEloChange(newLeftElo - leftEloBefore);
-      setRightEloChange(newRightElo - rightEloBefore);
+      // No need to update state again, already done optimistically
     } catch (e) {
       console.error("Firebase update failed:", e);
+      // Optionally: revert state or show error
     }
   }
+  
   
 
   function handleNextPair() {
@@ -185,6 +194,7 @@ export default function HomePage() {
     setLeftEloChange(null);
     setRightEloChange(null);
   }
+  
 
   if (!left || !right) return null;
 
@@ -241,13 +251,14 @@ export default function HomePage() {
               </div>
             )}
 
-          <CompanyPanel
-            company={{ ...left, elo: leftElo, eloChange: leftEloChange }}
-            onClick={() => handleChoice("left")}
-            side="left"
-            disabled={voted}
-            revealed={voted}
-          />
+<CompanyPanel
+  key={left.id || left.name} 
+  company={{ ...left, elo: leftElo, eloChange: leftEloChange }}
+  onClick={() => handleChoice("left")}
+  side="left"
+  disabled={voted}
+  revealed={voted}
+/>
 
           {/* Center Circle Button for desktop */}
           <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-40">
@@ -273,12 +284,13 @@ export default function HomePage() {
           </div>
 
           <CompanyPanel
-            company={{ ...right, elo: rightElo, eloChange: rightEloChange }}
-            onClick={() => handleChoice("right")}
-            side="right"
-            disabled={voted}
-            revealed={voted}
-          />
+  key={right.id || right.name} 
+  company={{ ...right, elo: rightElo, eloChange: rightEloChange }}
+  onClick={() => handleChoice("right")}
+  side="right"
+  disabled={voted}
+  revealed={voted}
+/>
 
           {/* For mobile, show Next Pair button below when voted */}
           <div className="flex md:hidden absolute bottom-8 left-1/2 -translate-x-1/2 z-50">
