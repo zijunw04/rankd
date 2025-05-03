@@ -1,7 +1,7 @@
 const companies = [
   {
     name: "Google",
-    salary: "$148,000",
+    salary: "$189,000",
     description:
       "A global technology leader specializing in internet-related services and products.",
     type: "Enterprise",
@@ -31,7 +31,7 @@ const companies = [
   },
   {
     name: "Microsoft",
-    salary: "$125,000",
+    salary: "$163,000",
     description:
       "A leading software company known for Windows, Office, and cloud services.",
     type: "Enterprise",
@@ -46,7 +46,7 @@ const companies = [
   },
   {
     name: "Meta",
-    salary: "$147,000",
+    salary: "$194,000",
     description:
       "A social technology company building products to connect people.",
     type: "Enterprise",
@@ -61,7 +61,7 @@ const companies = [
   },
   {
     name: "Apple",
-    salary: "$133,000",
+    salary: "$164,000",
     description:
       "A global leader in consumer electronics, software, and digital services.",
     type: "Enterprise",
@@ -76,7 +76,7 @@ const companies = [
   },
   {
     name: "NVIDIA",
-    salary: "$146,000",
+    salary: "$174,000",
     description:
       "A leader in graphics processing, AI hardware, and accelerated computing.",
     type: "Enterprise",
@@ -91,7 +91,7 @@ const companies = [
   },
   {
     name: "Salesforce",
-    salary: "$140,000",
+    salary: "$175,000",
     description:
       "A global cloud computing company specializing in CRM solutions.",
     type: "Enterprise",
@@ -121,7 +121,7 @@ const companies = [
   },
   {
     name: "Intel",
-    salary: "$104,000",
+    salary: "$118,000",
     description:
       "Global leader in semiconductor chip manufacturing and technology.",
     type: "Enterprise",
@@ -136,7 +136,7 @@ const companies = [
   },
   {
     name: "IBM",
-    salary: "$115,000",
+    salary: "$126,000",
     description:
       "Multinational technology corporation with expertise in cloud, AI, and consulting.",
     type: "Enterprise",
