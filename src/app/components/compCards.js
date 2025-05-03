@@ -12,9 +12,12 @@ export default function CompanyPanel({
     <div
       className={`
         flex flex-col h-full w-full md:w-1/2 bg-white
-        px-6 py-8 md:px-[15%] md:py-12 z-10
+        px-4 py-6 sm:px-8 md:px-12 lg:px-20 xl:px-32 2xl:px-40
+        md:py-12 z-10
         transition-transform duration-150 ease-in-out
         ${!disabled ? "hover:-translate-y-4" : ""}
+        max-w-full md:max-w-2xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-5xl
+        mx-auto
       `}
       onClick={disabled ? undefined : onClick}
       style={{ cursor: !disabled ? "pointer" : "default" }}
@@ -31,7 +34,7 @@ export default function CompanyPanel({
           />
         )}
         <div className="flex items-center justify-center gap-2 mb-1">
-          <h2 className="text-3xl font-extrabold text-gray-900 transition-colors duration-150 text-center leading-none">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 transition-colors duration-150 text-center leading-none">
             {company.name}
           </h2>
           {company.linkedin && (
@@ -52,7 +55,6 @@ export default function CompanyPanel({
         <div className="text-gray-500 text-lg mb-2 text-center">
           {company.type}
         </div>
-
         {/* Location, Founding Date, Employee Size, Tags */}
         <div className="mb-4 text-center text-gray-600 space-y-1">
           {company.location && (
