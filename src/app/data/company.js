@@ -1502,7 +1502,7 @@ const companies = [
     revenue: "€34.18B (2024)",
   },
   {
-    name: "TikTo,000",
+    name: "TikTok",
     salary: "$218,000",
     description:
       "TikTok Pte. Ltd. is a video-focused social media platform developed by ByteDance.",
@@ -1786,7 +1786,7 @@ const companies = [
   },
   {
     name: "Radix Trading",
-    salary: "243,000",
+    salary: "$243,000",
     description:
       "Radix Trading is a proprietary trading firm headquartered in Chicago, with offices in New York and Amsterdam.",
     type: "Private",
