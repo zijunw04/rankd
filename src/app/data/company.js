@@ -1755,7 +1755,7 @@ const companies = [
     revenue: "$12.5B (2023)",
   },
   {
-    name: "BlackRoc,000",
+    name: "BlackRock",
     salary: "$131,890",
     description:
       "BlackRock, Inc. is the world’s largest asset manager, offering investment management and risk analytics.",
