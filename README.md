@@ -20,4 +20,4 @@ A Next.js project bootstrapped with `create-next-app` to rank companies using th
 *   **Tailwind CSS:** A utility-first CSS framework for styling the application.
 *   **react-icons:** Used to display icons on the webpage.
 
-Access: https://rankd-company.vercel.app/
+Access here: https://rankd-company.vercel.app/
