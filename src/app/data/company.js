@@ -4,84 +4,98 @@ const companies = [
     salary: "$200,000",
     description: "A global technology leader specializing in internet-related services and products.",
     type: "Enterprise",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
-    elo: 9999,
-    eloChange: 9999,
+    logo: "https://logo.clearbit.com/www.google.com/",
     location: "Mountain View, CA, USA",
     foundingDate: "1998",
     employeeSize: "182,502",
     tags: ["Search", "Advertising", "Cloud", "AI"],
-    factors: [
-      { name: "Brand Strength", value: "Very High" },
-      { name: "Financial Health", value: "Excellent" },
-      { name: "Employee Satisfaction", value: "4.7/5" },
-      { name: "Innovation", value: "Top Tier" },
-      { name: "Growth", value: "Strong" },
-      { name: "Diversity", value: "A" }
-    ]
+    linkedin: "https://www.linkedin.com/company/google/",
+    website: "https://www.google.com/",
+    revenue: "$307B (2023)"
   },
   {
     name: "Amazon",
     salary: "$190,000",
     description: "A multinational technology company focusing on e-commerce, cloud computing, and AI.",
     type: "Enterprise",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
-    elo: 9500,
-    eloChange: 120,
+    logo: "https://logo.clearbit.com/www.amazon.com/",
     location: "Seattle, WA, USA",
     foundingDate: "1994",
     employeeSize: "1,525,000",
     tags: ["E-commerce", "Cloud", "Logistics", "AI"],
-    factors: [
-      { name: "Brand Strength", value: "Very High" },
-      { name: "Financial Health", value: "Excellent" },
-      { name: "Employee Satisfaction", value: "4.3/5" },
-      { name: "Innovation", value: "High" },
-      { name: "Growth", value: "Very Strong" },
-      { name: "Diversity", value: "A-" }
-    ]
+    linkedin: "https://www.linkedin.com/company/amazon/",
+    website: "https://www.amazon.com/",
+    revenue: "$574.8B (2023)"
   },
   {
     name: "Microsoft",
     salary: "$195,000",
     description: "A leading software company known for Windows, Office, and cloud services.",
     type: "Enterprise",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
-    elo: 9700,
-    eloChange: 75,
+    logo: "https://logo.clearbit.com/www.microsoft.com/",
     location: "Redmond, WA, USA",
     foundingDate: "1975",
     employeeSize: "221,000",
     tags: ["Software", "Cloud", "Productivity", "AI"],
-    factors: [
-      { name: "Brand Strength", value: "Very High" },
-      { name: "Financial Health", value: "Excellent" },
-      { name: "Employee Satisfaction", value: "4.6/5" },
-      { name: "Innovation", value: "High" },
-      { name: "Growth", value: "Strong" },
-      { name: "Diversity", value: "A" }
-    ]
+    linkedin: "https://www.linkedin.com/company/microsoft/",
+    website: "https://www.microsoft.com/",
+    revenue: "$211.9B (2023)"
   },
   {
     name: "Meta",
     salary: "$185,000",
     description: "A social technology company building products to connect people.",
     type: "Enterprise",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/0/01/Meta_Platforms_Inc._logo.svg",
-    elo: 9200,
-    eloChange: -30,
+    logo: "https://logo.clearbit.com/about.meta.com/",
     location: "Menlo Park, CA, USA",
     foundingDate: "2004",
     employeeSize: "67,317",
     tags: ["Social Media", "VR", "AI", "Advertising"],
-    factors: [
-      { name: "Brand Strength", value: "High" },
-      { name: "Financial Health", value: "Very Good" },
-      { name: "Employee Satisfaction", value: "4.2/5" },
-      { name: "Innovation", value: "Very High" },
-      { name: "Growth", value: "Moderate" },
-      { name: "Diversity", value: "B+" }
-    ]
+    linkedin: "https://www.linkedin.com/company/meta/",
+    website: "https://about.meta.com/",
+    revenue: "$134.9B (2023)"
+  },
+  {
+    name: "Apple",
+    salary: "$210,000",
+    description: "A global leader in consumer electronics, software, and digital services.",
+    type: "Enterprise",
+    logo: "/companies/apple.png",
+    location: "Cupertino, CA, USA",
+    foundingDate: "1976",
+    employeeSize: "161,000",
+    tags: ["Consumer Electronics", "Software", "Retail", "AI"],
+    linkedin: "https://www.linkedin.com/company/apple/",
+    website: "https://www.apple.com/",
+    revenue: "$383.3B (2023)"
+  },
+  {
+    name: "NVIDIA",
+    salary: "$205,000",
+    description: "A leader in graphics processing, AI hardware, and accelerated computing.",
+    type: "Enterprise",
+    logo: "/companies/nvidia.png",
+    location: "Santa Clara, CA, USA",
+    foundingDate: "1993",
+    employeeSize: "29,600",
+    tags: ["Semiconductors", "AI", "Graphics", "Hardware"],
+    linkedin: "https://www.linkedin.com/company/nvidia/",
+    website: "https://www.nvidia.com/",
+    revenue: "$60.9B (2023)"
+  },
+  {
+    name: "Salesforce",
+    salary: "$180,000",
+    description: "A global cloud computing company specializing in CRM solutions.",
+    type: "Enterprise",
+    logo: "https://logo.clearbit.com/www.salesforce.com/",
+    location: "San Francisco, CA, USA",
+    foundingDate: "1999",
+    employeeSize: "79,390",
+    tags: ["Cloud", "CRM", "Software", "AI"],
+    linkedin: "https://www.linkedin.com/company/salesforce/",
+    website: "https://www.salesforce.com/",
+    revenue: "$34.9B (2023)"
   }
 ];
 

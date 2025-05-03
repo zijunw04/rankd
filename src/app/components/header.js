@@ -1,10 +1,36 @@
-export default function Header() {
+import Link from "next/link";
+
+export default function RankdHeader() {
   return (
-    <header className="w-full flex flex-col items-center py-2 shadow-sm bg-white/70 backdrop-blur border-b border-slate-100 z-20">
-      <h1 className="text-3xl md:text-4xl font-extrabold text-center bg-gradient-to-r from-blue-700 via-indigo-600 to-blue-400 bg-clip-text text-transparent">
-        Which Company Do You Prefer?
-      </h1>
-      <div className="h-1 w-24 bg-gradient-to-r from-blue-400 to-indigo-400 rounded-full mt-4" />
+    <header className="w-full bg-white border-b border-slate-200 shadow-sm z-20">
+      <div className="w-full flex items-center justify-between px-[10%] py-4">
+        {/* Brand and Section */}
+        <div className="flex items-center gap-2">
+          <span className="text-2xl text-black tracking-tight select-none">
+            Rankd
+          </span>
+          {/* Vertical divider */}
+          <span className="h-8 w-px bg-black mx-2" />
+          <span className="text-2xl text-black tracking-tight select-none">
+            Companies
+          </span>
+        </div>
+        {/* Navigation */}
+        <nav className="flex items-center gap-8">
+          <Link
+            href="/"
+            className="px-6 py-2 border border-gray-300 rounded-lg font-semibold text-gray-800 hover:bg-gray-100 transition"
+          >
+            Vote
+          </Link>
+          <Link
+            href="/leaderboard"
+            className="px-6 py-2 border border-gray-300 rounded-lg font-semibold text-gray-800 hover:bg-gray-100 transition"
+          >
+            Leaderboard
+          </Link>
+        </nav>
+      </div>
     </header>
   );
 }
