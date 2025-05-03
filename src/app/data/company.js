@@ -346,7 +346,7 @@ const companies = [
   },
   {
     name: "Palantir Technologies",
-    salary: "$145,000",
+    salary: "$210,000",
     description:
       "Palantir Technologies Inc. is an American publicly-traded company specializing in software platforms for big data analytics.",
     type: "Enterprise",
