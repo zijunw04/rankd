@@ -867,7 +867,7 @@ const companies = [
     location: "San Francisco, CA, USA",
     foundingDate: "2013",
     employeeSize: "1,500+",
-    tags: ["Fintech", "Mobile Banking", "Neoban,000"],
+    tags: ["Fintech", "Mobile Banking", "Neobank"],
     linkedin: "https://www.linkedin.com/company/chimebank/",
     website: "https://chime.com",
     revenue: "$1.3B (2023)",
@@ -1607,7 +1607,7 @@ const companies = [
     revenue: "$5.07B (2024)",
   },
   {
-    name: "Splun,000",
+    name: "Splunk",
     salary: "$181,000",
     description:
       "Splunk Inc. is an American software company that produces software for searching, monitoring, and analyzing machine-generated data via a web-style interface.",
