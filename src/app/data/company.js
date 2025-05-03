@@ -1,7 +1,7 @@
 const companies = [
   {
     name: "Google",
-    salary: "$200,000",
+    salary: "$148,000",
     description: "A global technology leader specializing in internet-related services and products.",
     type: "Enterprise",
     logo: "https://logo.clearbit.com/www.google.com/",
@@ -15,7 +15,7 @@ const companies = [
   },
   {
     name: "Amazon",
-    salary: "$190,000",
+    salary: "$137,000",
     description: "A multinational technology company focusing on e-commerce, cloud computing, and AI.",
     type: "Enterprise",
     logo: "https://logo.clearbit.com/www.amazon.com/",
@@ -29,7 +29,7 @@ const companies = [
   },
   {
     name: "Microsoft",
-    salary: "$195,000",
+    salary: "$125,000",
     description: "A leading software company known for Windows, Office, and cloud services.",
     type: "Enterprise",
     logo: "https://logo.clearbit.com/www.microsoft.com/",
@@ -43,7 +43,7 @@ const companies = [
   },
   {
     name: "Meta",
-    salary: "$185,000",
+    salary: "$147,000",
     description: "A social technology company building products to connect people.",
     type: "Enterprise",
     logo: "https://logo.clearbit.com/about.meta.com/",
@@ -57,7 +57,7 @@ const companies = [
   },
   {
     name: "Apple",
-    salary: "$210,000",
+    salary: "$133,000",
     description: "A global leader in consumer electronics, software, and digital services.",
     type: "Enterprise",
     logo: "/companies/apple.png",
@@ -71,7 +71,7 @@ const companies = [
   },
   {
     name: "NVIDIA",
-    salary: "$205,000",
+    salary: "$146,000",
     description: "A leader in graphics processing, AI hardware, and accelerated computing.",
     type: "Enterprise",
     logo: "/companies/nvidia.png",
@@ -85,7 +85,7 @@ const companies = [
   },
   {
     name: "Salesforce",
-    salary: "$180,000",
+    salary: "$140,000",
     description: "A global cloud computing company specializing in CRM solutions.",
     type: "Enterprise",
     logo: "https://logo.clearbit.com/www.salesforce.com/",
@@ -99,7 +99,7 @@ const companies = [
   },
   {
     name: "Netflix",
-    salary: "$170,000",
+    salary: "$216,000",
     description: "Leading streaming service with a vast library of movies and TV shows.",
     type: "Entertainment",
     logo: "https://logo.clearbit.com/www.netflix.com/",
@@ -113,7 +113,7 @@ const companies = [
   },
   {
     name: "Intel",
-    salary: "$165,000",
+    salary: "$104,000",
     description: "Global leader in semiconductor chip manufacturing and technology.",
     type: "Enterprise",
     logo: "https://logo.clearbit.com/www.intel.com/",
@@ -127,7 +127,7 @@ const companies = [
   },
   {
     name: "IBM",
-    salary: "$175,000",
+    salary: "$115,000",
     description: "Multinational technology corporation with expertise in cloud, AI, and consulting.",
     type: "Enterprise",
     logo: "https://logo.clearbit.com/www.ibm.com/",
@@ -138,7 +138,232 @@ const companies = [
     linkedin: "https://www.linkedin.com/company/ibm/",
     website: "https://www.ibm.com/",
     revenue: "$60.5B (2023)"
-  }
+  },
+  {
+    name: "OpenAI",
+    salary: "$163,000",
+    description: "Research lab advancing safe and beneficial artificial general intelligence.",
+    type: "Private",
+    logo: "https://logo.clearbit.com/openai.com",
+    location: "San Francisco, CA, USA",
+    foundingDate: "December 8, 2015",
+    employeeSize: "≈2,000",
+    tags: ["AI", "ML", "NLP", "Research"],
+    linkedin: "https://www.linkedin.com/company/openai/",
+    website: "https://openai.com/",
+    revenue: "$3.7 B (2024 est.)"
+  },
+  {
+    name: "Anthropic",
+    salary: "N/A",
+    description: "Builds helpful and safe AI tools under the Claude AI family.",
+    type: "Private",
+    logo: "https://logo.clearbit.com/anthropic.com",
+    location: "San Francisco, CA, USA",
+    foundingDate: "2021",
+    employeeSize: "≈500",
+    tags: ["AI Safety", "NLP", "Research"],
+    linkedin: "https://www.linkedin.com/company/anthropicai/",
+    website: "https://www.anthropic.com/",
+    revenue: "$850M (2024)"
+  },
+  {
+    name: "Cohere",
+    salary: "N/A",
+    description: "Provides secure, scalable NLP and foundation models for enterprises.",
+    type: "Private",
+    logo: "https://logo.clearbit.com/cohere.ai",
+    location: "Toronto, ON, Canada",
+    foundingDate: "2019",
+    employeeSize: "201–500",
+    tags: ["NLP", "APIs", "ML"],
+    linkedin: "https://www.linkedin.com/company/cohere-ai/",
+    website: "https://cohere.ai/",
+    revenue: "$100,000"
+  },
+  {
+    name: "Hugging Face",
+    salary: "$130,000",
+    description: "Open-source AI community and platform for sharing models and datasets.",
+    type: "Private",
+    logo: "https://logo.clearbit.com/huggingface.co",
+    location: "New York, NY, USA",
+    foundingDate: "2016",
+    employeeSize: "170 (2023)",
+    tags: ["Open Source", "NLP", "Community"],
+    linkedin: "https://www.linkedin.com/company/huggingface/",
+    website: "https://huggingface.co/",
+    revenue: "$15M (2022)"
+  },
+  {
+    name: "Five Rings",
+    salary: "$140,000", // average entry-level quant SWE :contentReference[oaicite:7]{index=7}
+    description: "Five Rings is a quantitative trading firm specializing in systematic strategies and technology.", // from firm overview :contentReference[oaicite:8]{index=8}
+    type: "Quant Firm",
+    logo: "https://logo.clearbit.com/fiverings.com", // Clearbit :contentReference[oaicite:9]{index=9}
+    location: "New York, NY, USA", // headquarters :contentReference[oaicite:10]{index=10}
+    foundingDate: "2017", // company history :contentReference[oaicite:11]{index=11}
+    employeeSize: "100–200", // LinkedIn :contentReference[oaicite:12]{index=12}
+    tags: ["Trading", "Quantitative", "Technology"],
+    linkedin: "https://www.linkedin.com/company/five-rings-capital/", // official
+    website: "https://fiveringscap.com/",
+    revenue: "N/A"
+  },
+  {
+    name: "Figma",
+    salary: "$135,000", // Glassdoor entry-level SWE :contentReference[oaicite:13]{index=13}
+    description: "Figma is a browser-based design tool for UI/UX collaboration and prototyping.", // from About page :contentReference[oaicite:14]{index=14}
+    type: "Unicorn",
+    logo: "https://logo.clearbit.com/figma.com", // Clearbit :contentReference[oaicite:15]{index=15}
+    location: "San Francisco, CA, USA", // HQ :contentReference[oaicite:16]{index=16}
+    foundingDate: "2012", // company history :contentReference[oaicite:17]{index=17}
+    employeeSize: "1,000–5,000", // LinkedIn :contentReference[oaicite:18]{index=18}
+    tags: ["Design", "Collaboration", "UI/UX"],
+    linkedin: "https://www.linkedin.com/company/figma/",
+    website: "https://figma.com/",
+    revenue: "$400M (2023)" // public estimate :contentReference[oaicite:19]{index=19}
+  },
+  {
+    name: "Airbnb",
+    salary: "$130,000", // Levels.fyi L3 SWE :contentReference[oaicite:20]{index=20}
+    description: "Airbnb operates an online marketplace for lodging, tourism experiences, and residential rentals.", // corporate site :contentReference[oaicite:21]{index=21}
+    type: "Unicorn",
+    logo: "https://logo.clearbit.com/airbnb.com", // Clearbit :contentReference[oaicite:22]{index=22}
+    location: "San Francisco, CA, USA", // HQ :contentReference[oaicite:23]{index=23}
+    foundingDate: "2008", // about page :contentReference[oaicite:24]{index=24}
+    employeeSize: "6,000–10,000", // LinkedIn :contentReference[oaicite:25]{index=25}
+    tags: ["Marketplace", "Travel", "Hospitality"],
+    linkedin: "https://www.linkedin.com/company/airbnb/",
+    website: "https://airbnb.com/",
+    revenue: "$8.4B (2023)" // latest filing :contentReference[oaicite:26]{index=26}
+  },
+  {
+    name: "Jane Street",
+    salary: "$120,000", // entry-level quant SWE :contentReference[oaicite:34]{index=34}
+    description: "Jane Street is a global trading firm and liquidity provider operating in financial markets.", // firm overview :contentReference[oaicite:35]{index=35}
+    type: "Quant Firm",
+    logo: "https://logo.clearbit.com/janestreet.com", // Clearbit :contentReference[oaicite:36]{index=36}
+    location: "New York, NY, USA", // HQ :contentReference[oaicite:37]{index=37}
+    foundingDate: "2000", // history :contentReference[oaicite:38]{index=38}
+    employeeSize: "1,000–5,000", // LinkedIn :contentReference[oaicite:39]{index=39}
+    tags: ["Trading", "Quantitative", "Finance"],
+    linkedin: "https://www.linkedin.com/company/jane-street-capital/",
+    website: "https://janestreet.com/",
+    revenue: "N/A"
+  },
+  {
+    name: "Scale AI",
+    salary: "$140,000", // Glassdoor entry-level SWE :contentReference[oaicite:40]{index=40}
+    description: "Scale AI builds data labeling and management tools for AI development.", // company site :contentReference[oaicite:41]{index=41}
+    type: "AI Startup",
+    logo: "https://logo.clearbit.com/scale.com", // Clearbit :contentReference[oaicite:42]{index=42}
+    location: "San Francisco, CA, USA", // HQ :contentReference[oaicite:43]{index=43}
+    foundingDate: "2016", // about page :contentReference[oaicite:44]{index=44}
+    employeeSize: "1,000–2,000", // LinkedIn :contentReference[oaicite:45]{index=45}
+    tags: ["Data Labeling", "AI", "Automation"],
+    linkedin: "https://www.linkedin.com/company/scale-ai/",
+    website: "https://scale.com/",
+    revenue: "$300M (2023)" // estimate :contentReference[oaicite:46]{index=46}
+  },
+  {
+    name: "Stripe",
+    salary: "$145,000", // Levels.fyi L3 SWE :contentReference[oaicite:47]{index=47}
+    description: "Stripe provides payment processing infrastructure and financial tools for businesses.", // Stripe site :contentReference[oaicite:48]{index=48}
+    type: "Unicorn",
+    logo: "https://logo.clearbit.com/stripe.com", // Clearbit :contentReference[oaicite:49]{index=49}
+    location: "San Francisco, CA, USA", // HQ :contentReference[oaicite:50]{index=50}
+    foundingDate: "2010", // about :contentReference[oaicite:51]{index=51}
+    employeeSize: "4,000–8,000", // LinkedIn :contentReference[oaicite:52]{index=52}
+    tags: ["Payments", "Fintech", "API"],
+    linkedin: "https://www.linkedin.com/company/stripe/",
+    website: "https://stripe.com/",
+    revenue: "$25B (2023)" // public estimate :contentReference[oaicite:53]{index=53}
+  },
+  {
+    name: "Notion",
+    salary: "$130,000", // Glassdoor entry-level SWE :contentReference[oaicite:54]{index=54}
+    description: "Notion is an all-in-one workspace for note-taking, project management, and collaboration.", // from site :contentReference[oaicite:55]{index=55}
+    type: "Unicorn",
+    logo: "https://logo.clearbit.com/notion.so", // Clearbit :contentReference[oaicite:56]{index=56}
+    location: "San Francisco, CA, USA", // HQ :contentReference[oaicite:57]{index=57}
+    foundingDate: "2013", // history :contentReference[oaicite:58]{index=58}
+    employeeSize: "500–1,000", // LinkedIn :contentReference[oaicite:59]{index=59}
+    tags: ["Productivity", "Collaboration", "Workspace"],
+    linkedin: "https://www.linkedin.com/company/notionhq/",
+    website: "https://notion.so/",
+    revenue: "$80M (2023)" // estimate :contentReference[oaicite:60]{index=60}
+  },
+  
+    {
+      name: "Slack",
+      salary: "$176K", // Associate Software Engineer entry-level compensation :contentReference[oaicite:0]{index=0}
+      description: "Slack is a cloud-based team communication platform developed by Slack Technologies, which has been owned by Salesforce since 2020.", // :contentReference[oaicite:1]{index=1}
+      type: "Enterprise",
+      logo: "https://logo.clearbit.com/slack.com",
+      location: "Salesforce Tower, San Francisco, California, U.S.", // :contentReference[oaicite:2]{index=2}
+      foundingDate: "2009", // :contentReference[oaicite:3]{index=3}
+      employeeSize: "2,545 (January 2021)", // :contentReference[oaicite:4]{index=4}
+      tags: ["Collaboration", "Messaging", "Productivity"],
+      linkedin: "https://www.linkedin.com/company/slack/",
+      website: "https://slack.com", // :contentReference[oaicite:5]{index=5}
+      revenue: "US$903 million (2020)" // :contentReference[oaicite:6]{index=6}
+    },
+    {
+      name: "Dropbox",
+      salary: "$177K", // IC1 entry-level Software Engineer compensation :contentReference[oaicite:7]{index=7}
+      description: "Dropbox is a file hosting service offering cloud storage, file synchronization, personal cloud, and client software.", // :contentReference[oaicite:8]{index=8}
+      type: "Enterprise",
+      logo: "https://logo.clearbit.com/dropbox.com",
+      location: "San Francisco, California, U.S.", // :contentReference[oaicite:9]{index=9}
+      foundingDate: "May 2007", // :contentReference[oaicite:10]{index=10}
+      employeeSize: "2,204 (2024)", // :contentReference[oaicite:11]{index=11}
+      tags: ["Cloud storage", "File hosting", "Client software"],
+      linkedin: "https://www.linkedin.com/company/dropbox/",
+      website: "https://www.dropbox.com", // :contentReference[oaicite:12]{index=12}
+      revenue: "US$2.55 billion (2024)" // :contentReference[oaicite:13]{index=13}
+    },
+    {
+      name: "Palantir Technologies",
+      salary: "$145K", // entry-level Software Engineer compensation (minimum) :contentReference[oaicite:14]{index=14}
+      description: "Palantir Technologies Inc. is an American publicly-traded company specializing in software platforms for big data analytics.", // :contentReference[oaicite:15]{index=15}
+      type: "Enterprise",
+      logo: "https://logo.clearbit.com/palantir.com",
+      location: "Denver, Colorado, U.S.", // :contentReference[oaicite:16]{index=16}
+      foundingDate: "2003", // :contentReference[oaicite:17]{index=17}
+      employeeSize: "3,936 (2024)", // :contentReference[oaicite:18]{index=18}
+      tags: ["Big Data", "Analytics", "Software"],
+      linkedin: "https://www.linkedin.com/company/palantir-technologies/", // :contentReference[oaicite:19]{index=19}
+      website: "https://www.palantir.com", // :contentReference[oaicite:20]{index=20}
+      revenue: "US$2.87 billion (2024)" // :contentReference[oaicite:21]{index=21}
+    },
+    {
+      name: "Robinhood",
+      salary: "$427,438", // Software Engineer median total compensation :contentReference[oaicite:22]{index=22}
+      description: "Robinhood Markets, Inc. is an American financial services company based in Menlo Park, California, providing an electronic trading platform for stocks, ETFs, options, futures, and cryptocurrency.", // :contentReference[oaicite:23]{index=23}
+      type: "Enterprise",
+      logo: "https://logo.clearbit.com/robinhood.com",
+      location: "Menlo Park, California, U.S.", // :contentReference[oaicite:24]{index=24}
+      foundingDate: "April 18, 2013", // :contentReference[oaicite:25]{index=25}
+      employeeSize: "2,300 (2024)", // :contentReference[oaicite:26]{index=26}
+      tags: ["Financial services", "Electronic trading", "Fintech"],
+      linkedin: "https://www.linkedin.com/company/robinhood/", // :contentReference[oaicite:27]{index=27}
+      website: "https://robinhood.com", // :contentReference[oaicite:28]{index=28}
+      revenue: "US$2.95 billion (2024)" // :contentReference[oaicite:29]{index=29}
+    },
+    {
+      name: "Adobe",
+      salary: "$174K", // entry-level Software Engineer (P10) compensation :contentReference[oaicite:30]{index=30}
+      description: "Adobe Inc. is an American computer software company based in San Jose, California, known for products like Photoshop, Acrobat, Illustrator, and Creative Cloud.", // :contentReference[oaicite:31]{index=31}
+      type: "Enterprise",
+      logo: "https://logo.clearbit.com/adobe.com",
+      location: "San Jose, California, U.S.", // :contentReference[oaicite:32]{index=32}
+      foundingDate: "December 1982", // :contentReference[oaicite:33]{index=33}
+      employeeSize: "30,709 (2024)", // :contentReference[oaicite:34]{index=34}
+      tags: ["Creative software", "Digital media", "SaaS"],
+      linkedin: "https://www.linkedin.com/company/adobe/", // :contentReference[oaicite:35]{index=35}
+      website: "https://www.adobe.com", // :contentReference[oaicite:36]{index=36}
+      revenue: "US$21.51 billion (2024)" // :contentReference[oaicite:37]{index=37}
+    }
 ];
 
 export default companies;
