@@ -164,7 +164,7 @@ const companies = [
   },
   {
     name: "Anthropic",
-    salary: "$350K",
+    salary: "$350,000",
     description: "Builds helpful and safe AI tools under the Claude AI family.",
     type: "Private",
     logo: "https://logo.clearbit.com/anthropic.com",
@@ -178,7 +178,7 @@ const companies = [
   },
   {
     name: "Cohere",
-    salary: "$168k",
+    salary: "$168,000",
     description: "Provides secure, scalable NLP and foundation models for enterprises.",
     type: "Private",
     logo: "https://logo.clearbit.com/cohere.ai",
@@ -306,8 +306,8 @@ const companies = [
   },
 
   {
-    name: "Slack",
-    salary: "$176K", // Associate Software Engineer entry-level compensation :contentReference[oaicite:0]{index=0}
+    name: "Slac,000",
+    salary: "$176,000", // Associate Software Engineer entry-level compensation :contentReference[oaicite:0]{index=0}
     description:
       "Slack is a cloud-based team communication platform developed by Slack Technologies, which has been owned by Salesforce since 2020.", // :contentReference[oaicite:1]{index=1}
     type: "Enterprise",
@@ -322,7 +322,7 @@ const companies = [
   },
   {
     name: "Dropbox",
-    salary: "$177K", // IC1 entry-level Software Engineer compensation :contentReference[oaicite:7]{index=7}
+    salary: "$177,000", // IC1 entry-level Software Engineer compensation :contentReference[oaicite:7]{index=7}
     description:
       "Dropbox is a file hosting service offering cloud storage, file synchronization, personal cloud, and client software.", // :contentReference[oaicite:8]{index=8}
     type: "Enterprise",
@@ -337,7 +337,7 @@ const companies = [
   },
   {
     name: "Palantir Technologies",
-    salary: "$145K", // entry-level Software Engineer compensation (minimum) :contentReference[oaicite:14]{index=14}
+    salary: "$145,000", // entry-level Software Engineer compensation (minimum) :contentReference[oaicite:14]{index=14}
     description:
       "Palantir Technologies Inc. is an American publicly-traded company specializing in software platforms for big data analytics.", // :contentReference[oaicite:15]{index=15}
     type: "Enterprise",
@@ -367,7 +367,7 @@ const companies = [
   },
   {
     name: "Adobe",
-    salary: "$174K", // entry-level Software Engineer (P10) compensation :contentReference[oaicite:30]{index=30}
+    salary: "$174,000", // entry-level Software Engineer (P10) compensation :contentReference[oaicite:30]{index=30}
     description:
       "Adobe Inc. is an American computer software company based in San Jose, California, known for products like Photoshop, Acrobat, Illustrator, and Creative Cloud.", // :contentReference[oaicite:31]{index=31}
     type: "Enterprise",
@@ -577,8 +577,8 @@ const companies = [
   },
   
     {
-      name: "Slack",
-      salary: "$176K", // Associate Software Engineer entry-level compensation :contentReference[oaicite:0]{index=0}
+      name: "Slac,000",
+      salary: "$176,000", // Associate Software Engineer entry-level compensation :contentReference[oaicite:0]{index=0}
       description: "Slack is a cloud-based team communication platform developed by Slack Technologies, which has been owned by Salesforce since 2020.", // :contentReference[oaicite:1]{index=1}
       type: "Enterprise",
       logo: "https://logo.clearbit.com/slack.com",
@@ -592,7 +592,7 @@ const companies = [
     },
     {
       name: "Dropbox",
-      salary: "$177K", // IC1 entry-level Software Engineer compensation :contentReference[oaicite:7]{index=7}
+      salary: "$177,000", // IC1 entry-level Software Engineer compensation :contentReference[oaicite:7]{index=7}
       description: "Dropbox is a file hosting service offering cloud storage, file synchronization, personal cloud, and client software.", // :contentReference[oaicite:8]{index=8}
       type: "Enterprise",
       logo: "https://logo.clearbit.com/dropbox.com",
@@ -606,7 +606,7 @@ const companies = [
     },
     {
       name: "Palantir Technologies",
-      salary: "$145K", // entry-level Software Engineer compensation (minimum) :contentReference[oaicite:14]{index=14}
+      salary: "$145,000", // entry-level Software Engineer compensation (minimum) :contentReference[oaicite:14]{index=14}
       description: "Palantir Technologies Inc. is an American publicly-traded company specializing in software platforms for big data analytics.", // :contentReference[oaicite:15]{index=15}
       type: "Enterprise",
       logo: "https://logo.clearbit.com/palantir.com",
@@ -634,7 +634,7 @@ const companies = [
     },
     {
       name: "Adobe",
-      salary: "$174K", // entry-level Software Engineer (P10) compensation :contentReference[oaicite:30]{index=30}
+      salary: "$174,000", // entry-level Software Engineer (P10) compensation :contentReference[oaicite:30]{index=30}
       description: "Adobe Inc. is an American computer software company based in San Jose, California, known for products like Photoshop, Acrobat, Illustrator, and Creative Cloud.", // :contentReference[oaicite:31]{index=31}
       type: "Enterprise",
       logo: "https://logo.clearbit.com/adobe.com",
@@ -642,9 +642,9 @@ const companies = [
       foundingDate: "December 1982", // :contentReference[oaicite:33]{index=33}
       employeeSize: "30,709 (2024)", // :contentReference[oaicite:34]{index=34}
       tags: ["Creative software", "Digital media", "SaaS"],
-      linkedin: "https://www.linkedin.com/company/adobe/", // :contentReference[oaicite:35]{index=35}
-      website: "https://www.adobe.com", // :contentReference[oaicite:36]{index=36}
-      revenue: "US$21.51 billion (2024)" // :contentReference[oaicite:37]{index=37}
+      linkedin: "https://www.linkedin.com/company/adobe/", 
+      website: "https://www.adobe.com", 
+      revenue: "US$21.51 billion (2024)"
     },
     {
       name: "Discord",
@@ -662,13 +662,13 @@ const companies = [
       },
       {
         name: "Citadel",
-        salary: "$355,840",                          // L1 total comp at Citadel :contentReference[oaicite:0]{index=0}
-        description: "Citadel LLC is a global hedge fund and financial services firm founded in 1990 by Kenneth Griffin, managing over $65 billion in assets.", // Wikipedia :contentReference[oaicite:1]{index=1}
+        salary: "$355,840",
+        description: "Citadel LLC is a global hedge fund and financial services firm founded in 1990 by Kenneth Griffin, managing over $65 billion in assets.",
         type: "Quant Firm",
         logo: "https://logo.clearbit.com/citadel.com",
-        location: "Miami, FL, USA",                  // HQ moved 2022 :contentReference[oaicite:2]{index=2}
-        foundingDate: "1990",                        // :contentReference[oaicite:3]{index=3}
-        employeeSize: "2,932 (2023)",                // :contentReference[oaicite:4]{index=4}
+        location: "Miami, FL, USA",
+        foundingDate: "1990",
+        employeeSize: "2,932 (2023)",
         tags: ["Asset Management", "Market Making", "Finance", "Technology"],
         linkedin: "https://www.linkedin.com/company/citadelllc/",
         website: "https://www.citadel.com/",
@@ -676,8 +676,8 @@ const companies = [
       },
       {
         name: "Hudson River Trading",
-        salary: "$420,153",                          // L1 total comp at HRT :contentReference[oaicite:5]{index=5}
-        description: "Hudson River Trading (HRT) is a quantitative trading firm founded in 2002 that builds automated algorithms and advanced computing environments for global markets.", // Wikipedia :contentReference[oaicite:6]{index=6}
+        salary: "$420,153",
+        description: "Hudson River Trading (HRT) is a quantitative trading firm founded in 2002 that builds automated algorithms and advanced computing environments for global markets.", 
         type: "Quant Firm",
         logo: "https://logo.clearbit.com/hudsonrivertrading.com",
         location: "New York, NY, USA",
@@ -816,7 +816,7 @@ const companies = [
       },
       {
         name: "DoorDash",
-        salary: "$184K",
+        salary: "$184,000",
         description: "DoorDash, Inc. is an American on-demand prepared food delivery service.",
         type: "Public",
         logo: "https://logo.clearbit.com/doordash.com",
@@ -898,7 +898,7 @@ const companies = [
     location: "San Francisco, CA, USA",
     foundingDate: "2013",
     employeeSize: "1,500+",
-    tags: ["Fintech", "Mobile Banking", "Neobank"],
+    tags: ["Fintech", "Mobile Banking", "Neoban,000"],
     linkedin: "https://www.linkedin.com/company/chimebank/",
     website: "https://chime.com",
     revenue: "$1.3B (2023)",
@@ -1030,7 +1030,7 @@ const companies = [
       location: "Sunnyvale, California, USA",
       foundingDate: "May 5, 2003",
       employeeSize: "18,500",
-      tags: ["Professional Network", "Social Media", "Recruiting"],
+      tags: ["Professional Networ,000", "Social Media", "Recruiting"],
       linkedin: "https://www.linkedin.com/company/linkedin/",
       website: "https://linkedin.com",
       revenue: "$15.15B (2023)"
@@ -1467,7 +1467,7 @@ const companies = [
         },
         {
           name: "Samsung Electronics",
-          salary: "$165K",
+          salary: "$165,000",
           description: "Samsung Electronics is a South Korean multinational major appliance and consumer electronics corporation.",
           type: "Public",
           logo: "https://logo.clearbit.com/samsung.com",
@@ -1495,7 +1495,7 @@ const companies = [
         },
         {
           name: "Qualcomm",
-          salary: "$125K",
+          salary: "$125,000",
           description: "Qualcomm Inc. designs and markets wireless telecommunications products and services.",
           type: "Public",
           logo: "https://logo.clearbit.com/qualcomm.com",
@@ -1509,7 +1509,7 @@ const companies = [
         },
         {
           name: "SAP",
-          salary: "$112K",
+          salary: "$112,000",
           description: "SAP SE is a German multinational software corporation that makes enterprise software to manage business operations and customer relations.",
           type: "Public",
           logo: "https://logo.clearbit.com/sap.com",
@@ -1522,8 +1522,8 @@ const companies = [
           revenue: "€34.18B (2024)"
         },
         {
-          name: "TikTok",
-          salary: "$218K",
+          name: "TikTo,000",
+          salary: "$218,000",
           description: "TikTok Pte. Ltd. is a video-focused social media platform developed by ByteDance.",
           type: "Subsidiary",
           logo: "https://logo.clearbit.com/tiktok.com",
@@ -1537,7 +1537,7 @@ const companies = [
         },
         {
           name: "Canva",
-          salary: "$138K",
+          salary: "$138,000",
           description: "Canva is an Australian proprietary software company providing a graphic design platform.",
           type: "Private",
           logo: "https://logo.clearbit.com/canva.com",
@@ -1551,7 +1551,7 @@ const companies = [
         },
         {
           name: "Grammarly",
-          salary: "$142K",
+          salary: "$142,000",
           description: "Grammarly is a software company offering a cloud-based typing assistant for grammar and style.",
           type: "Private",
           logo: "https://logo.clearbit.com/grammarly.com",
@@ -1565,7 +1565,7 @@ const companies = [
         },
         {
           name: "eBay Inc",
-          salary: "$138K",
+          salary: "$138,000",
           description: "eBay Inc. is an American multinational e-commerce corporation that facilitates online consumer-to-consumer and business-to-consumer sales.",
           type: "Public",
           logo: "https://logo.clearbit.com/ebay.com",
@@ -1607,7 +1607,7 @@ const companies = [
           },
           {
             name: "Juniper Networks",
-            salary: "$130K",
+            salary: "$130,000",
             description: "Juniper Networks is an American multinational corporation that develops and markets networking products, including routers, switches, and security devices.",
             type: "Public",
             logo: "https://logo.clearbit.com/juniper.net",
@@ -1620,7 +1620,7 @@ const companies = [
             revenue: "$5.07B (2024)"
           },
           {
-            name: "Splunk",
+            name: "Splun,000",
             salary: "$181,000",
             description: "Splunk Inc. is an American software company that produces software for searching, monitoring, and analyzing machine-generated data via a web-style interface.",
             type: "Subsidiary",
@@ -1677,7 +1677,7 @@ const companies = [
           },
           {
             name: "Nextdoor",
-            salary: "$160K",
+            salary: "$160,000",
             description: "Nextdoor Holdings, Inc. is a public company operating a hyperlocal social networking service for neighborhoods.",
             type: "Public",
             logo: "https://logo.clearbit.com/nextdoor.com",
@@ -1746,7 +1746,7 @@ const companies = [
               revenue: "$12.5B (2023)"
             },
             {
-              name: "BlackRock",
+              name: "BlackRoc,000",
               salary: "$131,890",
               description: "BlackRock, Inc. is the world’s largest asset manager, offering investment management and risk analytics.",
               type: "Public",
@@ -1793,7 +1793,7 @@ const companies = [
               description: "Ernst & Young (EY) is a multinational professional services network headquartered in London, England, and one of the Big Four accounting firms.", // :contentReference[oaicite:1]{index=1}
               type: "Professional Services", // :contentReference[oaicite:2]{index=2}
               logo: "https://logo.clearbit.com/ey.com",
-              location: "London, England, UK", // :contentReference[oaicite:3]{index=3}
+              location: "London, England, U,000", // :contentReference[oaicite:3]{index=3}
               foundingDate: "1989", // through merger :contentReference[oaicite:4]{index=4}
               employeeSize: "395,442 (2023)", // :contentReference[oaicite:5]{index=5}
               tags: ["Accounting", "Audit", "Consulting", "Tax"],
@@ -1807,7 +1807,7 @@ const companies = [
               description: "PricewaterhouseCoopers (PwC) is a multinational professional services network headquartered in London, England, and one of the Big Four accounting firms.", // :contentReference[oaicite:8]{index=8}
               type: "Professional Services", // :contentReference[oaicite:9]{index=9}
               logo: "https://logo.clearbit.com/pwc.com",
-              location: "London, England, UK", // :contentReference[oaicite:10]{index=10}
+              location: "London, England, U,000", // :contentReference[oaicite:10]{index=10}
               foundingDate: "1998", // merger year :contentReference[oaicite:11]{index=11}
               employeeSize: "370,000 (2024)", // :contentReference[oaicite:12]{index=12}
               tags: ["Accounting", "Audit", "Consulting", "Tax"],
@@ -1821,7 +1821,7 @@ const companies = [
               description: "KPMG is a multinational professional services network headquartered in London, England, and one of the Big Four accounting firms.", // :contentReference[oaicite:15]{index=15}
               type: "Professional Services", // :contentReference[oaicite:16]{index=16}
               logo: "https://logo.clearbit.com/kpmg.com",
-              location: "London, England, UK", // :contentReference[oaicite:17]{index=17}
+              location: "London, England, U,000", // :contentReference[oaicite:17]{index=17}
               foundingDate: "1987", // through merger :contentReference[oaicite:18]{index=18}
               employeeSize: "275,288 (2024)", // :contentReference[oaicite:19]{index=19}
               tags: ["Accounting", "Audit", "Advisory", "Tax"],
@@ -1835,7 +1835,7 @@ const companies = [
               description: "Deloitte is a multinational professional services network headquartered in London, England, and the largest of the Big Four accounting firms.", // :contentReference[oaicite:22]{index=22}
               type: "Professional Services", // :contentReference[oaicite:23]{index=23}
               logo: "https://logo.clearbit.com/deloitte.com",
-              location: "London, England, UK", // :contentReference[oaicite:24]{index=24}
+              location: "London, England, U,000", // :contentReference[oaicite:24]{index=24}
               foundingDate: "1845", // :contentReference[oaicite:25]{index=25}
               employeeSize: "460,000 (2024)", // :contentReference[oaicite:26]{index=26}
               tags: ["Consulting", "Audit", "Tax", "Advisory"],
@@ -1929,7 +1929,7 @@ const companies = [
   },
   {
     name: "Khan Academy",
-    salary: "$126K",
+    salary: "$126,000",
     description: "Khan Academy is an American 501(c)(3) nonprofit educational organization created to provide free, world-class education for anyone, anywhere.",
     type: "Non-profit",
     logo: "https://logo.clearbit.com/khanacademy.org",
@@ -1957,7 +1957,7 @@ const companies = [
   },
   {
     name: "Circle",
-    salary: "$215K", // Median SWE total comp (US) :contentReference[oaicite:0]{index=0}
+    salary: "$215,000", // Median SWE total comp (US) :contentReference[oaicite:0]{index=0}
     description: "Circle Internet Group, Inc. is a fintech company that manages the USDC stablecoin and provides blockchain-based payment infrastructure.", // :contentReference[oaicite:1]{index=1}
     type: "Private",
     logo: "https://logo.clearbit.com/circle.com",
@@ -1985,7 +1985,7 @@ const companies = [
   },
   {
     name: "Twilio",
-    salary: "$161K", // Entry-level IC1 total comp (US) :contentReference[oaicite:14]{index=14}
+    salary: "$161,000", // Entry-level IC1 total comp (US) :contentReference[oaicite:14]{index=14}
     description: "Twilio Inc. is a cloud communications platform providing APIs to send/receive calls, texts, and other programmable communications.", // :contentReference[oaicite:15]{index=15}
     type: "Public", // :contentReference[oaicite:16]{index=16}
     logo: "https://logo.clearbit.com/twilio.com",
@@ -1999,7 +1999,7 @@ const companies = [
   },
   {
     name: "Verizon",
-    salary: "$98.5K", // Median SWE salary (US) :contentReference[oaicite:22]{index=22}
+    salary: "$98.5,000", // Median SWE salary (US) :contentReference[oaicite:22]{index=22}
     description: "Verizon Communications Inc. is an American telecommunications company providing wireless, broadband and enterprise services.", // :contentReference[oaicite:23]{index=23}
     type: "Public", // :contentReference[oaicite:24]{index=24}
     logo: "https://logo.clearbit.com/verizon.com",
@@ -2027,7 +2027,7 @@ const companies = [
   },
   {
     name: "Waymo",
-    salary: "$236K", // Median SWE total comp (US) :contentReference[oaicite:35]{index=35}
+    salary: "$236,000", // Median SWE total comp (US) :contentReference[oaicite:35]{index=35}
     description: "Waymo LLC is an autonomous driving technology company and subsidiary of Alphabet Inc., headquartered in Mountain View, CA.", // :contentReference[oaicite:36]{index=36}
     type: "Subsidiary", 
     logo: "https://logo.clearbit.com/waymo.com",
@@ -2055,7 +2055,7 @@ const companies = [
   },
   {
     name: "Zoox",
-    salary: "$146K", // Entry-level L1 SWE total comp :contentReference[oaicite:49]{index=49}
+    salary: "$146,000", // Entry-level L1 SWE total comp :contentReference[oaicite:49]{index=49}
     description: "Zoox, Inc. is an Amazon-owned autonomous vehicle company developing purpose-built, self-driving taxis headquartered in Foster City, CA.", // :contentReference[oaicite:50]{index=50}
     type: "Subsidiary",
     logo: "https://logo.clearbit.com/zoox.com",
