@@ -1864,7 +1864,7 @@ const companies = [
     salary: "$367,000",
     description: "D. E. Shaw & Co. is a global investment and technology development firm founded in 1988 and headquartered in New York City.",
     type: "Hedge Fund",
-    logo: "https://logo.clearbit.com/deshaw.com",
+    logo: "/companies/shaw.png",
     location: "New York, NY, USA",
     foundingDate: "1988",
     employeeSize: "2,500 (2022)",
