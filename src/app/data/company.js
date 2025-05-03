@@ -680,9 +680,9 @@ const companies = [
         description: "Hudson River Trading (HRT) is a quantitative trading firm founded in 2002 that builds automated algorithms and advanced computing environments for global markets.", // Wikipedia :contentReference[oaicite:6]{index=6}
         type: "Quant Firm",
         logo: "https://logo.clearbit.com/hudsonrivertrading.com",
-        location: "New York, NY, USA",               // :contentReference[oaicite:7]{index=7}
-        foundingDate: "2002",                        // :contentReference[oaicite:8]{index=8}
-        employeeSize: "800+",                        // :contentReference[oaicite:9]{index=9}
+        location: "New York, NY, USA",
+        foundingDate: "2002",
+        employeeSize: "800+",
         tags: ["Algorithmic Trading", "Quantitative Research", "Technology"],
         linkedin: "https://www.linkedin.com/company/hudson-river-trading/", // :contentReference[oaicite:10]{index=10}
         website: "https://hudsonrivertrading.com/",
