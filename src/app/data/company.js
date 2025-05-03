@@ -1041,7 +1041,7 @@ const companies = [
     tags: ["Audio Streaming", "Music", "Podcasts"],
     linkedin: "https://www.linkedin.com/company/spotify/",
     website: "https://open.spotify.com",
-    revenue: "€15.67B (2024)",
+    revenue: "$22.55B",
   },
   {
     name: "Cisco",
@@ -1499,7 +1499,7 @@ const companies = [
     tags: ["ERP", "Cloud", "Analytics"],
     linkedin: "https://www.linkedin.com/company/sap/",
     website: "https://sap.com",
-    revenue: "€34.18B (2024)",
+    revenue: "$36.982B",
   },
   {
     name: "TikTok",
@@ -2381,7 +2381,7 @@ const companies = [
     tags: ["Telecommunications", "Consumer Electronics", "Networking"],
     linkedin: "https://www.linkedin.com/company/nokia/",
     website: "https://nokia.com/",
-    revenue: "€19.22B (2024)",
+    revenue: "$20.356B",
   },
 ];
 
