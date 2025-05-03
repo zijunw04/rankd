@@ -439,7 +439,7 @@ const companies = [
         salary: "$450,000",
         description: "Perplexity AI, or simply Perplexity, is an American web search engine that uses a large language model to process queries and synthesize responses based on web search results.",
         type: "Private",
-        logo: "https://logo.clearbit.com/perplexity.ai",
+        logo: "/companies/perplexity.png",
         location: "San Francisco, California, USA",
         foundingDate: "2022",
         employeeSize: "100",
