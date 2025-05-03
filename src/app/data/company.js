@@ -96,6 +96,48 @@ const companies = [
     linkedin: "https://www.linkedin.com/company/salesforce/",
     website: "https://www.salesforce.com/",
     revenue: "$34.9B (2023)"
+  },
+  {
+    name: "Netflix",
+    salary: "$170,000",
+    description: "Leading streaming service with a vast library of movies and TV shows.",
+    type: "Entertainment",
+    logo: "https://logo.clearbit.com/www.netflix.com/",
+    location: "Los Gatos, CA, USA",
+    foundingDate: "1997",
+    employeeSize: "13,000",
+    tags: ["Streaming", "Entertainment", "Media"],
+    linkedin: "https://www.linkedin.com/company/netflix/",
+    website: "https://www.netflix.com/",
+    revenue: "$32B (2023)"
+  },
+  {
+    name: "Intel",
+    salary: "$165,000",
+    description: "Global leader in semiconductor chip manufacturing and technology.",
+    type: "Enterprise",
+    logo: "https://logo.clearbit.com/www.intel.com/",
+    location: "Santa Clara, CA, USA",
+    foundingDate: "1968",
+    employeeSize: "131,900",
+    tags: ["Semiconductors", "Hardware", "Technology"],
+    linkedin: "https://www.linkedin.com/company/intel/",
+    website: "https://www.intel.com/",
+    revenue: "$54.2B (2023)"
+  },
+  {
+    name: "IBM",
+    salary: "$175,000",
+    description: "Multinational technology corporation with expertise in cloud, AI, and consulting.",
+    type: "Enterprise",
+    logo: "https://logo.clearbit.com/www.ibm.com/",
+    location: "Armonk, NY, USA",
+    foundingDate: "1911",
+    employeeSize: "303,100",
+    tags: ["Consulting", "Software", "AI", "Cloud"],
+    linkedin: "https://www.linkedin.com/company/ibm/",
+    website: "https://www.ibm.com/",
+    revenue: "$60.5B (2023)"
   }
 ];
 

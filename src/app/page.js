@@ -1,13 +1,28 @@
 "use client";
-import { useState, useEffect } from "react";
-import companiesData from "./data/company";
-import CompanyPanel from "./components/compCards";
+import { get, ref, update } from "firebase/database";
+import { useEffect, useRef, useState } from "react";
 import Confetti from "react-confetti";
 import { FiArrowRight } from "react-icons/fi";
+import CompanyPanel from "./components/compCards";
 import RankdHeader from "./components/header";
+import companiesData from "./data/company";
 import { db } from "./firebase";
-import { ref, get } from "firebase/database";
-import { updateElo } from "./components/utils";
+
+function Probability(rating1, rating2) {
+  return 1.0 / (1 + Math.pow(10, (rating1 - rating2) / 400.0));
+}
+
+// 1) Update EloRating signature to return [newLeft, newRight]
+function EloRating(Ra, Rb, K, scoreA) {
+  const Ea = 1 / (1 + Math.pow(10, (Rb - Ra) / 400))
+  const Eb = 1 / (1 + Math.pow(10, (Ra - Rb) / 400))
+  const newRa = Math.round(Ra + K * (scoreA - Ea))
+  const newRb = Math.round(Rb + K * ((1 - scoreA) - Eb))
+  return [newRa, newRb]
+}
+
+
+
 
 function shuffle(array) {
   const arr = [...array];
@@ -20,6 +35,7 @@ function shuffle(array) {
 
 export default function HomePage() {
   const [companies, setCompanies] = useState([]);
+
   const [index, setIndex] = useState(0);
   const [showConfetti, setShowConfetti] = useState(false);
   const [voted, setVoted] = useState(false);
@@ -28,10 +44,76 @@ export default function HomePage() {
   const [rightElo, setRightElo] = useState(null);
   const [leftEloChange, setLeftEloChange] = useState(null);
   const [rightEloChange, setRightEloChange] = useState(null);
+  const K = 32;
+  const [confettiHeight, setConfettiHeight] = useState(0);
+  const [confettiWidth, setConfettiWidth] = useState(0);
+  const confettiRef = useRef(null);
 
   useEffect(() => {
     setCompanies(shuffle(companiesData));
   }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setConfettiWidth(confettiRef.current ? confettiRef.current.offsetWidth : 0);
+      setConfettiHeight(confettiRef.current ? confettiRef.current.offsetHeight : 0);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  async function handleChoice(side) {
+    if (voted) return
+    setPicked(side)
+    setShowConfetti(true)
+    setVoted(true)
+  
+    // IDs for database paths
+    const leftId  = left.id  || left.name.replace(/\s+/g, "_").toLowerCase()
+    const rightId = right.id || right.name.replace(/\s+/g, "_").toLowerCase()
+  
+    // Fetch current ratings
+    const leftSnap  = await get(ref(db, `companies/${leftId}/elo`))
+    const rightSnap = await get(ref(db, `companies/${rightId}/elo`))
+    const leftEloBefore  = leftSnap.exists()  ? leftSnap.val() : 1000
+    const rightEloBefore = rightSnap.exists() ? rightSnap.val() : 1000
+  
+    // Determine the outcome from left’s perspective
+    let outcomeLeft
+    if (side === "left")  outcomeLeft = 1
+    else if (side === "right") outcomeLeft = 0
+    else outcomeLeft = 0.5  // equal
+  
+    // Compute new Elo for both sides
+    const [newLeftElo, newRightElo] = EloRating(
+      leftEloBefore,
+      rightEloBefore,
+      K,
+      outcomeLeft
+    )
+  
+    // Prepare the database updates
+    const updates = {
+      [`companies/${leftId}/elo`]: newLeftElo,
+      [`companies/${rightId}/elo`]: newRightElo
+    }
+  
+    try {
+      // Push to Firebase
+      await update(ref(db), updates)
+  
+      // Compute changes for display
+      setLeftElo(newLeftElo)
+      setRightElo(newRightElo)
+      setLeftEloChange(newLeftElo  - leftEloBefore)
+      setRightEloChange(newRightElo - rightEloBefore)
+    } catch (e) {
+      console.error("Firebase update failed:", e)
+    }
+  }
 
   const left = companies[index % companies.length];
   const right = companies[(index + 1) % companies.length];
@@ -50,58 +132,9 @@ export default function HomePage() {
     fetchElos();
   }, [index, companies, left, right]);
 
-  async function handleChoice(side) {
-    if (voted) return;
-    setPicked(side);
-    setShowConfetti(true);
-    setVoted(true);
+ 
 
-    if (side === "equal") return; // No Elo change for equal
-
-    const winner = side === "left" ? left : right;
-    const loser = side === "left" ? right : left;
-
-    try {
-      // Get previous elos
-      const winnerId =
-        winner.id || winner.name.replace(/\s+/g, "_").toLowerCase();
-      const loserId = loser.id || loser.name.replace(/\s+/g, "_").toLowerCase();
-      const winnerSnapBefore = await get(ref(db, `companies/${winnerId}/elo`));
-      const loserSnapBefore = await get(ref(db, `companies/${loserId}/elo`));
-      const winnerEloBefore = winnerSnapBefore.exists()
-        ? winnerSnapBefore.val()
-        : 1000;
-      const loserEloBefore = loserSnapBefore.exists()
-        ? loserSnapBefore.val()
-        : 1000;
-
-      // Update Elo
-      const delta = await updateElo(winner, loser);
-
-      // Refetch elos after update
-      const winnerSnap = await get(ref(db, `companies/${winnerId}/elo`));
-      const loserSnap = await get(ref(db, `companies/${loserId}/elo`));
-      const winnerEloAfter = winnerSnap.exists() ? winnerSnap.val() : 1000;
-      const loserEloAfter = loserSnap.exists() ? loserSnap.val() : 1000;
-
-      // Set Elo and EloChange for left and right
-      if (side === "left") {
-        setLeftElo(winnerEloAfter);
-        setRightElo(loserEloAfter);
-        setLeftEloChange(winnerEloAfter - winnerEloBefore); // should be +delta
-        setRightEloChange(loserEloAfter - loserEloBefore); // should be -delta
-      } else {
-        setLeftElo(loserEloAfter);
-        setRightElo(winnerEloAfter);
-        setLeftEloChange(loserEloAfter - loserEloBefore); // should be -delta
-        setRightEloChange(winnerEloAfter - winnerEloBefore); // should be +delta
-      }
-    } catch (err) {
-      console.error(err);
-    }
-  }
-
-  function handleEqual() {
+  async function handleEqual() {
     if (voted) return;
     setPicked("equal");
     setShowConfetti(true);
@@ -125,18 +158,18 @@ export default function HomePage() {
     document.body.style.overflowX = "hidden";
   }
 
-  const confettiWidth =
+  const confettiWidthCalc =
     typeof window !== "undefined" ? window.innerWidth : 1920;
-  const confettiHeight =
+  const confettiHeightCalc =
     typeof window !== "undefined" ? window.innerHeight : 1080;
-  const confettiY = confettiHeight * 0.25;
+  const confettiY = confettiHeightCalc * 0.25;
 
   if (!left || !right) return null;
 
   return (
     <div className="fixed inset-0 flex flex-col items-center justify-center w-screen h-screen bg-white overflow-x-hidden">
       <RankdHeader />
-      <div className="relative flex flex-col md:flex-row w-full h-full flex-1 overflow-hidden">
+      <div className="relative flex flex-col md:flex-row w-full h-full flex-1 overflow-hidden"  ref={confettiRef}>
         {/* Vertical divider for desktop */}
         <div className="hidden md:block absolute left-1/2 top-0 -translate-x-1/2 h-full w-0.5 bg-slate-200 z-30" />
         {/* Confetti for left */}
