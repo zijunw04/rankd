@@ -6,9 +6,9 @@ export default function RankdHeader() {
       <div className="w-full flex items-center justify-between px-[10%] py-4">
         {/* Brand and Section */}
         <div className="flex items-center gap-2">
-          <span className="text-2xl text-black tracking-tight select-none">
+          <Link href="/" className="text-2xl text-black tracking-tight select-none hover:underline">
             Rankd
-          </span>
+          </Link>
           {/* Vertical divider */}
           <span className="h-8 w-px bg-black mx-2" />
           <span className="text-2xl text-black tracking-tight select-none">

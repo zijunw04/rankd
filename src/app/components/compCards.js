@@ -1,7 +1,13 @@
 import Image from "next/image";
 import { SiLinkedin } from "react-icons/si";
 
-export default function CompanyPanel({ company, onClick, side, disabled, revealed }) {
+export default function CompanyPanel({
+  company,
+  onClick,
+  side,
+  disabled,
+  revealed,
+}) {
   return (
     <div
       className={`
@@ -33,7 +39,9 @@ export default function CompanyPanel({ company, onClick, side, disabled, reveale
               href={company.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className={`text-black flex items-center pointer-events-auto ${disabled ? "cursor-pointer" : ""}`}
+              className={`text-black flex items-center pointer-events-auto ${
+                disabled ? "cursor-pointer" : ""
+              }`}
               aria-label={`${company.name} LinkedIn`}
               style={{ lineHeight: 1 }}
             >
@@ -41,23 +49,28 @@ export default function CompanyPanel({ company, onClick, side, disabled, reveale
             </a>
           )}
         </div>
-        <div className="text-gray-500 text-lg mb-2 text-center">{company.type}</div>
-     
+        <div className="text-gray-500 text-lg mb-2 text-center">
+          {company.type}
+        </div>
+
         {/* Location, Founding Date, Employee Size, Tags */}
         <div className="mb-4 text-center text-gray-600 space-y-1">
           {company.location && (
             <div>
-              <span className="font-semibold">Location:</span> {company.location}
+              <span className="font-semibold">Location:</span>{" "}
+              {company.location}
             </div>
           )}
           {company.foundingDate && (
             <div>
-              <span className="font-semibold">Founded:</span> {company.foundingDate}
+              <span className="font-semibold">Founded:</span>{" "}
+              {company.foundingDate}
             </div>
           )}
           {company.employeeSize && (
             <div>
-              <span className="font-semibold">Employees:</span> {company.employeeSize}
+              <span className="font-semibold">Employees:</span>{" "}
+              {company.employeeSize}
             </div>
           )}
           {company.tags && company.tags.length > 0 && (
@@ -73,48 +86,57 @@ export default function CompanyPanel({ company, onClick, side, disabled, reveale
             </div>
           )}
         </div>
-       {/* Elo */}
-<div className="mt-1 text-center w-40 h-10 mx-auto flex items-center justify-center">
-  {!revealed ? (
-    <div className="w-full h-full bg-gray-200 rounded-lg animate-pulse flex items-center justify-center text-gray-400 font-semibold" />
-  ) : (
-    typeof company.elo !== "number" ? (
-      // Loading state for Elo
-      <div className="w-full h-full bg-gray-200 rounded-lg animate-pulse flex items-center justify-center text-gray-400 font-semibold">
-        Loading...
-      </div>
-    ) : (
-      <div className="w-full h-full bg-gray-100 rounded-lg flex items-center justify-center text-gray-700 font-semibold transition-all duration-300">
-        <span className="font-semibold">Elo:</span>{" "}
-        <span className="font-bold ml-1">{typeof company.eloChange === "number" && company.eloChange !== 0  ? company.elo : ""}</span>
-        {typeof company.eloChange === "number" && company.eloChange !== 0 && (
-          <span className={`ml-2 ${company.eloChange > 0 ? "text-green-600" : "text-red-600"}`}>
-            ({company.eloChange > 0 ? "+" : ""}{company.eloChange})
-          </span>
-        )}
-      </div>
-    )
-  )}
-</div>
-
-
+        {/* Elo */}
+        <div className="mt-1 text-center w-40 h-10 mx-auto flex items-center justify-center">
+          {!revealed ? (
+            <div className="w-full h-full bg-gray-200 rounded-lg animate-pulse flex items-center justify-center text-gray-400 font-semibold" />
+          ) : typeof company.elo !== "number" ? (
+            <div className="w-full h-full bg-gray-200 rounded-lg animate-pulse flex items-center justify-center text-gray-400 font-semibold">
+              Loading...
+            </div>
+          ) : (
+            <div className="w-full h-full bg-gray-100 rounded-lg flex items-center justify-center text-gray-700 font-semibold transition-all duration-300">
+              <span className="font-semibold">Elo:</span>
+              <span className="font-bold ml-1">{company.elo}</span>
+              {typeof company.eloChange === "number" &&
+                company.eloChange !== 0 && (
+                  <span
+                    className={`ml-2 ${
+                      company.eloChange > 0 ? "text-green-600" : "text-red-600"
+                    }`}
+                  >
+                    ({company.eloChange > 0 ? "+" : ""}
+                    {company.eloChange})
+                  </span>
+                )}
+            </div>
+          )}
+        </div>
       </div>
       {/* About */}
       <div className="mb-10 text-center">
-        <div className="font-bold text-2xl text-gray-900 mb-2 tracking-wide">About</div>
-        <p className="text-gray-700 text-xl leading-relaxed">{company.description}</p>
+        <div className="font-bold text-2xl text-gray-900 mb-2 tracking-wide">
+          About
+        </div>
+        <p className="text-gray-700 text-xl leading-relaxed">
+          {company.description}
+        </p>
       </div>
       {/* Salary */}
       {company.salary && (
         <div className="mb-10 text-center">
-          <div className="font-bold text-2xl text-gray-900 mb-2 tracking-wide">Typical Salary</div>
+          <div className="font-bold text-2xl text-gray-900 mb-2 tracking-wide">
+            Typical Salary
+          </div>
           <div className="text-xl text-gray-700">{company.salary}</div>
         </div>
       )}
       {/* Revenue Section */}
       {company.revenue && (
         <div className="mb-10 text-center">
-          <div className="font-bold text-2xl text-gray-900 mb-2 tracking-wide">Overall Revenue</div>
+          <div className="font-bold text-2xl text-gray-900 mb-2 tracking-wide">
+            Overall Revenue
+          </div>
           <div className="text-xl text-gray-700">{company.revenue}</div>
         </div>
       )}
