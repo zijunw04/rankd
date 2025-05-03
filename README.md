@@ -1,4 +1,4 @@
-# Company Rank
+# Rank Companies
 
 A Next.js project bootstrapped with `create-next-app` to rank companies using the Elo rating system. Users can compare two companies and vote for which one they prefer, thereby updating their Elo ratings.
 
@@ -19,3 +19,5 @@ A Next.js project bootstrapped with `create-next-app` to rank companies using th
 *   **Firebase Realtime Database:** Used as a backend for storing the ELOP ratings and company preferences.
 *   **Tailwind CSS:** A utility-first CSS framework for styling the application.
 *   **react-icons:** Used to display icons on the webpage.
+
+Access: https://rankd-company.vercel.app/
