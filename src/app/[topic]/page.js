@@ -185,15 +185,7 @@ export default function RankdTopicPage() {
       const leftId = left.id || left.name.replace(/\s+/g, "_").toLowerCase();
       const rightId = right.id || right.name.replace(/\s+/g, "_").toLowerCase();
       
-      // Log for debugging
-      console.log("Calling API with:", { 
-        topic, 
-        leftId, 
-        rightId, 
-        leftName: left.name, 
-        rightName: right.name, 
-        outcome: side 
-      });
+  
       
       // Call our API route instead of Supabase directly
       const response = await fetch('/api/elo', {
