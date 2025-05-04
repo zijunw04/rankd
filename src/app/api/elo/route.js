@@ -6,45 +6,35 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_SERVICE_KEY; // Use service key on server
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-// Simple in-memory rate limiter storage
-const requestStore = new Map();
-const RATE_LIMIT = 20; // requests per minute
-const WINDOW_MS = 60 * 1000; // 1 minute
-
 export async function POST(request) {
   try {
-    // Generate a request identifier from headers that doesn't use IP
-    const requestId = request.headers.get('user-agent') || 'unknown';
-    
-    // Check if rate limited
-    const now = Date.now();
-    const requestHistory = requestStore.get(requestId) || [];
-    const recentRequests = requestHistory.filter(time => time > now - WINDOW_MS);
-    
-    if (recentRequests.length >= RATE_LIMIT) {
-      return Response.json(
-        { error: 'Too many requests. Please try again later.' },
-        { status: 429, headers: { 'Retry-After': '60' } }
-      );
-    }
-    
-    // Update request history
-    recentRequests.push(now);
-    requestStore.set(requestId, recentRequests);
-    
     const { topic, leftId, rightId, leftName, rightName, outcome } = await request.json();
+    const userAgent = request.headers.get('user-agent') || 'unknown';
+    // Use a hash of user-agent instead of IP for privacy
+    const clientId = await crypto.subtle.digest(
+      'SHA-256',
+      new TextEncoder().encode(userAgent)
+    ).then(hash => Array.from(new Uint8Array(hash))
+      .map(b => b.toString(16).padStart(2, '0'))
+      .join('')
+    );
     
-    // Call server-side function to update ELO ratings
+    // Call server-side function to update ELO ratings with rate limiting
     const { data, error } = await supabase.rpc('calculate_elo', { 
       p_topic: topic,
       p_left_id: leftId,
       p_right_id: rightId,
       p_left_name: leftName,
       p_right_name: rightName,
-      p_outcome: outcome
+      p_outcome: outcome,
+      p_ip: clientId.substring(0, 20), // Use first 20 chars of hash
+      p_user_agent: userAgent.substring(0, 100) // Limit length
     });
     
     if (error) {
+      if (error.message.includes('Rate limit exceeded')) {
+        return Response.json({ error: 'Too many requests. Please try again later.' }, { status: 429 });
+      }
       return Response.json({ error: error.message }, { status: 500 });
     }
     
