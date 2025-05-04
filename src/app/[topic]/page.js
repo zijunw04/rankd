@@ -175,6 +175,15 @@ export default function RankdTopicPage() {
     setLeftEloChange(newLeftElo - leftEloBefore);
     setRightEloChange(newRightElo - rightEloBefore);
 
+    if (side === "equal") {
+  
+      setLeftEloChange(0);
+      setRightEloChange(0);
+    
+      setLeftElo(leftEloBefore);
+      setRightElo(rightEloBefore);
+    };
+
     const updates = {
       [`${topic}/${leftId}/elo`]: newLeftElo,
       [`${topic}/${leftId}/name`]: left.name,
