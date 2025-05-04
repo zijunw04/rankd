@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import RankdHeader from "./components/rankedheader";
 import MainHeader from "./components/normalheader";
 
 const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1368446958309736468/v1e2lx-RxzHd4b2eXEbnEbdt4UOgEo1HyVmHo-76o5L7seRv9oShSDgSdtTFj2091c8v"; 
