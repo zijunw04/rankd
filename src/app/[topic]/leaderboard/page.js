@@ -37,26 +37,36 @@ export default function Leaderboard() {
       staticData.map((item) => [normalize(item.name), item])
     );
 
-    const itemsRef = ref(db, topic);
-    const unsubscribe = onValue(itemsRef, (snapshot) => {
-      const data = snapshot.val();
-      if (data) {
-        const firebaseItems = Object.entries(data).map(([id, item]) => {
-          const staticInfo = staticItemMap[normalize(item.name)] || {};
-          return {
-            ...staticInfo,
-            name: item.name,
-            elo: item.elo ?? 1000,
-            id,
-          };
-        });
-        setItems(
-          firebaseItems.slice().sort((a, b) => (b.elo ?? 0) - (a.elo ?? 0))
-        );
-      } else {
-        setItems([]);
-      }
-    });
+    // Add error handling to your onValue listener
+const itemsRef = ref(db, topic);
+const unsubscribe = onValue(itemsRef, 
+  (snapshot) => {
+    const data = snapshot.val();
+    console.log("Firebase data received:", data); // Debug log
+    if (data) {
+      // Process data as before
+      const firebaseItems = Object.entries(data).map(([id, item]) => {
+        const staticInfo = staticItemMap[normalize(item.name)] || {};
+        return {
+          ...staticInfo,
+          name: item.name,
+          elo: item.elo ?? 1000,
+          id,
+        };
+      });
+      setItems(
+        firebaseItems.slice().sort((a, b) => (b.elo ?? 0) - (a.elo ?? 0))
+      );
+    } else {
+      console.log("No data found at path:", topic);
+      setItems([]);
+    }
+  }, 
+  (error) => {
+    console.error("Firebase data fetch error:", error);
+  }
+);
+
     return () => unsubscribe();
   }, [topic]);
 
@@ -68,8 +78,9 @@ export default function Leaderboard() {
 
   // Enhanced search: if user types #number, show that rank
   let filteredItems = items.filter((item) =>
-    item.name.toLowerCase().includes(searchValue.trim().toLowerCase())
+    item && item.name ? item.name.toLowerCase().includes(searchValue.trim().toLowerCase()) : false
   );
+  
 
   const rankMatch = searchValue.trim().match(/^#(\d+)$/);
   if (rankMatch) {
