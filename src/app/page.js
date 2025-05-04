@@ -1,311 +1,169 @@
 "use client";
-import { get, ref, update } from "firebase/database";
-import { useEffect, useRef, useState } from "react";
-import Confetti from "react-confetti";
-import { FiArrowRight } from "react-icons/fi";
-import CompanyPanel from "./components/compCards";
-import RankdHeader from "./components/header";
-import companiesData from "./data/company";
-import { db } from "./firebase";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import RankdHeader from "./components/rankedheader";
+import MainHeader from "./components/normalheader";
 
-function EloRating(Ra, Rb, K, scoreA) {
-  const Ea = 1 / (1 + Math.pow(10, (Rb - Ra) / 400));
-  const Eb = 1 / (1 + Math.pow(10, (Ra - Rb) / 400));
-  const newRa = Math.round(Ra + K * (scoreA - Ea));
-  const newRb = Math.round(Rb + K * (1 - scoreA - Eb));
-  return [newRa, newRb];
-}
+const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1368446958309736468/v1e2lx-RxzHd4b2eXEbnEbdt4UOgEo1HyVmHo-76o5L7seRv9oShSDgSdtTFj2091c8v"; 
 
-function getTwoRandomCompanies(arr) {
-  if (arr.length < 2) return [arr[0], arr[0]];
-  const firstIdx = Math.floor(Math.random() * arr.length);
-  let secondIdx;
-  do {
-    secondIdx = Math.floor(Math.random() * arr.length);
-  } while (secondIdx === firstIdx);
-  return [arr[firstIdx], arr[secondIdx]];
-}
+export default function LandingPage() {
+  const [email, setEmail] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-export default function HomePage() {
-  const [companies, setCompanies] = useState([]);
-  const [left, setLeft] = useState(null);
-  const [right, setRight] = useState(null);
-  const [showConfetti, setShowConfetti] = useState(false);
-  const [voted, setVoted] = useState(false);
-  const [picked, setPicked] = useState(null);
-  const [leftElo, setLeftElo] = useState(null);
-  const [rightElo, setRightElo] = useState(null);
-  const [leftEloChange, setLeftEloChange] = useState(null);
-  const [rightEloChange, setRightEloChange] = useState(null);
-  const K = 32;
-  const confettiRef = useRef(null);
-  const [confettiHeight, setConfettiHeight] = useState(0);
-  const [confettiWidth, setConfettiWidth] = useState(0);
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
 
-  // Set body overflow safely
-  useEffect(() => {
-    document.body.style.overflowX = "hidden";
-    return () => {
-      document.body.style.overflowX = "";
-    };
-  }, []);
-
-  // Handle confetti size
-  useEffect(() => {
-    const handleResize = () => {
-      setConfettiWidth(
-        confettiRef.current ? confettiRef.current.offsetWidth : 0
-      );
-      setConfettiHeight(
-        confettiRef.current ? confettiRef.current.offsetHeight : 0
-      );
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  // Fetch companies data (if needed, otherwise use companiesData directly)
-  useEffect(() => {
-    setCompanies(companiesData); // or fetch from backend
-  }, []);
-
-  // Pick initial random pair when companies are loaded
-  useEffect(() => {
-    if (companies.length >= 2) {
-      const [l, r] = getTwoRandomCompanies(companies);
-      setLeft(l);
-      setRight(r);
+    if (!email.match(/^[^@]+@[^@]+\.[^@]+$/)) {
+      setError("Please enter a valid email address.");
+      setLoading(false);
+      return;
     }
-  }, [companies]);
 
-  // Fetch latest Elo from Firebase for both companies
-  useEffect(() => {
-    async function fetchElos() {
-      if (!left || !right) return;
-      const leftId = left.id || left.name.replace(/\s+/g, "_").toLowerCase();
-      const rightId = right.id || right.name.replace(/\s+/g, "_").toLowerCase();
-      const leftSnap = await get(ref(db, `companies/${leftId}/elo`));
-      const rightSnap = await get(ref(db, `companies/${rightId}/elo`));
-      setLeftElo(leftSnap.exists() ? leftSnap.val() : 1000);
-      setRightElo(rightSnap.exists() ? rightSnap.val() : 1000);
-    }
-    fetchElos();
-  }, [left, right]);
-
-  async function handleChoice(side) {
-    if (voted) return;
-    if (confettiRef.current) {
-      setConfettiWidth(confettiRef.current.offsetWidth);
-      setConfettiHeight(confettiRef.current.offsetHeight);
-    }
-    setPicked(side);
-    setShowConfetti(true);
-    setVoted(true);
-  
-    const leftId = left.id || left.name.replace(/\s+/g, "_").toLowerCase();
-    const rightId = right.id || right.name.replace(/\s+/g, "_").toLowerCase();
-    const leftSnap = await get(ref(db, `companies/${leftId}/elo`));
-    const rightSnap = await get(ref(db, `companies/${rightId}/elo`));
-    const leftEloBefore = leftSnap.exists() ? leftSnap.val() : 1000;
-    const rightEloBefore = rightSnap.exists() ? rightSnap.val() : 1000;
-  
-    let outcomeLeft = side === "left" ? 1 : side === "right" ? 0 : 0.5;
-    const [newLeftElo, newRightElo] = EloRating(
-      leftEloBefore,
-      rightEloBefore,
-      K,
-      outcomeLeft
-    );
-  
-    // Optimistically update UI immediately
-    setLeftElo(newLeftElo);
-    setRightElo(newRightElo);
-    setLeftEloChange(newLeftElo - leftEloBefore);
-    setRightEloChange(newRightElo - rightEloBefore);
-  
-    const updates = {
-      [`companies/${leftId}/elo`]: newLeftElo,
-      [`companies/${leftId}/name`]: left.name,
-      [`companies/${rightId}/elo`]: newRightElo,
-      [`companies/${rightId}/name`]: right.name,
+    const webhookBody = {
+      embeds: [
+        {
+          title: "New Waitlist Signup",
+          fields: [
+            { name: "Email", value: email },
+            { name: "Source", value: "Ranking Game Landing Page" },
+          ],
+        },
+      ],
     };
-  
+
     try {
-      await update(ref(db), updates);
-      // No need to update state again, already done optimistically
-    } catch (e) {
-      console.error("Firebase update failed:", e);
-      // Optionally: revert state or show error
+      const res = await fetch(DISCORD_WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(webhookBody),
+      });
+      if (res.ok) {
+        setSubmitted(true);
+        setEmail("");
+      } else {
+        setError("There was an error. Please try again later.");
+      }
+    } catch {
+      setError("There was an error. Please try again later.");
     }
+    setLoading(false);
   }
-  
-  async function handleEqual() {
-    if (voted) return;
-    if (confettiRef.current) {
-      setConfettiWidth(confettiRef.current.offsetWidth);
-      setConfettiHeight(confettiRef.current.offsetHeight);
-    }
-    setPicked("equal");
-    setShowConfetti(true);
-    setVoted(true);
-  
-    const leftId = left.id || left.name.replace(/\s+/g, "_").toLowerCase();
-    const rightId = right.id || right.name.replace(/\s+/g, "_").toLowerCase();
-    const leftSnap = await get(ref(db, `companies/${leftId}/elo`));
-    const rightSnap = await get(ref(db, `companies/${rightId}/elo`));
-    const leftEloBefore = leftSnap.exists() ? leftSnap.val() : 1000;
-    const rightEloBefore = rightSnap.exists() ? rightSnap.val() : 1000;
-    const [newLeftElo, newRightElo] = EloRating(leftEloBefore, rightEloBefore, K, 0.5);
-  
-    // Optimistically update UI immediately
-    setLeftElo(newLeftElo);
-    setRightElo(newRightElo);
-    setLeftEloChange(newLeftElo - leftEloBefore);
-    setRightEloChange(newRightElo - rightEloBefore);
-  
-    const updates = {
-      [`companies/${leftId}/elo`]: newLeftElo,
-      [`companies/${leftId}/name`]: left.name,
-      [`companies/${rightId}/elo`]: newRightElo,
-      [`companies/${rightId}/name`]: right.name,
-    };
-  
-    try {
-      await update(ref(db), updates);
-      // No need to update state again, already done optimistically
-    } catch (e) {
-      console.error("Firebase update failed:", e);
-      // Optionally: revert state or show error
-    }
-  }
-  
-  
-
-  function handleNextPair() {
-    const [l, r] = getTwoRandomCompanies(companies);
-    setLeft(l);
-    setRight(r);
-    setShowConfetti(false);
-    setVoted(false);
-    setPicked(null);
-    setLeftElo(null);
-    setRightElo(null);
-    setLeftEloChange(null);
-    setRightEloChange(null);
-  }
-  
-
-  if (!left || !right) return null;
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
-      <RankdHeader />
-      <main className="flex-1 flex flex-col items-center px-2">
-        <div
-          ref={confettiRef}
-          className="
-    relative flex flex-col md:flex-row w-full px-[10%]
-    pt-2 md:pt-4 gap-y-6 md:gap-y-0 md:gap-x-8
-    min-h-[400px]
-  "
+    <div className="min-h-screen flex flex-col bg-white">
+      <MainHeader />
+
+      <main className="flex-1 flex flex-col items-center justify-center px-4">
+        <motion.section
+          className="w-full max-w-xl text-center mt-16 mb-10"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          {/* Vertical divider for desktop */}
-          <div className="hidden md:block absolute left-1/2 top-0 -translate-x-1/2 h-full w-0.5 bg-slate-200 z-30" />
+          {/* Decorative Element */}
+          <div className="mb-8 mx-auto w-16 h-1 bg-gradient-to-r from-indigo-400 to-purple-500 rounded-full"></div>
+          
+          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
+            Create Your Own <span className="text-indigo-600 relative">
+              Ranking Game
+              <span className="absolute bottom-0 left-0 w-full h-2 bg-indigo-100 -z-10 rounded"></span>
+            </span>
+          </h1>
+          
+          <p className="text-gray-700 mb-8 text-lg md:text-xl max-w-lg mx-auto leading-relaxed">
+            Make a ranking game for anything-movies, memes, teams, or your own ideas. 
+            Share, vote, and see live Elo leaderboards.
+            <span className="block mt-2 font-semibold text-indigo-700">No code needed.</span>
+          </p>
 
-          {/* Confetti for left */}
-          {showConfetti &&
-            (picked === "left" || picked === "equal") &&
-            confettiWidth > 0 &&
-            confettiHeight > 0 && (
-              <div className="absolute left-0 top-0 z-50 pointer-events-none w-full md:w-1/2 h-full">
-                <Confetti
-                  width={confettiWidth / 2}
-                  height={confettiHeight}
-                  numberOfPieces={200}
-                  recycle={false}
-                  run={showConfetti}
-                  gravity={1.5}
-                  initialVelocityY={25}
-                  style={{ left: 0 }}
-                />
-              </div>
-            )}
-
-          {/* Confetti for right */}
-          {showConfetti &&
-            (picked === "right" || picked === "equal") &&
-            confettiWidth > 0 &&
-            confettiHeight > 0 && (
-              <div className="absolute right-0 top-0 z-50 pointer-events-none w-full md:w-1/2 h-full">
-                <Confetti
-                  width={confettiWidth / 2}
-                  height={confettiHeight}
-                  numberOfPieces={200}
-                  recycle={false}
-                  run={showConfetti}
-                  gravity={1.5}
-                  initialVelocityY={25}
-                  style={{ right: 0 }}
-                />
-              </div>
-            )}
-
-<CompanyPanel
-  key={left.id || left.name} 
-  company={{ ...left, elo: leftElo, eloChange: leftEloChange }}
-  onClick={() => handleChoice("left")}
-  side="left"
-  disabled={voted}
-  revealed={voted}
-/>
-
-          {/* Center Circle Button for desktop */}
-          <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-40">
-            {!voted ? (
-              <button
-                className="flex items-center justify-center rounded-full bg-white shadow-lg w-24 h-24 border border-blue-200 text-blue-700 font-semibold text-lg hover:bg-blue-50 hover:scale-105 transition"
-                onClick={handleEqual}
-                aria-label="Equal"
-                title="Equal"
+          <AnimatePresence>
+            {!submitted ? (
+              <motion.form
+                key="form"
+                onSubmit={handleSubmit}
+                className="flex flex-col md:flex-row text-black items-center gap-3 w-full max-w-md mx-auto bg-white p-2 rounded-xl shadow-lg border border-gray-100"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                transition={{ duration: 0.4 }}
               >
-                Equal
-              </button>
+                <input
+                  type="email"
+                  required
+                  placeholder="Your email for early access"
+                  className="flex-1 px-4 py-3 rounded-lg border border-gray-200 shadow-sm focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300 outline-none transition-all"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  disabled={loading}
+                />
+                <motion.button
+                  type="submit"
+                  disabled={loading}
+                  className="bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-6 py-3 rounded-lg font-semibold text-lg shadow-md hover:shadow-lg transition-all disabled:opacity-60"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                >
+                  {loading ? "Joining..." : "Join Waitlist"}
+                </motion.button>
+              </motion.form>
             ) : (
-              <button
-                className="flex items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-indigo-500 shadow-lg w-24 h-24 text-white font-semibold text-lg hover:from-blue-700 hover:to-indigo-600 hover:scale-105 transition"
-                onClick={handleNextPair}
-                aria-label="Next Pair"
-                title="Next Pair"
+              <motion.div
+                key="success"
+                className="bg-green-50 text-green-600 font-semibold text-lg mt-2 p-4 rounded-lg border border-green-100 shadow-sm"
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ type: "spring", stiffness: 200, damping: 10 }}
               >
-                Next Pair
-              </button>
+                🎉 You&apos;re on the waitlist! We&apos;ll notify you when we launch.
+              </motion.div>
             )}
-          </div>
+          </AnimatePresence>
+          {error && (
+            <motion.div
+              className="text-red-500 font-medium mt-2 p-2"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
+              {error}
+            </motion.div>
+          )}
+          
+     
+        </motion.section>
 
-          <CompanyPanel
-  key={right.id || right.name} 
-  company={{ ...right, elo: rightElo, eloChange: rightEloChange }}
-  onClick={() => handleChoice("right")}
-  side="right"
-  disabled={voted}
-  revealed={voted}
-/>
-
-          {/* For mobile, show Next Pair button below when voted */}
-          <div className="flex md:hidden absolute bottom-8 left-1/2 -translate-x-1/2 z-50">
-            {voted && (
-              <button
-                className="flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-indigo-500 shadow-lg px-8 py-4 text-white font-semibold text-lg hover:from-blue-700 hover:to-indigo-600 hover:scale-105 transition"
-                onClick={handleNextPair}
-              >
-                Next Pair <FiArrowRight className="text-2xl" />
-              </button>
-            )}
+        {/* Feature Highlights */}
+        <motion.div
+          className="w-full max-w-2xl grid grid-cols-1 md:grid-cols-3 gap-4 mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+        >
+          <div className="p-4 text-center">
+            <div className="text-2xl mb-2">✨</div>
+            <h3 className="font-semibold text-gray-800">Create</h3>
+            <p className="text-gray-600 text-sm">Build your ranking game in seconds</p>
           </div>
-        </div>
+          <div className="p-4 text-center">
+            <div className="text-2xl mb-2">🔗</div>
+            <h3 className="font-semibold text-gray-800">Share</h3>
+            <p className="text-gray-600 text-sm">Invite friends with a simple link</p>
+          </div>
+          <div className="p-4 text-center">
+            <div className="text-2xl mb-2">📊</div>
+            <h3 className="font-semibold text-gray-800">Rank</h3>
+            <p className="text-gray-600 text-sm">Watch the leaderboard evolve live</p>
+          </div>
+        </motion.div>
       </main>
-      {/* Place your footer here if needed */}
+
+      <footer className="w-full text-center text-gray-400 text-xs py-6 border-t border-slate-100">
+        &copy; {new Date().getFullYear()} Rankd. All rights reserved.
+      </footer>
     </div>
   );
 }
