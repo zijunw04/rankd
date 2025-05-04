@@ -146,23 +146,23 @@ const brainrotData = [
   },
   {
     name: "Puppini Appleini",
-    description: "\"Mi mordi e sei beato, ma attento, è un fato ingrato! Dolce fuori, acido dentro, il destino danza nel vento!\" (Translation: \"You bite me and feel divine, but beware—fate twirls before your eyes!\")", // 
+    description: "Mi mordi e sei beato, ma attento, è un fato ingrato! Dolce fuori, acido dentro, il destino danza nel vento!  (Translation: You bite me and feel divine, but beware—fate twirls before your eyes!)", // 
     image: "https://static.wikia.nocookie.net/brainrotnew/images/7/7e/Image_2025-04-22_135908024.png/revision/latest?cb=20250422115949"
   },
   {
     name: "Purri Purrani Nyankani",
-    description: "Purri-Purrani-Nyankani is the most adorable cat. His purr impresses everyone. Trulimero Truliccina was his friend before, but now they’re not so good friends. Trippi Troppi helped him win using Minecraft traps! Born every April 9th, he sometimes plays Formula 1 racing with Purri-Buffaloni.", // :contentReference[oaicite:4]{index=4}
-    image: "https://static.wikia.nocookie.net/brainrotnew/images/5/5a/Purri-Purrani-Nyankani.jpg/revision/latest?cb=20250412195544" // :contentReference[oaicite:5]{index=5}
+    description: "Purri-Purrani-Nyankani is the most adorable cat. His purr impresses everyone. Trulimero Truliccina was his friend before, but now they’re not so good friends. Trippi Troppi helped him win using Minecraft traps! Born every April 9th, he sometimes plays Formula 1 racing with Purri-Buffaloni.", 
+    image: "https://static.wikia.nocookie.net/brainrotnew/images/5/5a/Purri-Purrani-Nyankani.jpg/revision/latest?cb=20250412195544" 
   },
   {
     name: "Pipi Kiwi",
-    description: "Pipi Kiwi is the hybrid animal of raccoon and kiwi that lives in forests or jungles. He grows beanstalks and — rather unpleasantly — “shits on your face,” making him uniquely… memorable.", // :contentReference[oaicite:6]{index=6}
-    image: "https://static.wikia.nocookie.net/brainrotnew/images/0/0d/Pipi_Kiwi.jpeg/revision/latest?cb=20250502192606" // 
+    description: "Pipi Kiwi is the hybrid animal of raccoon and kiwi that lives in forests or jungles. He grows beanstalks and — rather unpleasantly — “shits on your face,” making him uniquely… memorable.", 
+    image: "https://static.wikia.nocookie.net/brainrotnew/images/0/0d/Pipi_Kiwi.jpeg/"
   },
   {
     name: "Quesadilla Crocodila",
-    description: "Quesadilla Crocodila is the mega-cool cheese crocodile—mama mia! This cheesy looking creature strives for dominance in the lush forests, chomping everything in sight.", // 
-    image: "https://static.wikia.nocookie.net/brainrotnew/images/4/4e/Quesadilla_Crocodilla.jpg/revision/latest?cb=20250421124204" // :contentReference[oaicite:9]{index=9}
+    description: "Quesadilla Crocodila is the mega-cool cheese crocodile—mama mia! This cheesy looking creature strives for dominance in the lush forests, chomping everything in sight.", 
+    image: "https://static.wikia.nocookie.net/brainrotnew/images/4/4e/Quesadilla_Crocodilla.jpg/revision/latest?cb=20250421124204" 
   },
   {
     name: "Ranatone Margheritus",
