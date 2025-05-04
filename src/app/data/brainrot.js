@@ -135,14 +135,9 @@ const brainrotData = [
     image: "https://static.wikia.nocookie.net/brainrotnew/images/6/65/Ancientus_Artifactus.png/revision/latest?cb=20250503183312"
   },
   {
-    name: "Pinguini Zucchini",
-    description: "Pinguini Zucchini is a penguin that resembles a Zucchini. It has no role in any of the wars and has the ability to fly. It lives in a snowy peak on Planet Sahura.", // :contentReference[oaicite:0]{index=0}
-    image: "https://static.wikia.nocookie.net/brainrotnew/images/5/5e/Pinguini_Zucchini.png/revision/latest?cb=20250503183000" 
-  },
-  {
     name: "Pizza Di Cane",
     description: "C'era una volta un cane che AMAVA la pizza. Viveva in una pizzeria e mangiava sempre i pezzi di pizza che cadevano a terra. Un giorno, il cane ne mangiò ben 2,185 × 4,5 kg, diventando tutt'uno con la pizza. Era contento di essere una pizza, perché poteva sempre assaporarne il sapore e sentirne l'odore.", // :contentReference[oaicite:1]{index=1}
-    image: "https://static.wikia.nocookie.net/brainrotnew/images/2/24/Pizza_Di_Cane.png/revision/latest?cb=20250424120000"
+    image: "https://static.wikia.nocookie.net/brainrotnew/images/0/03/Screenshot_2025-04-21_11.00.59_AM.png/revision/latest?cb=20250430115734"
   },
   {
     name: "Platypus Boos Boos Boos",
@@ -152,10 +147,10 @@ const brainrotData = [
   {
     name: "Puppini Appleini",
     description: "\"Mi mordi e sei beato, ma attento, è un fato ingrato! Dolce fuori, acido dentro, il destino danza nel vento!\" (Translation: \"You bite me and feel divine, but beware—fate twirls before your eyes!\")", // 
-    image: "https://static.wikia.nocookie.net/brainrotnew/images/1/15/Puppini_Appleini.jpg/revision/latest?cb=20250405104500"
+    image: "https://static.wikia.nocookie.net/brainrotnew/images/7/7e/Image_2025-04-22_135908024.png/revision/latest?cb=20250422115949"
   },
   {
-    name: "Purri-Purrani-Nyankani",
+    name: "Purri Purrani Nyankani",
     description: "Purri-Purrani-Nyankani is the most adorable cat. His purr impresses everyone. Trulimero Truliccina was his friend before, but now they’re not so good friends. Trippi Troppi helped him win using Minecraft traps! Born every April 9th, he sometimes plays Formula 1 racing with Purri-Buffaloni.", // :contentReference[oaicite:4]{index=4}
     image: "https://static.wikia.nocookie.net/brainrotnew/images/5/5a/Purri-Purrani-Nyankani.jpg/revision/latest?cb=20250412195544" // :contentReference[oaicite:5]{index=5}
   },
@@ -180,9 +175,49 @@ const brainrotData = [
     image: "https://static.wikia.nocookie.net/brainrotnew/images/6/68/Rantasanta_Chinaranta.jpg/revision/latest?cb=20250330224147" // 
   },
   {
-    name: "Rari Rutti",
-    description: "Rari Rutti is known for her endless rhythmic chant: “Lingang Guli Guli Guli Watcha Lingang Gu Lingang Gu Lingang Guli Guli Guli Watcha Lingang Gu Lingang Gu,” which crazily mesmerizes anyone who listens.", // 
-    image: "https://static.wikia.nocookie.net/brainrotnew/images/9/97/Rari_Rutti.png/revision/latest?cb=20250501120000"
+    name: "Ravioli Chimpanzini",
+    description: "Ravioli Chimpanzini is a pasta-primate hybrid: a plump ravioli shell filled with banana-flavored goo and topped with chimpanzee hair. It ambles through Italian kitchens in search of garlic butter and has a mischievous habit of flinging noodles at bystanders.",
+    image: "https://static.wikia.nocookie.net/brainrotnew/images/5/5d/Ravioli_Chimpanzini.png/revision/latest?cb=20250401120000"
+  },
+  {
+    name: "Rugginato LupoGT Il Cannone Stradale",
+    description: "Rugginato LupoGT, nicknamed “Il Cannone Stradale,” is a rust-clad wolf-engineered road-demon. Its dorsal fins have been replaced with exhaust pipes, and it fires molten metal from its mouth when provoked.",
+    image: "https://static.wikia.nocookie.net/brainrotnew/images/f/f3/Rugginato_LupoGT.png/revision/latest/scale-to-width-down/1000?cb=20250412070843"
+  },
+  {
+    name: "Rupipipipipipi Streamimimimimimi",
+    description: "Rupipipipipipi Streamimimimimimi is a hyperactive bird-like anomaly whose call echoes as a rapid stream of “Rupi-” notes. It can hijack radio waves and broadcast its own chaotic melody across entire cities.",
+    image: "https://static.wikia.nocookie.net/brainrotnew/images/1/1f/Rupipi.png/revision/latest/scale-to-width-down/1000?cb=20250426040840"
+  },
+  {
+    name: "Ruota Ruota Ruota Cavallo",
+    description: "Ruota Ruota Ruota Cavallo is a centaur-wheel hybrid. Its lower half is a chariot-style wheel, spinning it forward at breakneck speed, while its horse torso whinnies in mechanical rhythm.",
+    image: "https://static.wikia.nocookie.net/brainrotnew/images/b/b0/WheelHorse.jpeg/revision/latest/scale-to-width-down/1000?cb=20250503165133"
+  },
+  {
+    name: "Sahurpalma Naufragio",
+    description: "Sahurpalma Naufragio is a shipwrecked palm tree that patrols seaside villages at dawn. Legend says its coconuts transform into tiny rowboats when you least expect it.",
+    image: "https://static.wikia.nocookie.net/brainrotnew/images/f/fb/Naufragioo.jpg/revision/latest/scale-to-width-down/1000?cb=20250410155236"
+  },
+  {
+    name: "Sbam Undici Gelatoide Risorge",
+    description: "Sbam Undici: Gelatòide Risorge is a gelatinous ice-cream golem that resurrects itself when shattered. Its numbered scoops (1–11) each contain a different elemental flavor that it can unleash in battle.",
+    image: "https://static.wikia.nocookie.net/brainrotnew/images/e/e0/Sbam_Undici.jpg/revision/latest/scale-to-width-down/1000?cb=20250418174007"
+  },
+  {
+    name: "Scoaittolo Crittolo",
+    description: "Scoaittolo Crittolo is a cryptic squirrel-mole hybrid that tunnels through data cables. It hoards corrupted bits and viruses in its cheek pouches, causing system crashes wherever it nests.",
+    image: "https://static.wikia.nocookie.net/brainrotnew/images/5/54/Scoaittolo_Crittolo.png/revision/latest/scale-to-width-down/1000?cb=20250424213919"
+  },
+  {
+    name: "Serpentini Toiletini",
+    description: "Serpentini Toiletini is a serpentine creature that lives in abandoned restrooms. Its metallic scales rattle like chains, and it sprays pressurized water like a malfunctioning bidet when threatened.",
+    image: "https://static.wikia.nocookie.net/brainrotnew/images/d/da/Screenshot_2025-04-03_at_3.11.50_PM.png/revision/latest/scale-to-width-down/1000?cb=20250403071224"
+  },
+  {
+    name: "Sig Gelantulone il Managero",
+    description: "Sig. Gelantulone il Managero is a gel-like manager who oversees other Brainrot anomalies. He carries a clipboard molded from hardened jelly and enforces absurd productivity quotas in his slime-covered office.",
+    image: "https://static.wikia.nocookie.net/brainrotnew/images/e/ea/ChatGPT_Image_9_%D0%B0%D0%BF%D1%80._2025_%D0%B3.%2C_15_19_03.png/revision/latest/scale-to-width-down/1000?cb=20250409122356"
   }
 
 ]
