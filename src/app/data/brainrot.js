@@ -147,7 +147,7 @@ const brainrotData = [
   {
     name: "Platypus Boos Boos Boos",
     description: "Platypus Boos Boos Boos is an Italian Brainrot anomaly created by the YouTube channel Nazar’s Memes in their video “How to Make Italian Brainrot Animals Memes.”", // 
-    image: "https://static.wikia.nocookie.net/brainrotnew/images/7/7f/Platypus_Boos_Boos_Boos.png/revision/latest?cb=20250401123000"
+    image: "https://static.wikia.nocookie.net/brainrotnew/images/f/f1/Platypus_Boos_Boos_Boos.jpg/revision/latest?cb=20250501174838"
   },
   {
     name: "Puppini Appleini",
