@@ -89,7 +89,7 @@ const unsubscribe = onValue(itemsRef,
     filteredItems = itemAtRank ? [itemAtRank] : [];
   }
 
-  // Capitalize first letter of topic for display
+
   const displayTopic = topic ? topic.charAt(0).toUpperCase() + topic.slice(1) : "";
 
   return (
@@ -123,7 +123,7 @@ const unsubscribe = onValue(itemsRef,
                 No {topic} found.
               </div>
             ) : (
-              filteredItems.slice(0, 100).map((item) => (
+              filteredItems.slice(0, 99).map((item) => (
                 <div
                   key={item.id || item.name}
                   className="flex items-center justify-between bg-white rounded-2xl shadow border border-gray-100 px-6 py-4"
