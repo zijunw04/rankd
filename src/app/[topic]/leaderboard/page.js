@@ -77,7 +77,7 @@ export default function Leaderboard() {
           });
           setItems(supabaseItems);
         } else {
-          console.log("No data found for topic:", topic);
+          
           setItems([]);
         }
       } catch (err) {

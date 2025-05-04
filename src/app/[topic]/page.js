@@ -137,8 +137,7 @@ export default function RankdTopicPage() {
         const leftId = left.id || left.name.replace(/\s+/g, "_").toLowerCase();
         const rightId = right.id || right.name.replace(/\s+/g, "_").toLowerCase();
         
-        // Log for debugging
-        console.log("Fetching ELOs for:", { topic, leftId, rightId });
+      
         
         const { data: leftData, error: leftError } = await supabase
           .from(topic)
