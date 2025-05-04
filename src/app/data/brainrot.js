@@ -31,7 +31,7 @@ const brainrotData = [
   },
   {
     name: "La Vaca Saturno Saturnita",
-    description: "La Vaca Saturno Saturnita is a character with human feet, a cow's head, and Saturn's body. She appears at festivals where her dance-like steps entertain people. She possesses immense universal power like a black hole, capable of destroying planets, and has a fairy tale setting of spreading happiness.",
+    description: "La Vaca Saturno Saturnita is a character with human feet, a cow's head, and Saturn's body. She appears at festivals where her dance-like steps entertain people. She possesses immense universal power like a black hole, capable of destroying planets, and has a fairy tale setting of spreading hap  ess.",
     image: "https://static.wikia.nocookie.net/brainrotnew/images/6/62/Saturno_Saturnita.png/"
   },
   {
@@ -128,7 +128,63 @@ const brainrotData = [
     name: "Piccione Macchina",
     description: "Piccione Macchina is one of the brainrot animals created by AI and published on tiktok. ",
     image: "https://static.wikia.nocookie.net/brainrotnew/images/f/fc/Piccione_Macchina.png/"
+  },
+  {
+    name: "Ancientus Artifactus",
+    description: "Ancientus Artifactus is one of the AI Brainrot Animals that was published on TikTok. Fueled by an eternal rage, Ancientus Artifactus has brutally murdered four other AI Brainrot Animals and injured one other. His inexorable anger is what causes the visible red glow in his singular eye and the blade part of his body.",
+    image: "https://static.wikia.nocookie.net/brainrotnew/images/6/65/Ancientus_Artifactus.png/revision/latest?cb=20250503183312"
+  },
+  {
+    name: "Pinguini Zucchini",
+    description: "Pinguini Zucchini is a penguin that resembles a Zucchini. It has no role in any of the wars and has the ability to fly. It lives in a snowy peak on Planet Sahura.", // :contentReference[oaicite:0]{index=0}
+    image: "https://static.wikia.nocookie.net/brainrotnew/images/5/5e/Pinguini_Zucchini.png/revision/latest?cb=20250503183000" 
+  },
+  {
+    name: "Pizza Di Cane",
+    description: "C'era una volta un cane che AMAVA la pizza. Viveva in una pizzeria e mangiava sempre i pezzi di pizza che cadevano a terra. Un giorno, il cane ne mangiò ben 2,185 × 4,5 kg, diventando tutt'uno con la pizza. Era contento di essere una pizza, perché poteva sempre assaporarne il sapore e sentirne l'odore.", // :contentReference[oaicite:1]{index=1}
+    image: "https://static.wikia.nocookie.net/brainrotnew/images/2/24/Pizza_Di_Cane.png/revision/latest?cb=20250424120000"
+  },
+  {
+    name: "Platypus Boos Boos Boos",
+    description: "Platypus Boos Boos Boos is an Italian Brainrot anomaly created by the YouTube channel Nazar’s Memes in their video “How to Make Italian Brainrot Animals Memes.”", // 
+    image: "https://static.wikia.nocookie.net/brainrotnew/images/7/7f/Platypus_Boos_Boos_Boos.png/revision/latest?cb=20250401123000"
+  },
+  {
+    name: "Puppini Appleini",
+    description: "\"Mi mordi e sei beato, ma attento, è un fato ingrato! Dolce fuori, acido dentro, il destino danza nel vento!\" (Translation: \"You bite me and feel divine, but beware—fate twirls before your eyes!\")", // 
+    image: "https://static.wikia.nocookie.net/brainrotnew/images/1/15/Puppini_Appleini.jpg/revision/latest?cb=20250405104500"
+  },
+  {
+    name: "Purri-Purrani-Nyankani",
+    description: "Purri-Purrani-Nyankani is the most adorable cat. His purr impresses everyone. Trulimero Truliccina was his friend before, but now they’re not so good friends. Trippi Troppi helped him win using Minecraft traps! Born every April 9th, he sometimes plays Formula 1 racing with Purri-Buffaloni.", // :contentReference[oaicite:4]{index=4}
+    image: "https://static.wikia.nocookie.net/brainrotnew/images/5/5a/Purri-Purrani-Nyankani.jpg/revision/latest?cb=20250412195544" // :contentReference[oaicite:5]{index=5}
+  },
+  {
+    name: "Pipi Kiwi",
+    description: "Pipi Kiwi is the hybrid animal of raccoon and kiwi that lives in forests or jungles. He grows beanstalks and — rather unpleasantly — “shits on your face,” making him uniquely… memorable.", // :contentReference[oaicite:6]{index=6}
+    image: "https://static.wikia.nocookie.net/brainrotnew/images/0/0d/Pipi_Kiwi.jpeg/revision/latest?cb=20250502192606" // 
+  },
+  {
+    name: "Quesadilla Crocodila",
+    description: "Quesadilla Crocodila is the mega-cool cheese crocodile—mama mia! This cheesy looking creature strives for dominance in the lush forests, chomping everything in sight.", // 
+    image: "https://static.wikia.nocookie.net/brainrotnew/images/4/4e/Quesadilla_Crocodilla.jpg/revision/latest?cb=20250421124204" // :contentReference[oaicite:9]{index=9}
+  },
+  {
+    name: "Ranatone Margheritus",
+    description: "Ranatone Margheritus is a cryptid haunting sun-drenched pizzerias across Southern Italy. Legend says he was born when a Margherita pizza fell on a lazy garden frog during a full moon; now he roams trattoria floors forever seeking that perfect bite.", // :contentReference[oaicite:10]{index=10}
+    image: "https://static.wikia.nocookie.net/brainrotnew/images/a/ae/07EC9FCB-1CB9-4010-89E2-3628D8A752B6.png/revision/latest?cb=20250423033740" // :contentReference[oaicite:11]{index=11}
+  },
+  {
+    name: "Rantasanta Chinaranta",
+    description: "Rantasanta Chinaranta is a vengeful spirit born in the misty valleys of Kashmir. Betrayed when her sacred “Lunchly” meal was stolen, she now haunts those who wronged her—bearing the faint aroma of stolen spices.", // 
+    image: "https://static.wikia.nocookie.net/brainrotnew/images/6/68/Rantasanta_Chinaranta.jpg/revision/latest?cb=20250330224147" // 
+  },
+  {
+    name: "Rari Rutti",
+    description: "Rari Rutti is known for her endless rhythmic chant: “Lingang Guli Guli Guli Watcha Lingang Gu Lingang Gu Lingang Guli Guli Guli Watcha Lingang Gu Lingang Gu,” which crazily mesmerizes anyone who listens.", // 
+    image: "https://static.wikia.nocookie.net/brainrotnew/images/9/97/Rari_Rutti.png/revision/latest?cb=20250501120000"
   }
+
 ]
 
 export default brainrotData;
