@@ -31,6 +31,12 @@ export function AppCheckProvider() {
         provider: new ReCaptchaV3Provider('6Lf4FS4rAAAAAEg_b2GeF4ySAl9twFVljq19KezR'),
         isTokenAutoRefreshEnabled: true
       });
+      
+      // Optional: Save to window for debugging
+      if (process.env.NODE_ENV === 'development') {
+        // @ts-ignore
+        window.appCheck = appCheck;
+      }
     }
   }, []);
   
