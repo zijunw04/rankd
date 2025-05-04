@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { AppCheckProvider } from "./firebase";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,6 +20,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
+    <>
+    <AppCheckProvider/>
     <html lang="en">
       <body suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white`}
@@ -26,5 +29,6 @@ export default function RootLayout({ children }) {
         {children}
       </body>
     </html>
+    </>
   );
 }

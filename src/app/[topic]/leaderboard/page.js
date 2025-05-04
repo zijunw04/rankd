@@ -42,7 +42,7 @@ const itemsRef = ref(db, topic);
 const unsubscribe = onValue(itemsRef, 
   (snapshot) => {
     const data = snapshot.val();
-    console.log("Firebase data received:", data); // Debug log
+    
     if (data) {
       // Process data as before
       const firebaseItems = Object.entries(data).map(([id, item]) => {
