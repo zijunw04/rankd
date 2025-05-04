@@ -175,11 +175,6 @@ const brainrotData = [
     image: "https://static.wikia.nocookie.net/brainrotnew/images/6/68/Rantasanta_Chinaranta.jpg/revision/latest?cb=20250330224147" // 
   },
   {
-    name: "Ravioli Chimpanzini",
-    description: "Ravioli Chimpanzini is a pasta-primate hybrid: a plump ravioli shell filled with banana-flavored goo and topped with chimpanzee hair. It ambles through Italian kitchens in search of garlic butter and has a mischievous habit of flinging noodles at bystanders.",
-    image: "https://static.wikia.nocookie.net/brainrotnew/images/5/5d/Ravioli_Chimpanzini.png/revision/latest?cb=20250401120000"
-  },
-  {
     name: "Rugginato LupoGT Il Cannone Stradale",
     description: "Rugginato LupoGT, nicknamed “Il Cannone Stradale,” is a rust-clad wolf-engineered road-demon. Its dorsal fins have been replaced with exhaust pipes, and it fires molten metal from its mouth when provoked.",
     image: "https://static.wikia.nocookie.net/brainrotnew/images/f/f3/Rugginato_LupoGT.png/revision/latest/scale-to-width-down/1000?cb=20250412070843"
