@@ -214,9 +214,7 @@ export default function RankdTopicPage() {
       if (!response.ok) {
         throw new Error(data.error || 'Failed to update ELO ratings');
       }
-      
-      console.log("API result:", data);
-      
+   
       // Update state with returned values
       setLeftElo(data.left_elo);
       setRightElo(data.right_elo);
