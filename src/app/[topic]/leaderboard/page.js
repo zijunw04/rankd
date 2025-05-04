@@ -108,7 +108,6 @@ export default function Leaderboard() {
       subscription.unsubscribe();
     };
   }, [topic]);
-
   // Build a map from item id or name to its global rank
   const rankMap = new Map();
   items.forEach((item, idx) => {
