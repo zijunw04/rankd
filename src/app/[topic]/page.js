@@ -221,10 +221,11 @@ export default function RankdTopicPage() {
     <div className="min-h-screen bg-white flex flex-col">
       <RankdHeader />
       <main className="flex-1 flex flex-col items-center px-2">
-        <div
-          ref={confettiRef}
-          className="relative flex flex-col md:flex-row w-full px-[10%]  gap-y-6 md:gap-y-0 md:gap-x-8 min-h-[95vh]"
-        >
+      <div
+  ref={confettiRef}
+  className="relative flex flex-row items-start justify-center w-full px-[5%] sm:px-[10%] gap-x-2 sm:gap-x-8 min-h-[95vh]"
+>
+
           {/* Confetti for left */}
           {showConfetti &&
             (picked === "left" || picked === "equal") &&
@@ -243,7 +244,7 @@ export default function RankdTopicPage() {
                 />
               </div>
             )}
-
+  
           {/* Confetti for right */}
           {showConfetti &&
             (picked === "right" || picked === "equal") &&
@@ -262,23 +263,25 @@ export default function RankdTopicPage() {
                 />
               </div>
             )}
-
-<ItemPanel
+  
+  <ItemPanel
   key={left.id || left.name}
   item={mapItemToGenericFormat(left, leftElo, leftEloChange, topic)}
   onClick={() => handleChoice("left")}
   side="left"
   disabled={voted}
   revealed={voted}
+  className="w-1/2 flex items-center justify-center px-1 sm:px-4"
 />
 
-
-<div className="hidden md:block h-full w-px bg-gray-200 absolute left-1/2 transform -translate-x-1/2"></div>
-          {/* Center Button for desktop */}
-          <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-40">
+  
+<div className="h-full w-px bg-gray-200 absolute left-1/2 transform -translate-x-1/2 z-30"></div>
+          
+          {/* Center Button for all screen sizes */}
+          <div className="flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-40 items-center justify-center">
             {!voted ? (
               <button
-                className="flex items-center justify-center rounded-full bg-white shadow-lg w-24 h-24 border border-blue-200 text-blue-700 font-semibold text-lg hover:bg-blue-50 hover:scale-105 transition"
+                className="flex items-center justify-center rounded-full bg-white shadow-lg w-16 h-16 sm:w-24 sm:h-24 border border-blue-200 text-blue-700 font-semibold text-sm sm:text-lg hover:bg-blue-50 hover:scale-105 transition"
                 onClick={handleEqual}
                 aria-label="Equal"
                 title="Equal"
@@ -287,39 +290,30 @@ export default function RankdTopicPage() {
               </button>
             ) : (
               <button
-                className="flex items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-indigo-500 shadow-lg w-24 h-24 text-white font-semibold text-lg hover:from-blue-700 hover:to-indigo-600 hover:scale-105 transition"
+                className="flex items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-indigo-500 shadow-lg w-16 h-16 sm:w-24 sm:h-24 text-white font-semibold text-sm sm:text-lg hover:from-blue-700 hover:to-indigo-600 hover:scale-105 transition"
                 onClick={handleNextPair}
                 aria-label="Next Pair"
                 title="Next Pair"
               >
-                Next Pair
+                Next
               </button>
             )}
           </div>
-
+  
           <ItemPanel
-  key={right.id || right.name}
-  item={mapItemToGenericFormat(right, rightElo, rightEloChange, topic)} 
-  onClick={() => handleChoice("right")}
-  side="right"
-  disabled={voted}
-  revealed={voted}
-/>
-
-
-          {/* For mobile, show Next Pair button below when voted */}
-          <div className="flex md:hidden absolute bottom-8 left-1/2 -translate-x-1/2 z-50">
-            {voted && (
-              <button
-                className="flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-indigo-500 shadow-lg px-8 py-4 text-white font-semibold text-lg hover:from-blue-700 hover:to-indigo-600 hover:scale-105 transition"
-                onClick={handleNextPair}
-              >
-                Next Pair <FiArrowRight className="text-2xl" />
-              </button>
-            )}
-          </div>
+            key={right.id || right.name}
+            item={mapItemToGenericFormat(right, rightElo, rightEloChange, topic)}
+            onClick={() => handleChoice("right")}
+            side="right"
+            disabled={voted}
+            revealed={voted}
+            className="w-1/2 flex items-center justify-center px-1 sm:px-4"
+          />
+  
+          
         </div>
       </main>
     </div>
   );
+  
 }
