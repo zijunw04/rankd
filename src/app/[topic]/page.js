@@ -1,16 +1,18 @@
 // app/rankd/[topic]/page.js
 "use client";
 import { useParams } from "next/navigation";
-import { get, ref, update } from "firebase/database";
 import { useEffect, useRef, useState } from "react";
 import Confetti from "react-confetti";
-import { FiArrowRight } from "react-icons/fi";
 import RankdHeader from "../components/rankedheader";
 import ItemPanel from "../components/itemCards";
 import companiesData from "../data/company"; 
 import brainrotData from "../data/brainrot";
-import { db } from "../firebase";
+import { createClient } from "@supabase/supabase-js";
 
+// Initialize Supabase client (only for read operations)
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 // Generic adapter function
 function mapItemToGenericFormat(item, elo, eloChange, topic) {
@@ -49,7 +51,6 @@ function mapItemToGenericFormat(item, elo, eloChange, topic) {
         type: "brainrot",
       };
     default:
-      // For user-generated content with minimal structure
       return {
         ...genericItem,
         image: item.image,
@@ -58,21 +59,11 @@ function mapItemToGenericFormat(item, elo, eloChange, topic) {
   }
 }
 
-
 // Map topic string to data
 const DATA_MAP = {
   companies: companiesData,
   brainrot: brainrotData
-  // Add more topics here, e.g. 'sports': sportsData
 };
-
-function EloRating(Ra, Rb, K, scoreA) {
-  const Ea = 1 / (1 + Math.pow(10, (Rb - Ra) / 400));
-  const Eb = 1 / (1 + Math.pow(10, (Ra - Rb) / 400));
-  const newRa = Math.round(Ra + K * (scoreA - Ea));
-  const newRb = Math.round(Rb + K * (1 - scoreA - Eb));
-  return [newRa, newRb];
-}
 
 function getTwoRandomItems(arr) {
   if (arr.length < 2) return [arr[0], arr[0]];
@@ -97,7 +88,6 @@ export default function RankdTopicPage() {
   const [rightElo, setRightElo] = useState(null);
   const [leftEloChange, setLeftEloChange] = useState(null);
   const [rightEloChange, setRightEloChange] = useState(null);
-  const K = 32;
   const confettiRef = useRef(null);
   const [confettiHeight, setConfettiHeight] = useState(0);
   const [confettiWidth, setConfettiWidth] = useState(0);
@@ -135,66 +125,110 @@ export default function RankdTopicPage() {
   useEffect(() => {
     async function fetchElos() {
       if (!left || !right) return;
-      const leftId = left.id || left.name.replace(/\s+/g, "_").toLowerCase();
-      const rightId = right.id || right.name.replace(/\s+/g, "_").toLowerCase();
-      const leftSnap = await get(ref(db, `${topic}/${leftId}/elo`));
-      const rightSnap = await get(ref(db, `${topic}/${rightId}/elo`));
-      setLeftElo(leftSnap.exists() ? leftSnap.val() : 1000);
-      setRightElo(rightSnap.exists() ? rightSnap.val() : 1000);
+      
+      try {
+        // Ensure table exists first via API
+        await fetch('/api/ensure-table', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ topic })
+        });
+        
+        const leftId = left.id || left.name.replace(/\s+/g, "_").toLowerCase();
+        const rightId = right.id || right.name.replace(/\s+/g, "_").toLowerCase();
+        
+        // Log for debugging
+        console.log("Fetching ELOs for:", { topic, leftId, rightId });
+        
+        const { data: leftData, error: leftError } = await supabase
+          .from(topic)
+          .select('elo')
+          .eq('id', leftId)
+          .single();
+        
+        if (leftError && leftError.code !== 'PGRST116') {
+          console.error("Error fetching left ELO:", leftError);
+        }
+        
+        const { data: rightData, error: rightError } = await supabase
+          .from(topic)
+          .select('elo')
+          .eq('id', rightId)
+          .single();
+        
+        if (rightError && rightError.code !== 'PGRST116') {
+          console.error("Error fetching right ELO:", rightError);
+        }
+        
+        setLeftElo(leftData?.elo || 1000);
+        setRightElo(rightData?.elo || 1000);
+      } catch (error) {
+        console.error("Error in fetchElos:", error);
+      }
     }
+    
     fetchElos();
   }, [left, right, topic]);
 
   async function handleChoice(side) {
     if (voted) return;
+    
     if (confettiRef.current) {
       setConfettiWidth(confettiRef.current.offsetWidth);
       setConfettiHeight(confettiRef.current.offsetHeight);
     }
+    
     setPicked(side);
     setShowConfetti(true);
     setVoted(true);
-
-    const leftId = left.id || left.name.replace(/\s+/g, "_").toLowerCase();
-    const rightId = right.id || right.name.replace(/\s+/g, "_").toLowerCase();
-    const leftSnap = await get(ref(db, `${topic}/${leftId}/elo`));
-    const rightSnap = await get(ref(db, `${topic}/${rightId}/elo`));
-    const leftEloBefore = leftSnap.exists() ? leftSnap.val() : 1000;
-    const rightEloBefore = rightSnap.exists() ? rightSnap.val() : 1000;
-
-    let outcomeLeft = side === "left" ? 1 : side === "right" ? 0 : 0.5;
-    const [newLeftElo, newRightElo] = EloRating(
-      leftEloBefore,
-      rightEloBefore,
-      K,
-      outcomeLeft
-    );
-
-    setLeftElo(newLeftElo);
-    setRightElo(newRightElo);
-    setLeftEloChange(newLeftElo - leftEloBefore);
-    setRightEloChange(newRightElo - rightEloBefore);
-
-    if (side === "equal") {
-  
-      setLeftEloChange(0);
-      setRightEloChange(0);
     
-      setLeftElo(leftEloBefore);
-      setRightElo(rightEloBefore);
-    };
-
-    const updates = {
-      [`${topic}/${leftId}/elo`]: newLeftElo,
-      [`${topic}/${leftId}/name`]: left.name,
-      [`${topic}/${rightId}/elo`]: newRightElo,
-      [`${topic}/${rightId}/name`]: right.name,
-    };
-
     try {
-      await update(ref(db), updates);
-    } catch (e) {
-      console.error("Firebase update failed:", e);
+      const leftId = left.id || left.name.replace(/\s+/g, "_").toLowerCase();
+      const rightId = right.id || right.name.replace(/\s+/g, "_").toLowerCase();
+      
+      // Log for debugging
+      console.log("Calling API with:", { 
+        topic, 
+        leftId, 
+        rightId, 
+        leftName: left.name, 
+        rightName: right.name, 
+        outcome: side 
+      });
+      
+      // Call our API route instead of Supabase directly
+      const response = await fetch('/api/elo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          topic,
+          leftId,
+          rightId,
+          leftName: left.name,
+          rightName: right.name,
+          outcome: side
+        })
+      });
+      
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to update ELO ratings');
+      }
+      
+      console.log("API result:", data);
+      
+      // Update state with returned values
+      setLeftElo(data.left_elo);
+      setRightElo(data.right_elo);
+      setLeftEloChange(data.left_elo_change);
+      setRightEloChange(data.right_elo_change);
+    } catch (error) {
+      console.error("Error in handleChoice:", error);
+      
+      // Fallback to default values if server calculation fails
+      setLeftEloChange(side === "left" ? 10 : side === "right" ? -10 : 0);
+      setRightEloChange(side === "right" ? 10 : side === "left" ? -10 : 0);
     }
   }
 
@@ -221,11 +255,10 @@ export default function RankdTopicPage() {
     <div className="min-h-screen bg-white flex flex-col">
       <RankdHeader />
       <main className="flex-1 flex flex-col items-center px-2">
-      <div
-  ref={confettiRef}
-  className="relative flex flex-row items-start justify-center w-full px-[5%] sm:px-[10%] gap-x-2 sm:gap-x-8 min-h-[95vh]"
->
-
+        <div
+          ref={confettiRef}
+          className="relative flex flex-row items-start justify-center w-full px-[5%] sm:px-[10%] gap-x-2 sm:gap-x-8 min-h-[95vh]"
+        >
           {/* Confetti for left */}
           {showConfetti &&
             (picked === "left" || picked === "equal") &&
@@ -264,18 +297,17 @@ export default function RankdTopicPage() {
               </div>
             )}
   
-  <ItemPanel
-  key={left.id || left.name}
-  item={mapItemToGenericFormat(left, leftElo, leftEloChange, topic)}
-  onClick={() => handleChoice("left")}
-  side="left"
-  disabled={voted}
-  revealed={voted}
-  className="w-1/2 flex items-center justify-center px-1 sm:px-4"
-/>
-
+          <ItemPanel
+            key={left.id || left.name}
+            item={mapItemToGenericFormat(left, leftElo, leftEloChange, topic)}
+            onClick={() => handleChoice("left")}
+            side="left"
+            disabled={voted}
+            revealed={voted}
+            className="w-1/2 flex items-center justify-center px-1 sm:px-4"
+          />
   
-<div className="h-full w-px bg-gray-200 absolute left-1/2 transform -translate-x-1/2 z-30"></div>
+          <div className="h-full w-px bg-gray-200 absolute left-1/2 transform -translate-x-1/2 z-30"></div>
           
           {/* Center Button for all screen sizes */}
           <div className="flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-40 items-center justify-center">
@@ -309,11 +341,8 @@ export default function RankdTopicPage() {
             revealed={voted}
             className="w-1/2 flex items-center justify-center px-1 sm:px-4"
           />
-  
-          
         </div>
       </main>
     </div>
   );
-  
 }
