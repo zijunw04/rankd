@@ -93,6 +93,7 @@ export default function RankdTopicPage() {
   const [confettiHeight, setConfettiHeight] = useState(0);
   const [confettiWidth, setConfettiWidth] = useState(0);
 
+
   useEffect(() => {
     document.body.style.overflowX = "hidden";
     return () => {
@@ -143,24 +144,27 @@ export default function RankdTopicPage() {
     fetchElos();
   }, [left, right, topic]);
   
-  // Replace your handleChoice function with:
+  // And in your handleChoice function:
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
   async function handleChoice(side) {
-    if (voted) return;
-    
-    if (confettiRef.current) {
-      setConfettiWidth(confettiRef.current.offsetWidth);
-      setConfettiHeight(confettiRef.current.offsetHeight);
-    }
-    
-    setPicked(side);
-    setShowConfetti(true);
-    setVoted(true);
+    if (voted || isSubmitting) return;
     
     try {
+      setIsSubmitting(true);
+      
+      if (confettiRef.current) {
+        setConfettiWidth(confettiRef.current.offsetWidth);
+        setConfettiHeight(confettiRef.current.offsetHeight);
+      }
+      
+      setPicked(side);
+      setShowConfetti(true);
+      setVoted(true);
+      
       const leftId = left.id || left.name.replace(/\s+/g, "_").toLowerCase();
       const rightId = right.id || right.name.replace(/\s+/g, "_").toLowerCase();
       
-      // Use the new utility function
       const data = await postToElo({
         topic,
         leftId,
@@ -170,13 +174,15 @@ export default function RankdTopicPage() {
         outcome: side
       });
       
-      // Update state with returned values
       setLeftElo(data.left_elo);
       setRightElo(data.right_elo);
       setLeftEloChange(data.left_elo_change);
       setRightEloChange(data.right_elo_change);
     } catch (error) {
       console.error("Error in handleChoice:", error);
+      // Optionally show error to user
+    } finally {
+      setIsSubmitting(false);
     }
   }
   
