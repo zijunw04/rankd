@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Rankd",
-  description: "Rankd lets you compare, vote, and discover the best tech companies based on salary, benefits, and more. Make informed career decisions with real data.",
+  title: "Rankd | Create Your Own Ranking Game",
+  description: "Make ranking games for companies, brainrots, teams, or your own ideas. Share, vote, and see live Elo leaderboards - no code needed.",
   keywords: ["Rankd", "Tech Companies", "Company Comparison", "Salary Comparison", "Career Decisions", "Job Rankings", "Tech Jobs"],
 };
 
