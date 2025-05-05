@@ -8,6 +8,7 @@ import ItemPanel from "../components/itemCards";
 import companiesData from "../data/company"; 
 import brainrotData from "../data/brainrot";
 import { createClient } from "@supabase/supabase-js";
+import { postToElo, ensureTable } from "../components/security";
 
 // Initialize Supabase client (only for read operations)
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -128,39 +129,12 @@ export default function RankdTopicPage() {
       
       try {
         // Ensure table exists first via API
-        await fetch('/api/ensure-table', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ topic })
-        });
+        await ensureTable(topic);
         
         const leftId = left.id || left.name.replace(/\s+/g, "_").toLowerCase();
         const rightId = right.id || right.name.replace(/\s+/g, "_").toLowerCase();
         
-      
-        
-        const { data: leftData, error: leftError } = await supabase
-          .from(topic)
-          .select('elo')
-          .eq('id', leftId)
-          .single();
-        
-        if (leftError && leftError.code !== 'PGRST116') {
-          console.error("Error fetching left ELO:", leftError);
-        }
-        
-        const { data: rightData, error: rightError } = await supabase
-          .from(topic)
-          .select('elo')
-          .eq('id', rightId)
-          .single();
-        
-        if (rightError && rightError.code !== 'PGRST116') {
-          console.error("Error fetching right ELO:", rightError);
-        }
-        
-        setLeftElo(leftData?.elo || 1000);
-        setRightElo(rightData?.elo || 1000);
+        // Rest of your code remains the same...
       } catch (error) {
         console.error("Error in fetchElos:", error);
       }
@@ -168,7 +142,8 @@ export default function RankdTopicPage() {
     
     fetchElos();
   }, [left, right, topic]);
-
+  
+  // Replace your handleChoice function with:
   async function handleChoice(side) {
     if (voted) return;
     
@@ -185,28 +160,16 @@ export default function RankdTopicPage() {
       const leftId = left.id || left.name.replace(/\s+/g, "_").toLowerCase();
       const rightId = right.id || right.name.replace(/\s+/g, "_").toLowerCase();
       
-  
-      
-      // Call our API route instead of Supabase directly
-      const response = await fetch('/api/elo', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          topic,
-          leftId,
-          rightId,
-          leftName: left.name,
-          rightName: right.name,
-          outcome: side
-        })
+      // Use the new utility function
+      const data = await postToElo({
+        topic,
+        leftId,
+        rightId,
+        leftName: left.name,
+        rightName: right.name,
+        outcome: side
       });
       
-      const data = await response.json();
-      
-      if (!response.ok) {
-        throw new Error(data.error || 'Failed to update ELO ratings');
-      }
-   
       // Update state with returned values
       setLeftElo(data.left_elo);
       setRightElo(data.right_elo);
@@ -214,9 +177,9 @@ export default function RankdTopicPage() {
       setRightEloChange(data.right_elo_change);
     } catch (error) {
       console.error("Error in handleChoice:", error);
-  
     }
   }
+  
 
   async function handleEqual() {
     await handleChoice("equal");
