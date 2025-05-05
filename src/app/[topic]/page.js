@@ -238,7 +238,8 @@ export default function RankdTopicPage() {
             (picked === "right" || picked === "equal") &&
             confettiWidth > 0 &&
             confettiHeight > 0 && (
-              <div className="absolute right-0 top-0 z-50 pointer-events-none w-full md:w-1/2 h-full">
+              <div className="absolute top-0 right-0 z-50 pointer-events-none w-1/2 h-full">
+
                 <Confetti
                   width={confettiWidth / 2}
                   height={confettiHeight}
