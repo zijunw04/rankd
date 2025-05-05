@@ -106,27 +106,9 @@ export async function POST(request) {
     // Mark this exact request as processed
     recentRequests.set(requestKey, now);
     
-    // Check for duplicate transaction in memory first
+    // Check for duplicate transaction in memory
     if (transactionId && processedTransactions.has(transactionId)) {
       return Response.json(processedTransactions.get(transactionId));
-    }
-    
-    // Check database for existing transaction
-    if (transactionId) {
-      try {
-        const { data: existingTx, error: txError } = await supabase
-          .from('api_transactions')
-          .select('data')
-          .eq('transaction_id', transactionId)
-          .single();
-        
-        if (!txError && existingTx) {
-          processedTransactions.set(transactionId, existingTx.data);
-          return Response.json(existingTx.data);
-        }
-      } catch (err) {
-        console.log("Transaction check error:", err.message);
-      }
     }
     
     let result;
@@ -150,8 +132,7 @@ export async function POST(request) {
         p_right_name: rightName,
         p_outcome: outcome,
         p_ip: null,
-        p_user_agent: null,
-        p_transaction_id: transactionId
+        p_user_agent: null
       });
       
       if (error) {
@@ -164,19 +145,9 @@ export async function POST(request) {
       return Response.json({ error: 'Invalid action' }, { status: 400 });
     }
     
-    // Store result
+    // Store result in memory
     if (transactionId) {
       processedTransactions.set(transactionId, result);
-      
-      try {
-        await supabase.from('api_transactions').insert({
-          transaction_id: transactionId,
-          topic,
-          data: result
-        });
-      } catch (err) {
-        console.log("Transaction storage error:", err.message);
-      }
     }
     
     return Response.json(result);
