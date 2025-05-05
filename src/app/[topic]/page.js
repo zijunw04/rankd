@@ -8,7 +8,6 @@ import ItemPanel from "../components/itemCards";
 import companiesData from "../data/company"; 
 import brainrotData from "../data/brainrot";
 import { createClient } from "@supabase/supabase-js";
-import { generateRequestSignature } from "../components/security";
 
 // Initialize Supabase client (only for read operations)
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -89,7 +88,6 @@ export default function RankdTopicPage() {
   const [rightElo, setRightElo] = useState(null);
   const [leftEloChange, setLeftEloChange] = useState(null);
   const [rightEloChange, setRightEloChange] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
   const confettiRef = useRef(null);
   const [confettiHeight, setConfettiHeight] = useState(0);
   const [confettiWidth, setConfettiWidth] = useState(0);
@@ -129,24 +127,17 @@ export default function RankdTopicPage() {
       if (!left || !right) return;
       
       try {
-        setIsLoading(true);
-        
-        // Generate signed request
-        const requestData = { topic, timestamp: Date.now() };
-        const { payload, signature } = await generateRequestSignature(requestData);
-        
         // Ensure table exists first via API
         await fetch('/api/ensure-table', {
           method: 'POST',
-          headers: { 
-            'Content-Type': 'application/json',
-            'x-signature': signature
-          },
-          body: payload
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ topic })
         });
         
         const leftId = left.id || left.name.replace(/\s+/g, "_").toLowerCase();
         const rightId = right.id || right.name.replace(/\s+/g, "_").toLowerCase();
+        
+      
         
         const { data: leftData, error: leftError } = await supabase
           .from(topic)
@@ -172,8 +163,6 @@ export default function RankdTopicPage() {
         setRightElo(rightData?.elo || 1000);
       } catch (error) {
         console.error("Error in fetchElos:", error);
-      } finally {
-        setIsLoading(false);
       }
     }
     
@@ -181,7 +170,7 @@ export default function RankdTopicPage() {
   }, [left, right, topic]);
 
   async function handleChoice(side) {
-    if (voted || isLoading) return;
+    if (voted) return;
     
     if (confettiRef.current) {
       setConfettiWidth(confettiRef.current.offsetWidth);
@@ -191,34 +180,25 @@ export default function RankdTopicPage() {
     setPicked(side);
     setShowConfetti(true);
     setVoted(true);
-    setIsLoading(true);
     
     try {
       const leftId = left.id || left.name.replace(/\s+/g, "_").toLowerCase();
       const rightId = right.id || right.name.replace(/\s+/g, "_").toLowerCase();
       
-      // Create request data with timestamp
-      const requestData = {
-        topic,
-        leftId,
-        rightId,
-        leftName: left.name,
-        rightName: right.name,
-        outcome: side,
-        timestamp: Date.now()
-      };
+  
       
-      // Generate signed request
-      const { payload, signature } = await generateRequestSignature(requestData);
-      
-      // Call our API route with signature
+      // Call our API route instead of Supabase directly
       const response = await fetch('/api/elo', {
         method: 'POST',
-        headers: { 
-          'Content-Type': 'application/json',
-          'x-signature': signature
-        },
-        body: payload
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          topic,
+          leftId,
+          rightId,
+          leftName: left.name,
+          rightName: right.name,
+          outcome: side
+        })
       });
       
       const data = await response.json();
@@ -234,14 +214,12 @@ export default function RankdTopicPage() {
       setRightEloChange(data.right_elo_change);
     } catch (error) {
       console.error("Error in handleChoice:", error);
-      // Don't set fallback values
-    } finally {
-      setIsLoading(false);
+  
     }
   }
 
-  function handleEqual() {
-    handleChoice("equal");
+  async function handleEqual() {
+    await handleChoice("equal");
   }
 
   function handleNextPair() {
@@ -310,7 +288,7 @@ export default function RankdTopicPage() {
             item={mapItemToGenericFormat(left, leftElo, leftEloChange, topic)}
             onClick={() => handleChoice("left")}
             side="left"
-            disabled={voted || isLoading}
+            disabled={voted}
             revealed={voted}
             className="w-1/2 flex items-center justify-center px-1 sm:px-4"
           />
@@ -321,23 +299,21 @@ export default function RankdTopicPage() {
           <div className="flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-40 items-center justify-center">
             {!voted ? (
               <button
-                className={`flex items-center justify-center rounded-full bg-white shadow-lg w-16 h-16 sm:w-24 sm:h-24 border border-blue-200 text-blue-700 font-semibold text-sm sm:text-lg hover:bg-blue-50 hover:scale-105 transition ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                className="flex items-center justify-center rounded-full bg-white shadow-lg w-16 h-16 sm:w-24 sm:h-24 border border-blue-200 text-blue-700 font-semibold text-sm sm:text-lg hover:bg-blue-50 hover:scale-105 transition"
                 onClick={handleEqual}
-                disabled={isLoading}
                 aria-label="Equal"
                 title="Equal"
               >
-                {isLoading ? "..." : "Equal"}
+                Equal
               </button>
             ) : (
               <button
-                className={`flex items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-indigo-500 shadow-lg w-16 h-16 sm:w-24 sm:h-24 text-white font-semibold text-sm sm:text-lg hover:from-blue-700 hover:to-indigo-600 hover:scale-105 transition ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                className="flex items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-indigo-500 shadow-lg w-16 h-16 sm:w-24 sm:h-24 text-white font-semibold text-sm sm:text-lg hover:from-blue-700 hover:to-indigo-600 hover:scale-105 transition"
                 onClick={handleNextPair}
-                disabled={isLoading}
                 aria-label="Next Pair"
                 title="Next Pair"
               >
-                {isLoading ? "..." : "Next"}
+                Next
               </button>
             )}
           </div>
@@ -347,7 +323,7 @@ export default function RankdTopicPage() {
             item={mapItemToGenericFormat(right, rightElo, rightEloChange, topic)}
             onClick={() => handleChoice("right")}
             side="right"
-            disabled={voted || isLoading}
+            disabled={voted}
             revealed={voted}
             className="w-1/2 flex items-center justify-center px-1 sm:px-4"
           />
