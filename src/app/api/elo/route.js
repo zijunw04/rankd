@@ -6,10 +6,8 @@ const supabaseKey = process.env.SUPABASE_SERVICE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 const API_SECRET = process.env.API_SECRET_KEY || "7a8f6d2e1b9c4a3d5f2e8b7c6d5a4f3e2b1c9a8d7f6e5b4c3a2d1f9e8b7c6d5";
 
-// In-memory rate limiting store
-const rateLimits = new Map();
-const RATE_LIMIT = 5; // max requests per window
-const RATE_WINDOW = 10000; // 10 seconds in milliseconds
+// In-memory cache for processed transactions
+const processedTransactions = new Map();
 
 // Verify signature function
 async function verifySignature(payload, signature) {
@@ -48,11 +46,6 @@ async function verifySignature(payload, signature) {
 
 export async function POST(request) {
   try {
-    // Get client IP for rate limiting
-    const ip = request.headers.get('x-forwarded-for') || 
-               request.headers.get('x-real-ip') || 
-               'unknown';
-    
     // Get the signature from headers
     const signature = request.headers.get('X-Request-Signature');
     
@@ -73,46 +66,31 @@ export async function POST(request) {
       return Response.json({ error: 'Request expired' }, { status: 400 });
     }
     
-    // Check rate limiting
-    const clientKey = `elo:${ip}`;
-    const clientData = rateLimits.get(clientKey) || { count: 0, resetAt: now + RATE_WINDOW };
-    
-    // Reset counter if window expired
-    if (now > clientData.resetAt) {
-      clientData.count = 0;
-      clientData.resetAt = now + RATE_WINDOW;
+    // Check for duplicate transaction in memory first
+    if (transactionId && processedTransactions.has(transactionId)) {
+      return Response.json(processedTransactions.get(transactionId));
     }
     
-    // Check if rate limit exceeded
-    if (clientData.count >= RATE_LIMIT) {
-      return Response.json({ 
-        error: 'Too many requests. Please try again later.',
-        retryAfter: Math.ceil((clientData.resetAt - now) / 1000)
-      }, { 
-        status: 429,
-        headers: {
-          'Retry-After': Math.ceil((clientData.resetAt - now) / 1000)
-        }
-      });
-    }
-    
-    // Check for duplicate transaction
+    // Check for duplicate transaction in database
     if (transactionId) {
-      const { data: existingTx, error: txError } = await supabase
-        .from('api_transactions')
-        .select('data')
-        .eq('transaction_id', transactionId)
-        .single();
-      
-      if (!txError && existingTx) {
-        // Return the cached result for this transaction
-        return Response.json(existingTx.data);
+      try {
+        const { data: existingTx, error: txError } = await supabase
+          .from('api_transactions')
+          .select('data')
+          .eq('transaction_id', transactionId)
+          .single();
+        
+        if (!txError && existingTx) {
+          // Cache result in memory
+          processedTransactions.set(transactionId, existingTx.data);
+          // Return the cached result for this transaction
+          return Response.json(existingTx.data);
+        }
+      } catch (err) {
+        // Table might not exist yet, continue with processing
+        console.log("Transaction check error:", err.message);
       }
     }
-    
-    // Increment counter
-    clientData.count++;
-    rateLimits.set(clientKey, clientData);
     
     // Call server-side function to update ELO ratings
     const { data: result, error } = await supabase.rpc('calculate_elo', { 
@@ -122,13 +100,18 @@ export async function POST(request) {
       p_left_name: leftName,
       p_right_name: rightName,
       p_outcome: outcome,
-      p_ip: ip,
-      p_user_agent: request.headers.get('user-agent') || null,
+      p_ip: null, // Don't track IP
+      p_user_agent: null, // Don't track user agent
       p_transaction_id: transactionId
     });
     
     if (error) {
       return Response.json({ error: error.message }, { status: 500 });
+    }
+    
+    // Store result in memory cache
+    if (transactionId) {
+      processedTransactions.set(transactionId, result);
     }
     
     return Response.json(result);

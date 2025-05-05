@@ -1,4 +1,13 @@
+// app/api/ensure-table/route.js
+import { createClient } from "@supabase/supabase-js";
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_SERVICE_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
 const API_SECRET = process.env.API_SECRET_KEY || "7a8f6d2e1b9c4a3d5f2e8b7c6d5a4f3e2b1c9a8d7f6e5b4c3a2d1f9e8b7c6d5";
+
+// In-memory cache for processed transactions
+const processedTransactions = new Map();
 
 // Verify signature function
 async function verifySignature(payload, signature) {
@@ -57,46 +66,31 @@ export async function POST(request) {
       return Response.json({ error: 'Request expired' }, { status: 400 });
     }
     
-    // Check rate limiting
-    const clientKey = `ensure-table:${ip}`;
-    const clientData = rateLimits.get(clientKey) || { count: 0, resetAt: now + RATE_WINDOW };
-    
-    // Reset counter if window expired
-    if (now > clientData.resetAt) {
-      clientData.count = 0;
-      clientData.resetAt = now + RATE_WINDOW;
+    // Check for duplicate transaction in memory first
+    if (transactionId && processedTransactions.has(transactionId)) {
+      return Response.json(processedTransactions.get(transactionId));
     }
     
-    // Check if rate limit exceeded
-    if (clientData.count >= RATE_LIMIT) {
-      return Response.json({ 
-        error: 'Too many requests. Please try again later.',
-        retryAfter: Math.ceil((clientData.resetAt - now) / 1000)
-      }, { 
-        status: 429,
-        headers: {
-          'Retry-After': Math.ceil((clientData.resetAt - now) / 1000)
-        }
-      });
-    }
-    
-    // Check for duplicate transaction
+    // Check for duplicate transaction in database
     if (transactionId) {
-      const { data: existingTx, error: txError } = await supabase
-        .from('api_transactions')
-        .select('data')
-        .eq('transaction_id', transactionId)
-        .single();
-      
-      if (!txError && existingTx) {
-        // Return the cached result for this transaction
-        return Response.json(existingTx.data);
+      try {
+        const { data: existingTx, error: txError } = await supabase
+          .from('api_transactions')
+          .select('data')
+          .eq('transaction_id', transactionId)
+          .single();
+        
+        if (!txError && existingTx) {
+          // Cache result in memory
+          processedTransactions.set(transactionId, existingTx.data);
+          // Return the cached result for this transaction
+          return Response.json(existingTx.data);
+        }
+      } catch (err) {
+        // Table might not exist yet, continue with processing
+        console.log("Transaction check error:", err.message);
       }
     }
-    
-    // Increment counter
-    clientData.count++;
-    rateLimits.set(clientKey, clientData);
     
     // Call server-side function
     const { error } = await supabase.rpc('ensure_topic_table', { 
@@ -109,13 +103,21 @@ export async function POST(request) {
     
     const result = { success: true };
     
-    // Store the transaction result
+    // Store the transaction result in memory
     if (transactionId) {
-      await supabase.from('api_transactions').insert({
-        transaction_id: transactionId,
-        topic,
-        data: result
-      });
+      processedTransactions.set(transactionId, result);
+      
+      // Try to store in database if it exists
+      try {
+        await supabase.from('api_transactions').insert({
+          transaction_id: transactionId,
+          topic,
+          data: result
+        });
+      } catch (err) {
+        // Table might not exist yet, but we've already cached in memory
+        console.log("Transaction storage error:", err.message);
+      }
     }
     
     return Response.json(result);
