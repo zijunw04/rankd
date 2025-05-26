@@ -16,7 +16,7 @@ A Next.js project bootstrapped with `create-next-app` to rank companies using th
 *   **React:** A JavaScript library for building user interfaces.
 *   **Framer Motion:** A motion library for creating animations.
 *   **canvas-confetti:** For the confetti celebration.
-*   **Firebase Realtime Database:** Used as a backend for storing the ELOP ratings and company preferences.
+*   **Supabase Realtime Database:** Used as a backend for storing the ELOP ratings and company preferences.
 *   **Tailwind CSS:** A utility-first CSS framework for styling the application.
 *   **react-icons:** Used to display icons on the webpage.
 
